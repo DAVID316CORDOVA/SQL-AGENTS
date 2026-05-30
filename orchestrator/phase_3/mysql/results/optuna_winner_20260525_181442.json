@@ -1,0 +1,9 @@
+{
+  "agent": "Orchestrator",
+  "backend": "mysql",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.7,
+  "combined_score": 2.7053,
+  "n_trials": 10,
+  "generated_at": "2026-05-25T18:14:42.903573"
+}

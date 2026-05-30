@@ -1,0 +1,50 @@
+{
+  "tablas": {
+    "butch_miller_racing_driver_1_2190919_1": {
+      "descripcion": "Table butch_miller_racing_driver_1_2190919_1",
+      "columnas": {
+        "year": {
+          "tipo": "real",
+          "descripcion": "Year. Numeric value."
+        },
+        "starts": {
+          "tipo": "real",
+          "descripcion": "Starts. Numeric value."
+        },
+        "wins": {
+          "tipo": "real",
+          "descripcion": "Wins. Numeric value."
+        },
+        "top_10": {
+          "tipo": "real",
+          "descripcion": "Top 10. Numeric value."
+        },
+        "poles": {
+          "tipo": "real",
+          "descripcion": "Poles. Numeric value."
+        },
+        "avg_start": {
+          "tipo": "text",
+          "descripcion": "Avg. Start. Text value."
+        },
+        "avg_finish": {
+          "tipo": "text",
+          "descripcion": "Avg. Finish. Text value."
+        },
+        "winnings": {
+          "tipo": "text",
+          "descripcion": "Winnings. Text value."
+        },
+        "position": {
+          "tipo": "text",
+          "descripcion": "Position. Text value."
+        },
+        "team_s": {
+          "tipo": "text",
+          "descripcion": "Team(s). Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

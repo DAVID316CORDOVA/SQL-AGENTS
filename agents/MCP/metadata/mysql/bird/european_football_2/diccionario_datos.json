@@ -1,0 +1,881 @@
+{
+  "tablas": {
+    "country": {
+      "descripcion": "Table country from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        }
+      }
+    },
+    "league": {
+      "descripcion": "Table league from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "country_id": {
+          "tipo": "numeric",
+          "descripcion": "Country Id. Type: bigint."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        }
+      }
+    },
+    "match": {
+      "descripcion": "Table match from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "country_id": {
+          "tipo": "numeric",
+          "descripcion": "Country Id. Type: bigint."
+        },
+        "league_id": {
+          "tipo": "numeric",
+          "descripcion": "League Id. Type: bigint."
+        },
+        "season": {
+          "tipo": "text",
+          "descripcion": "Season. Type: text."
+        },
+        "stage": {
+          "tipo": "numeric",
+          "descripcion": "Stage. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "match_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Match Api Id. Type: bigint."
+        },
+        "home_team_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Home Team Api Id. Type: bigint."
+        },
+        "away_team_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Away Team Api Id. Type: bigint."
+        },
+        "home_team_goal": {
+          "tipo": "numeric",
+          "descripcion": "Home Team Goal. Type: bigint."
+        },
+        "away_team_goal": {
+          "tipo": "numeric",
+          "descripcion": "Away Team Goal. Type: bigint."
+        },
+        "home_player_X1": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X1. Type: bigint."
+        },
+        "home_player_X2": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X2. Type: bigint."
+        },
+        "home_player_X3": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X3. Type: bigint."
+        },
+        "home_player_X4": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X4. Type: bigint."
+        },
+        "home_player_X5": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X5. Type: bigint."
+        },
+        "home_player_X6": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X6. Type: bigint."
+        },
+        "home_player_X7": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X7. Type: bigint."
+        },
+        "home_player_X8": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X8. Type: bigint."
+        },
+        "home_player_X9": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X9. Type: bigint."
+        },
+        "home_player_X10": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X10. Type: bigint."
+        },
+        "home_player_X11": {
+          "tipo": "numeric",
+          "descripcion": "Home Player X11. Type: bigint."
+        },
+        "away_player_X1": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X1. Type: bigint."
+        },
+        "away_player_X2": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X2. Type: bigint."
+        },
+        "away_player_X3": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X3. Type: bigint."
+        },
+        "away_player_X4": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X4. Type: bigint."
+        },
+        "away_player_X5": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X5. Type: bigint."
+        },
+        "away_player_X6": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X6. Type: bigint."
+        },
+        "away_player_X7": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X7. Type: bigint."
+        },
+        "away_player_X8": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X8. Type: bigint."
+        },
+        "away_player_X9": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X9. Type: bigint."
+        },
+        "away_player_X10": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X10. Type: bigint."
+        },
+        "away_player_X11": {
+          "tipo": "numeric",
+          "descripcion": "Away Player X11. Type: bigint."
+        },
+        "home_player_Y1": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y1. Type: bigint."
+        },
+        "home_player_Y2": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y2. Type: bigint."
+        },
+        "home_player_Y3": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y3. Type: bigint."
+        },
+        "home_player_Y4": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y4. Type: bigint."
+        },
+        "home_player_Y5": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y5. Type: bigint."
+        },
+        "home_player_Y6": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y6. Type: bigint."
+        },
+        "home_player_Y7": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y7. Type: bigint."
+        },
+        "home_player_Y8": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y8. Type: bigint."
+        },
+        "home_player_Y9": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y9. Type: bigint."
+        },
+        "home_player_Y10": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y10. Type: bigint."
+        },
+        "home_player_Y11": {
+          "tipo": "numeric",
+          "descripcion": "Home Player Y11. Type: bigint."
+        },
+        "away_player_Y1": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y1. Type: bigint."
+        },
+        "away_player_Y2": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y2. Type: bigint."
+        },
+        "away_player_Y3": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y3. Type: bigint."
+        },
+        "away_player_Y4": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y4. Type: bigint."
+        },
+        "away_player_Y5": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y5. Type: bigint."
+        },
+        "away_player_Y6": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y6. Type: bigint."
+        },
+        "away_player_Y7": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y7. Type: bigint."
+        },
+        "away_player_Y8": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y8. Type: bigint."
+        },
+        "away_player_Y9": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y9. Type: bigint."
+        },
+        "away_player_Y10": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y10. Type: bigint."
+        },
+        "away_player_Y11": {
+          "tipo": "numeric",
+          "descripcion": "Away Player Y11. Type: bigint."
+        },
+        "home_player_1": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 1. Type: bigint."
+        },
+        "home_player_2": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 2. Type: bigint."
+        },
+        "home_player_3": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 3. Type: bigint."
+        },
+        "home_player_4": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 4. Type: bigint."
+        },
+        "home_player_5": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 5. Type: bigint."
+        },
+        "home_player_6": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 6. Type: bigint."
+        },
+        "home_player_7": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 7. Type: bigint."
+        },
+        "home_player_8": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 8. Type: bigint."
+        },
+        "home_player_9": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 9. Type: bigint."
+        },
+        "home_player_10": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 10. Type: bigint."
+        },
+        "home_player_11": {
+          "tipo": "numeric",
+          "descripcion": "Home Player 11. Type: bigint."
+        },
+        "away_player_1": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 1. Type: bigint."
+        },
+        "away_player_2": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 2. Type: bigint."
+        },
+        "away_player_3": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 3. Type: bigint."
+        },
+        "away_player_4": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 4. Type: bigint."
+        },
+        "away_player_5": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 5. Type: bigint."
+        },
+        "away_player_6": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 6. Type: bigint."
+        },
+        "away_player_7": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 7. Type: bigint."
+        },
+        "away_player_8": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 8. Type: bigint."
+        },
+        "away_player_9": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 9. Type: bigint."
+        },
+        "away_player_10": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 10. Type: bigint."
+        },
+        "away_player_11": {
+          "tipo": "numeric",
+          "descripcion": "Away Player 11. Type: bigint."
+        },
+        "goal": {
+          "tipo": "text",
+          "descripcion": "Goal. Type: text."
+        },
+        "shoton": {
+          "tipo": "text",
+          "descripcion": "Shoton. Type: text."
+        },
+        "shotoff": {
+          "tipo": "text",
+          "descripcion": "Shotoff. Type: text."
+        },
+        "foulcommit": {
+          "tipo": "text",
+          "descripcion": "Foulcommit. Type: text."
+        },
+        "card": {
+          "tipo": "text",
+          "descripcion": "Card. Type: text."
+        },
+        "cross": {
+          "tipo": "text",
+          "descripcion": "Cross. Type: text."
+        },
+        "corner": {
+          "tipo": "text",
+          "descripcion": "Corner. Type: text."
+        },
+        "possession": {
+          "tipo": "text",
+          "descripcion": "Possession. Type: text."
+        },
+        "B365H": {
+          "tipo": "numeric",
+          "descripcion": "B365H. Type: double."
+        },
+        "B365D": {
+          "tipo": "numeric",
+          "descripcion": "B365D. Type: double."
+        },
+        "B365A": {
+          "tipo": "numeric",
+          "descripcion": "B365A. Type: double."
+        },
+        "BWH": {
+          "tipo": "numeric",
+          "descripcion": "Bwh. Type: double."
+        },
+        "BWD": {
+          "tipo": "numeric",
+          "descripcion": "Bwd. Type: double."
+        },
+        "BWA": {
+          "tipo": "numeric",
+          "descripcion": "Bwa. Type: double."
+        },
+        "IWH": {
+          "tipo": "numeric",
+          "descripcion": "Iwh. Type: double."
+        },
+        "IWD": {
+          "tipo": "numeric",
+          "descripcion": "Iwd. Type: double."
+        },
+        "IWA": {
+          "tipo": "numeric",
+          "descripcion": "Iwa. Type: double."
+        },
+        "LBH": {
+          "tipo": "numeric",
+          "descripcion": "Lbh. Type: double."
+        },
+        "LBD": {
+          "tipo": "numeric",
+          "descripcion": "Lbd. Type: double."
+        },
+        "LBA": {
+          "tipo": "numeric",
+          "descripcion": "Lba. Type: double."
+        },
+        "PSH": {
+          "tipo": "numeric",
+          "descripcion": "Psh. Type: double."
+        },
+        "PSD": {
+          "tipo": "numeric",
+          "descripcion": "Psd. Type: double."
+        },
+        "PSA": {
+          "tipo": "numeric",
+          "descripcion": "Psa. Type: double."
+        },
+        "WHH": {
+          "tipo": "numeric",
+          "descripcion": "Whh. Type: double."
+        },
+        "WHD": {
+          "tipo": "numeric",
+          "descripcion": "Whd. Type: double."
+        },
+        "WHA": {
+          "tipo": "numeric",
+          "descripcion": "Wha. Type: double."
+        },
+        "SJH": {
+          "tipo": "numeric",
+          "descripcion": "Sjh. Type: double."
+        },
+        "SJD": {
+          "tipo": "numeric",
+          "descripcion": "Sjd. Type: double."
+        },
+        "SJA": {
+          "tipo": "numeric",
+          "descripcion": "Sja. Type: double."
+        },
+        "VCH": {
+          "tipo": "numeric",
+          "descripcion": "Vch. Type: double."
+        },
+        "VCD": {
+          "tipo": "numeric",
+          "descripcion": "Vcd. Type: double."
+        },
+        "VCA": {
+          "tipo": "numeric",
+          "descripcion": "Vca. Type: double."
+        },
+        "GBH": {
+          "tipo": "numeric",
+          "descripcion": "Gbh. Type: double."
+        },
+        "GBD": {
+          "tipo": "numeric",
+          "descripcion": "Gbd. Type: double."
+        },
+        "GBA": {
+          "tipo": "numeric",
+          "descripcion": "Gba. Type: double."
+        },
+        "BSH": {
+          "tipo": "numeric",
+          "descripcion": "Bsh. Type: double."
+        },
+        "BSD": {
+          "tipo": "numeric",
+          "descripcion": "Bsd. Type: double."
+        },
+        "BSA": {
+          "tipo": "numeric",
+          "descripcion": "Bsa. Type: double."
+        }
+      }
+    },
+    "player": {
+      "descripcion": "Table player from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "player_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Player Api Id. Type: bigint."
+        },
+        "player_name": {
+          "tipo": "text",
+          "descripcion": "Player Name. Type: text."
+        },
+        "player_fifa_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Player Fifa Api Id. Type: bigint."
+        },
+        "birthday": {
+          "tipo": "text",
+          "descripcion": "Birthday. Type: text."
+        },
+        "height": {
+          "tipo": "numeric",
+          "descripcion": "Height. Type: bigint."
+        },
+        "weight": {
+          "tipo": "numeric",
+          "descripcion": "Weight. Type: bigint."
+        }
+      }
+    },
+    "player_attributes": {
+      "descripcion": "Table player_attributes from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "player_fifa_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Player Fifa Api Id. Type: bigint."
+        },
+        "player_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Player Api Id. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "overall_rating": {
+          "tipo": "numeric",
+          "descripcion": "Overall Rating. Type: bigint."
+        },
+        "potential": {
+          "tipo": "numeric",
+          "descripcion": "Potential. Type: bigint."
+        },
+        "preferred_foot": {
+          "tipo": "text",
+          "descripcion": "Preferred Foot. Type: text."
+        },
+        "attacking_work_rate": {
+          "tipo": "text",
+          "descripcion": "Attacking Work Rate. Type: text."
+        },
+        "defensive_work_rate": {
+          "tipo": "text",
+          "descripcion": "Defensive Work Rate. Type: text."
+        },
+        "crossing": {
+          "tipo": "numeric",
+          "descripcion": "Crossing. Type: bigint."
+        },
+        "finishing": {
+          "tipo": "numeric",
+          "descripcion": "Finishing. Type: bigint."
+        },
+        "heading_accuracy": {
+          "tipo": "numeric",
+          "descripcion": "Heading Accuracy. Type: bigint."
+        },
+        "short_passing": {
+          "tipo": "numeric",
+          "descripcion": "Short Passing. Type: bigint."
+        },
+        "volleys": {
+          "tipo": "numeric",
+          "descripcion": "Volleys. Type: bigint."
+        },
+        "dribbling": {
+          "tipo": "numeric",
+          "descripcion": "Dribbling. Type: bigint."
+        },
+        "curve": {
+          "tipo": "numeric",
+          "descripcion": "Curve. Type: bigint."
+        },
+        "free_kick_accuracy": {
+          "tipo": "numeric",
+          "descripcion": "Free Kick Accuracy. Type: bigint."
+        },
+        "long_passing": {
+          "tipo": "numeric",
+          "descripcion": "Long Passing. Type: bigint."
+        },
+        "ball_control": {
+          "tipo": "numeric",
+          "descripcion": "Ball Control. Type: bigint."
+        },
+        "acceleration": {
+          "tipo": "numeric",
+          "descripcion": "Acceleration. Type: bigint."
+        },
+        "sprint_speed": {
+          "tipo": "numeric",
+          "descripcion": "Sprint Speed. Type: bigint."
+        },
+        "agility": {
+          "tipo": "numeric",
+          "descripcion": "Agility. Type: bigint."
+        },
+        "reactions": {
+          "tipo": "numeric",
+          "descripcion": "Reactions. Type: bigint."
+        },
+        "balance": {
+          "tipo": "numeric",
+          "descripcion": "Balance. Type: bigint."
+        },
+        "shot_power": {
+          "tipo": "numeric",
+          "descripcion": "Shot Power. Type: bigint."
+        },
+        "jumping": {
+          "tipo": "numeric",
+          "descripcion": "Jumping. Type: bigint."
+        },
+        "stamina": {
+          "tipo": "numeric",
+          "descripcion": "Stamina. Type: bigint."
+        },
+        "strength": {
+          "tipo": "numeric",
+          "descripcion": "Strength. Type: bigint."
+        },
+        "long_shots": {
+          "tipo": "numeric",
+          "descripcion": "Long Shots. Type: bigint."
+        },
+        "aggression": {
+          "tipo": "numeric",
+          "descripcion": "Aggression. Type: bigint."
+        },
+        "interceptions": {
+          "tipo": "numeric",
+          "descripcion": "Interceptions. Type: bigint."
+        },
+        "positioning": {
+          "tipo": "numeric",
+          "descripcion": "Positioning. Type: bigint."
+        },
+        "vision": {
+          "tipo": "numeric",
+          "descripcion": "Vision. Type: bigint."
+        },
+        "penalties": {
+          "tipo": "numeric",
+          "descripcion": "Penalties. Type: bigint."
+        },
+        "marking": {
+          "tipo": "numeric",
+          "descripcion": "Marking. Type: bigint."
+        },
+        "standing_tackle": {
+          "tipo": "numeric",
+          "descripcion": "Standing Tackle. Type: bigint."
+        },
+        "sliding_tackle": {
+          "tipo": "numeric",
+          "descripcion": "Sliding Tackle. Type: bigint."
+        },
+        "gk_diving": {
+          "tipo": "numeric",
+          "descripcion": "Gk Diving. Type: bigint."
+        },
+        "gk_handling": {
+          "tipo": "numeric",
+          "descripcion": "Gk Handling. Type: bigint."
+        },
+        "gk_kicking": {
+          "tipo": "numeric",
+          "descripcion": "Gk Kicking. Type: bigint."
+        },
+        "gk_positioning": {
+          "tipo": "numeric",
+          "descripcion": "Gk Positioning. Type: bigint."
+        },
+        "gk_reflexes": {
+          "tipo": "numeric",
+          "descripcion": "Gk Reflexes. Type: bigint."
+        }
+      }
+    },
+    "sqlite_sequence": {
+      "descripcion": "Table sqlite_sequence from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "seq": {
+          "tipo": "text",
+          "descripcion": "Seq. Type: text."
+        }
+      }
+    },
+    "team": {
+      "descripcion": "Table team from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "team_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Team Api Id. Type: bigint."
+        },
+        "team_fifa_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Team Fifa Api Id. Type: bigint."
+        },
+        "team_long_name": {
+          "tipo": "text",
+          "descripcion": "Team Long Name. Type: text."
+        },
+        "team_short_name": {
+          "tipo": "text",
+          "descripcion": "Team Short Name. Type: text."
+        }
+      }
+    },
+    "team_attributes": {
+      "descripcion": "Table team_attributes from the european_football_2 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "team_fifa_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Team Fifa Api Id. Type: bigint."
+        },
+        "team_api_id": {
+          "tipo": "numeric",
+          "descripcion": "Team Api Id. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "buildUpPlaySpeed": {
+          "tipo": "numeric",
+          "descripcion": "Buildupplayspeed. Type: bigint."
+        },
+        "buildUpPlaySpeedClass": {
+          "tipo": "text",
+          "descripcion": "Buildupplayspeedclass. Type: text."
+        },
+        "buildUpPlayDribbling": {
+          "tipo": "numeric",
+          "descripcion": "Buildupplaydribbling. Type: bigint."
+        },
+        "buildUpPlayDribblingClass": {
+          "tipo": "text",
+          "descripcion": "Buildupplaydribblingclass. Type: text."
+        },
+        "buildUpPlayPassing": {
+          "tipo": "numeric",
+          "descripcion": "Buildupplaypassing. Type: bigint."
+        },
+        "buildUpPlayPassingClass": {
+          "tipo": "text",
+          "descripcion": "Buildupplaypassingclass. Type: text."
+        },
+        "buildUpPlayPositioningClass": {
+          "tipo": "text",
+          "descripcion": "Buildupplaypositioningclass. Type: text."
+        },
+        "chanceCreationPassing": {
+          "tipo": "numeric",
+          "descripcion": "Chancecreationpassing. Type: bigint."
+        },
+        "chanceCreationPassingClass": {
+          "tipo": "text",
+          "descripcion": "Chancecreationpassingclass. Type: text."
+        },
+        "chanceCreationCrossing": {
+          "tipo": "numeric",
+          "descripcion": "Chancecreationcrossing. Type: bigint."
+        },
+        "chanceCreationCrossingClass": {
+          "tipo": "text",
+          "descripcion": "Chancecreationcrossingclass. Type: text."
+        },
+        "chanceCreationShooting": {
+          "tipo": "numeric",
+          "descripcion": "Chancecreationshooting. Type: bigint."
+        },
+        "chanceCreationShootingClass": {
+          "tipo": "text",
+          "descripcion": "Chancecreationshootingclass. Type: text."
+        },
+        "chanceCreationPositioningClass": {
+          "tipo": "text",
+          "descripcion": "Chancecreationpositioningclass. Type: text."
+        },
+        "defencePressure": {
+          "tipo": "numeric",
+          "descripcion": "Defencepressure. Type: bigint."
+        },
+        "defencePressureClass": {
+          "tipo": "text",
+          "descripcion": "Defencepressureclass. Type: text."
+        },
+        "defenceAggression": {
+          "tipo": "numeric",
+          "descripcion": "Defenceaggression. Type: bigint."
+        },
+        "defenceAggressionClass": {
+          "tipo": "text",
+          "descripcion": "Defenceaggressionclass. Type: text."
+        },
+        "defenceTeamWidth": {
+          "tipo": "numeric",
+          "descripcion": "Defenceteamwidth. Type: bigint."
+        },
+        "defenceTeamWidthClass": {
+          "tipo": "text",
+          "descripcion": "Defenceteamwidthclass. Type: text."
+        },
+        "defenceDefenderLineClass": {
+          "tipo": "text",
+          "descripcion": "Defencedefenderlineclass. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

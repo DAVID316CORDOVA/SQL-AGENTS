@@ -1,0 +1,9 @@
+{
+  "agent": "Orchestrator",
+  "backend": "mysql",
+  "model": "claude-haiku-4-5",
+  "temperature": 0.3,
+  "combined_score": 2.7435,
+  "n_trials": 10,
+  "generated_at": "2026-05-29T10:50:31.561096"
+}

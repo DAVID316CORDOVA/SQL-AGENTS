@@ -1,0 +1,236 @@
+version: "3.9"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# SQL-Agents — Arquitectura de microservicios Docker
+#
+# Cada agente corre en su propio contenedor y expone un endpoint REST:
+#   POST /invoke  → el orquestador llama a cada agente por nombre de servicio
+#   GET  /health  → docker-compose verifica que el servicio esta listo
+#
+# TIPOS DE IMAGEN:
+#   Pesada (sql_agents-heavy): MCP + APS — incluye torch + sentence-transformers
+#                              ~2.3 GB, necesario para calcular embeddings vectoriales
+#   Liviana (sql_agents-light): AR, AG, AV, AE, AS, orquestador — sin torch
+#                              ~570 MB, arranca mas rapido
+#
+# PRIMER ARRANQUE:
+#   MCP y APS descargan multilingual-e5-base (~1 GB) desde HuggingFace.
+#   El modelo se guarda en el volumen hf_cache y NO se vuelve a descargar.
+#
+# USO:
+#   docker compose up --build          # primer arranque (construye imagenes)
+#   docker compose up                  # reinicios (usa imagenes en cache)
+#   docker compose down                # detener y eliminar contenedores
+# ──────────────────────────────────────────────────────────────────────────────
+
+
+# ── Anclas YAML (evitan repetir configuracion en cada servicio) ────────────────
+
+# Configuracion comun a todos los servicios: env_file, restart y volumenes de schema
+x-agent-base: &agent-base
+  env_file: .env                              # carga OPENAI_API_KEY, ANTHROPIC_API_KEY, etc.
+  restart: unless-stopped                     # el contenedor se reinicia si falla, excepto si se detiene manualmente
+  volumes:
+    - ./agents/APS/mysql/chroma:/app/agents/APS/mysql/chroma      # indice ChromaDB MySQL (persistente)
+    - ./agents/APS/postgres/chroma:/app/agents/APS/postgres/chroma # indice ChromaDB Postgres (persistente)
+    - ./agents/MCP/metadata:/app/agents/MCP/metadata               # schemas JSON del CDC y diccionarios de datos
+
+# Imagen PESADA: incluye torch + sentence-transformers (solo MCP y APS la necesitan)
+x-build-heavy: &build-heavy
+  build:
+    context: .
+    dockerfile: Dockerfile
+    args:
+      REQS: requirements.txt          # instala requirements completo con torch
+
+# Imagen LIVIANA: sin torch, arranque rapido (todos los demas agentes)
+x-build-light: &build-light
+  build:
+    context: .
+    dockerfile: Dockerfile
+    args:
+      REQS: requirements-light.txt    # instala solo dependencias de inference y API
+
+
+# ── Servicios ──────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── MCP Server ────────────────────────────────────────────────────────────────
+  # Servidor Model Context Protocol: expone el schema de la BD (tablas, columnas,
+  # FKs) y el contexto narrativo de dominio a los agentes via SSE (Server-Sent Events).
+  # Debe arrancar primero: AR, APS y AG dependen de el para obtener descripcion del schema.
+  mcp:
+    <<: [*agent-base, *build-heavy]   # hereda configuracion comun + imagen pesada
+    container_name: sql_agents_mcp
+    environment:
+      MCP_TRANSPORT: sse              # protocolo de transporte: SSE mantiene conexion abierta
+      MCP_PORT: "8010"
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./agents/APS/mysql/chroma:/app/agents/APS/mysql/chroma
+      - ./agents/APS/postgres/chroma:/app/agents/APS/postgres/chroma
+      - ./agents/MCP/metadata:/app/agents/MCP/metadata
+      - hf_cache:/root/.cache/huggingface   # modelo multilingual-e5-base: persiste entre reinicios
+    healthcheck:
+      # SSE mantiene la conexion HTTP abierta indefinidamente, por lo que curl
+      # con --fail espera datos y nunca termina. Se usa Python para conectar,
+      # leer solo el status HTTP 200 y salir inmediatamente.
+      test: ["CMD-SHELL", "python3 -c \"import http.client,sys; c=http.client.HTTPConnection('localhost',8010,timeout=4); c.request('GET','/sse'); r=c.getresponse(); sys.exit(0 if r.status==200 else 1)\""]
+      interval: 15s
+      timeout: 6s
+      retries: 5
+      start_period: 10s     # tiempo extra para la descarga del modelo en el primer arranque
+    command: python -m agents.MCP.server
+
+  # ── APS — Schema Matcher ───────────────────────────────────────────────────────
+  # Busqueda vectorial en ChromaDB: recupera tablas y columnas relevantes para cada pregunta.
+  # Imagen PESADA porque usa sentence-transformers directamente para generar embeddings.
+  aps:
+    <<: [*agent-base, *build-heavy]
+    container_name: sql_agents_aps
+    environment:
+      AGENT_ROLE: APS
+      AGENT_MCP_URL: "http://mcp:8010/sse"   # URL del MCP para obtener contexto de dominio
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./agents/APS/mysql/chroma:/app/agents/APS/mysql/chroma
+      - ./agents/APS/postgres/chroma:/app/agents/APS/postgres/chroma
+      - ./agents/MCP/metadata:/app/agents/MCP/metadata
+      - hf_cache:/root/.cache/huggingface
+    depends_on:
+      mcp: { condition: service_healthy }   # espera a que MCP este respondiendo antes de arrancar
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── AR — Agente Refinador ──────────────────────────────────────────────────────
+  # Valida y refina la pregunta del usuario antes de pasarla al pipeline.
+  ar:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_ar
+    environment:
+      AGENT_ROLE: AR
+      AGENT_MCP_URL: "http://mcp:8010/sse"   # AR consulta MCP para obtener descripcion de la BD
+    ports:
+      - "8001:8001"
+    depends_on:
+      mcp: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── AG — Agente Generador de SQL ──────────────────────────────────────────────
+  # Genera la consulta SQL a partir del schema reducido entregado por APS.
+  ag:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_ag
+    environment:
+      AGENT_ROLE: AG
+      AGENT_MCP_URL: "http://mcp:8010/sse"
+    ports:
+      - "8003:8003"
+    depends_on:
+      mcp: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── AV — Agente Validador SQL ──────────────────────────────────────────────────
+  # Verifica sintaxis, compliance con el schema y semantica del SQL generado por AG.
+  av:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_av
+    environment:
+      AGENT_ROLE: AV
+      AGENT_MCP_URL: "http://mcp:8010/sse"
+    ports:
+      - "8004:8004"
+    depends_on:
+      mcp: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8004/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── AE — Agente Explicador ─────────────────────────────────────────────────────
+  # Sintetiza el resultado en lenguaje natural y calcula el indice WACS.
+  ae:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_ae
+    environment:
+      AGENT_ROLE: AE
+      AGENT_MCP_URL: "http://mcp:8010/sse"
+    ports:
+      - "8005:8005"
+    depends_on:
+      mcp: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8005/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── AS — Agente Sustentador ────────────────────────────────────────────────────
+  # Responde bajo demanda preguntas sobre el proceso de generacion del SQL.
+  # Se nombra as_agent porque 'as' es palabra reservada en docker-compose.
+  as_agent:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_as
+    environment:
+      AGENT_ROLE: AS
+      AGENT_MCP_URL: "http://mcp:8010/sse"
+    ports:
+      - "8006:8006"
+    depends_on:
+      mcp: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8006/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── Orquestador / API principal ────────────────────────────────────────────────
+  # Punto de entrada del sistema: clasifica el intent, gestiona memoria y coordina
+  # el pipeline invocando a cada agente por HTTP (AGENT_*_URL).
+  # Espera a que TODOS los agentes esten healthy antes de arrancar.
+  orchestrator:
+    <<: [*agent-base, *build-light]
+    container_name: sql_agents_orchestrator
+    environment:
+      AGENT_ROLE: orchestrator
+      AGENT_MCP_URL: "http://mcp:8010/sse"
+      AGENT_AR_URL:  "http://ar:8001"         # el orquestador llama a cada agente por nombre de servicio
+      AGENT_APS_URL: "http://aps:8002"
+      AGENT_AG_URL:  "http://ag:8003"
+      AGENT_AV_URL:  "http://av:8004"
+      AGENT_AE_URL:  "http://ae:8005"
+      AGENT_AS_URL:  "http://as_agent:8006"
+    ports:
+      - "8000:8000"                            # puerto publico de la API REST y la UI web
+    depends_on:
+      ar:       { condition: service_healthy } # el orquestador solo arranca cuando todos los
+      aps:      { condition: service_healthy } # agentes estan respondiendo a /health,
+      ag:       { condition: service_healthy } # garantizando disponibilidad total del pipeline
+      av:       { condition: service_healthy }
+      ae:       { condition: service_healthy }
+      as_agent: { condition: service_healthy }
+    command: python -m uvicorn api:app --host 0.0.0.0 --port 8000
+
+
+# ── Volumenes nombrados ─────────────────────────────────────────────────────────
+
+volumes:
+  hf_cache:
+    # Cachea el modelo multilingual-e5-base (~1 GB) entre reinicios del contenedor.
+    # Sin este volumen, MCP y APS descargarian el modelo en cada 'docker compose up'.
+    # Se crea automaticamente en el primer arranque.

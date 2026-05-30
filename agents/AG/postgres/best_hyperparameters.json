@@ -1,0 +1,32 @@
+{
+  "agent": "AG",
+  "backend": "postgres",
+  "model": "claude-haiku-4-5",
+  "temperature": 0.7,
+  "phase_1": {
+    "Faithfulness": 0.786,
+    "Groundedness": 0.939,
+    "ROUGE-L_SQL": 0.932,
+    "Brier": 0.0034,
+    "ECE": 0.055,
+    "combined_score": 2.599,
+    "trial_number": 0,
+    "optuna_result": "agents/AG/postgres/phase_1/results/optuna_tpe_20260524_101149.json"
+  },
+  "phase_2": {
+    "Faithfulness": 0.777,
+    "Groundedness": 0.926,
+    "ROUGE-L_SQL": 0.945,
+    "Brier": 0.0339,
+    "ECE": 0.024,
+    "combined_score": 2.590,
+    "n_paraphrases": 30,
+    "n_intents": 10,
+    "result_file": "agents/AG/postgres/phase_2/results/phase2_winner_20260524_102106.json"
+  },
+  "notes": [
+    "Trial 4 (haiku T=0.7 repeat) failed due to Anthropic rate limit; replaced with haiku T=0.5 (combined=2.583).",
+    "Phase 2: 3 paraphrases (idx 21,27,28) repaired after rate limit on first run.",
+    "normalize_sql_v2=true (alias resolution in ROUGE-L)."
+  ]
+}

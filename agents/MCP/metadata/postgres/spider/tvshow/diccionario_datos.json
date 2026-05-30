@@ -1,0 +1,120 @@
+{
+  "tablas": {
+    "TV_Channel": {
+      "descripcion": "Table TV_Channel from the tvshow database.",
+      "columnas": {
+        "id": {
+          "tipo": "text",
+          "descripcion": "Id. Primary key."
+        },
+        "series_name": {
+          "tipo": "text",
+          "descripcion": "Series Name."
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country."
+        },
+        "Language": {
+          "tipo": "text",
+          "descripcion": "Language."
+        },
+        "Content": {
+          "tipo": "text",
+          "descripcion": "Content."
+        },
+        "Pixel_aspect_ratio_PAR": {
+          "tipo": "text",
+          "descripcion": "Pixel Aspect Ratio Par."
+        },
+        "Hight_definition_TV": {
+          "tipo": "text",
+          "descripcion": "Hight Definition Tv."
+        },
+        "Pay_per_view_PPV": {
+          "tipo": "text",
+          "descripcion": "Pay Per View Ppv."
+        },
+        "Package_Option": {
+          "tipo": "text",
+          "descripcion": "Package Option."
+        }
+      }
+    },
+    "TV_series": {
+      "descripcion": "Table TV_series from the tvshow database.",
+      "columnas": {
+        "id": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key."
+        },
+        "Episode": {
+          "tipo": "text",
+          "descripcion": "Episode."
+        },
+        "Air_Date": {
+          "tipo": "text",
+          "descripcion": "Air Date."
+        },
+        "Rating": {
+          "tipo": "text",
+          "descripcion": "Rating."
+        },
+        "Share": {
+          "tipo": "number",
+          "descripcion": "Share."
+        },
+        "18_49_Rating_Share": {
+          "tipo": "text",
+          "descripcion": "18 49 Rating Share."
+        },
+        "Viewers_m": {
+          "tipo": "text",
+          "descripcion": "Viewers M."
+        },
+        "Weekly_Rank": {
+          "tipo": "number",
+          "descripcion": "Weekly Rank."
+        },
+        "Channel": {
+          "tipo": "text",
+          "descripcion": "Channel. References TV_Channel.id."
+        }
+      }
+    },
+    "Cartoon": {
+      "descripcion": "Table Cartoon from the tvshow database.",
+      "columnas": {
+        "id": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key."
+        },
+        "Title": {
+          "tipo": "text",
+          "descripcion": "Title."
+        },
+        "Directed_by": {
+          "tipo": "text",
+          "descripcion": "Directed By."
+        },
+        "Written_by": {
+          "tipo": "text",
+          "descripcion": "Written By."
+        },
+        "Original_air_date": {
+          "tipo": "text",
+          "descripcion": "Original Air Date."
+        },
+        "Production_code": {
+          "tipo": "number",
+          "descripcion": "Production Code."
+        },
+        "Channel": {
+          "tipo": "text",
+          "descripcion": "Channel. References TV_Channel.id."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

@@ -1,0 +1,418 @@
+{
+  "available_entities": {
+    "badges": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "UserId",
+        "Name",
+        "Date"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "UserId"
+      ],
+      "categorical_columns": [
+        "Name",
+        "Date"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 79851,
+      "table_description": "Table badges with 79851 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "UserId": "Userid. Type: bigint.",
+        "Name": "Name. Type: text.",
+        "Date": "Date. Type: text."
+      }
+    },
+    "comments": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "PostId",
+        "Score",
+        "Text",
+        "CreationDate",
+        "UserId",
+        "UserDisplayName"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "PostId",
+        "Score",
+        "UserId"
+      ],
+      "categorical_columns": [
+        "Text",
+        "CreationDate",
+        "UserDisplayName"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 174285,
+      "table_description": "Table comments with 174285 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "PostId": "Postid. Type: bigint.",
+        "Score": "Score. Type: bigint.",
+        "Text": "Text. Type: text.",
+        "CreationDate": "Creationdate. Type: text.",
+        "UserId": "Userid. Type: bigint.",
+        "UserDisplayName": "Userdisplayname. Type: text."
+      }
+    },
+    "posthistory": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "PostHistoryTypeId",
+        "PostId",
+        "RevisionGUID",
+        "CreationDate",
+        "UserId",
+        "Text",
+        "Comment",
+        "UserDisplayName"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "PostHistoryTypeId",
+        "PostId",
+        "UserId"
+      ],
+      "categorical_columns": [
+        "RevisionGUID",
+        "CreationDate",
+        "Text",
+        "Comment",
+        "UserDisplayName"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 303153,
+      "table_description": "Table posthistory with 303153 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "PostHistoryTypeId": "Posthistorytypeid. Type: bigint.",
+        "PostId": "Postid. Type: bigint.",
+        "RevisionGUID": "Revisionguid. Type: text.",
+        "CreationDate": "Creationdate. Type: text.",
+        "UserId": "Userid. Type: bigint.",
+        "Text": "Text. Type: text.",
+        "Comment": "Comment. Type: text.",
+        "UserDisplayName": "Userdisplayname. Type: text."
+      }
+    },
+    "postlinks": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "CreationDate",
+        "PostId",
+        "RelatedPostId",
+        "LinkTypeId"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "PostId",
+        "RelatedPostId",
+        "LinkTypeId"
+      ],
+      "categorical_columns": [
+        "CreationDate"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 11102,
+      "table_description": "Table postlinks with 11102 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "CreationDate": "Creationdate. Type: text.",
+        "PostId": "Postid. Type: bigint.",
+        "RelatedPostId": "Relatedpostid. Type: bigint.",
+        "LinkTypeId": "Linktypeid. Type: bigint."
+      }
+    },
+    "posts": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "PostTypeId",
+        "AcceptedAnswerId",
+        "CreaionDate",
+        "Score",
+        "ViewCount",
+        "Body",
+        "OwnerUserId",
+        "LasActivityDate",
+        "Title",
+        "Tags",
+        "AnswerCount",
+        "CommentCount",
+        "FavoriteCount",
+        "LastEditorUserId",
+        "LastEditDate",
+        "CommunityOwnedDate",
+        "ParentId",
+        "ClosedDate",
+        "OwnerDisplayName",
+        "LastEditorDisplayName"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "PostTypeId",
+        "AcceptedAnswerId",
+        "Score",
+        "ViewCount",
+        "OwnerUserId",
+        "AnswerCount",
+        "CommentCount",
+        "FavoriteCount",
+        "LastEditorUserId",
+        "ParentId"
+      ],
+      "categorical_columns": [
+        "CreaionDate",
+        "Body",
+        "LasActivityDate",
+        "Title",
+        "Tags",
+        "LastEditDate",
+        "CommunityOwnedDate",
+        "ClosedDate",
+        "OwnerDisplayName",
+        "LastEditorDisplayName"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 91966,
+      "table_description": "Table posts with 91966 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "PostTypeId": "Posttypeid. Type: bigint.",
+        "AcceptedAnswerId": "Acceptedanswerid. Type: bigint.",
+        "CreaionDate": "Creaiondate. Type: text.",
+        "Score": "Score. Type: bigint.",
+        "ViewCount": "Viewcount. Type: bigint.",
+        "Body": "Body. Type: text.",
+        "OwnerUserId": "Owneruserid. Type: bigint.",
+        "LasActivityDate": "Lasactivitydate. Type: text.",
+        "Title": "Title. Type: text.",
+        "Tags": "Tags. Type: text.",
+        "AnswerCount": "Answercount. Type: bigint.",
+        "CommentCount": "Commentcount. Type: bigint.",
+        "FavoriteCount": "Favoritecount. Type: bigint.",
+        "LastEditorUserId": "Lasteditoruserid. Type: bigint.",
+        "LastEditDate": "Lasteditdate. Type: text.",
+        "CommunityOwnedDate": "Communityowneddate. Type: text.",
+        "ParentId": "Parentid. Type: bigint.",
+        "ClosedDate": "Closeddate. Type: text.",
+        "OwnerDisplayName": "Ownerdisplayname. Type: text.",
+        "LastEditorDisplayName": "Lasteditordisplayname. Type: text."
+      }
+    },
+    "tags": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "TagName",
+        "Count",
+        "ExcerptPostId",
+        "WikiPostId"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "Count",
+        "ExcerptPostId",
+        "WikiPostId"
+      ],
+      "categorical_columns": [
+        "TagName"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1032,
+      "table_description": "Table tags with 1032 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "TagName": "Tagname. Type: text.",
+        "Count": "Count. Type: bigint.",
+        "ExcerptPostId": "Excerptpostid. Type: bigint.",
+        "WikiPostId": "Wikipostid. Type: bigint."
+      }
+    },
+    "users": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "Reputation",
+        "CreationDate",
+        "DisplayName",
+        "LastAccessDate",
+        "WebsiteUrl",
+        "Location",
+        "AboutMe",
+        "Views",
+        "UpVotes",
+        "DownVotes",
+        "AccountId",
+        "Age",
+        "ProfileImageUrl"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "Reputation",
+        "Views",
+        "UpVotes",
+        "DownVotes",
+        "AccountId",
+        "Age"
+      ],
+      "categorical_columns": [
+        "CreationDate",
+        "DisplayName",
+        "LastAccessDate",
+        "WebsiteUrl",
+        "Location",
+        "AboutMe",
+        "ProfileImageUrl"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 40325,
+      "table_description": "Table users with 40325 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "Reputation": "Reputation. Type: bigint.",
+        "CreationDate": "Creationdate. Type: text.",
+        "DisplayName": "Displayname. Type: text.",
+        "LastAccessDate": "Lastaccessdate. Type: text.",
+        "WebsiteUrl": "Websiteurl. Type: text.",
+        "Location": "Location. Type: text.",
+        "AboutMe": "Aboutme. Type: text.",
+        "Views": "Views. Type: bigint.",
+        "UpVotes": "Upvotes. Type: bigint.",
+        "DownVotes": "Downvotes. Type: bigint.",
+        "AccountId": "Accountid. Type: bigint.",
+        "Age": "Age. Type: bigint.",
+        "ProfileImageUrl": "Profileimageurl. Type: text."
+      }
+    },
+    "votes": {
+      "all_columns": [
+        "_id",
+        "Id",
+        "PostId",
+        "VoteTypeId",
+        "CreationDate",
+        "UserId",
+        "BountyAmount"
+      ],
+      "numeric_columns": [
+        "_id",
+        "Id",
+        "PostId",
+        "VoteTypeId",
+        "UserId",
+        "BountyAmount"
+      ],
+      "categorical_columns": [
+        "CreationDate"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 38930,
+      "table_description": "Table votes with 38930 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "Id": "Id. Type: bigint.",
+        "PostId": "Postid. Type: bigint.",
+        "VoteTypeId": "Votetypeid. Type: bigint.",
+        "CreationDate": "Creationdate. Type: text.",
+        "UserId": "Userid. Type: bigint.",
+        "BountyAmount": "Bountyamount. Type: bigint."
+      }
+    }
+  },
+  "relationships": []
+}

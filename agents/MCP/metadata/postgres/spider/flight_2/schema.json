@@ -1,0 +1,138 @@
+{
+  "available_entities": {
+    "airlines": {
+      "all_columns": [
+        "uid",
+        "Airline",
+        "Abbreviation",
+        "Country"
+      ],
+      "numeric_columns": [
+        "uid"
+      ],
+      "categorical_columns": [
+        "Airline",
+        "Abbreviation",
+        "Country"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "uid"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 12,
+      "table_description": "Table airlines with 12 rows.",
+      "column_descriptions": {
+        "uid": "Uid. Type: integer.",
+        "Airline": "Airline. Type: text.",
+        "Abbreviation": "Abbreviation. Type: text.",
+        "Country": "Country. Type: text."
+      }
+    },
+    "airports": {
+      "all_columns": [
+        "City",
+        "AirportCode",
+        "AirportName",
+        "Country",
+        "CountryAbbrev"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "City",
+        "AirportCode",
+        "AirportName",
+        "Country",
+        "CountryAbbrev"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "AirportCode"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_airports_1": {
+          "columns": [
+            "AirportCode"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 100,
+      "table_description": "Table airports with 100 rows.",
+      "column_descriptions": {
+        "City": "City. Type: text.",
+        "AirportCode": "Airportcode. Type: text.",
+        "AirportName": "Airportname. Type: text.",
+        "Country": "Country. Type: text.",
+        "CountryAbbrev": "Countryabbrev. Type: text."
+      }
+    },
+    "flights": {
+      "all_columns": [
+        "Airline",
+        "FlightNo",
+        "SourceAirport",
+        "DestAirport"
+      ],
+      "numeric_columns": [
+        "Airline",
+        "FlightNo"
+      ],
+      "categorical_columns": [
+        "SourceAirport",
+        "DestAirport"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Airline",
+            "FlightNo"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_flights_1": {
+          "columns": [
+            "Airline",
+            "FlightNo"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1200,
+      "table_description": "Table flights with 1200 rows.",
+      "column_descriptions": {
+        "Airline": "Airline. Type: integer.",
+        "FlightNo": "Flightno. Type: integer.",
+        "SourceAirport": "Sourceairport. Type: text.",
+        "DestAirport": "Destairport. Type: text."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "flights",
+      "from_column": "DestAirport",
+      "to_table": "airports",
+      "to_column": "AirportCode",
+      "join_hint": "flights.DestAirport = airports.AirportCode"
+    },
+    {
+      "from_table": "flights",
+      "from_column": "SourceAirport",
+      "to_table": "airports",
+      "to_column": "AirportCode",
+      "join_hint": "flights.SourceAirport = airports.AirportCode"
+    }
+  ]
+}

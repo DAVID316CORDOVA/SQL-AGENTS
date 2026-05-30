@@ -1,0 +1,248 @@
+{
+  "available_entities": {
+    "continents": {
+      "all_columns": [
+        "ContId",
+        "Continent"
+      ],
+      "numeric_columns": [
+        "ContId"
+      ],
+      "categorical_columns": [
+        "Continent"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "ContId"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5,
+      "table_description": "Table continents with 5 rows.",
+      "column_descriptions": {
+        "ContId": "Contid. Type: integer.",
+        "Continent": "Continent. Type: text."
+      }
+    },
+    "countries": {
+      "all_columns": [
+        "CountryId",
+        "CountryName",
+        "Continent"
+      ],
+      "numeric_columns": [
+        "CountryId",
+        "Continent"
+      ],
+      "categorical_columns": [
+        "CountryName"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "CountryId"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table countries with 15 rows.",
+      "column_descriptions": {
+        "CountryId": "Countryid. Type: integer.",
+        "CountryName": "Countryname. Type: text.",
+        "Continent": "Continent. Type: integer."
+      }
+    },
+    "car_makers": {
+      "all_columns": [
+        "Id",
+        "Maker",
+        "FullName",
+        "Country"
+      ],
+      "numeric_columns": [
+        "Id"
+      ],
+      "categorical_columns": [
+        "Maker",
+        "FullName",
+        "Country"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 22,
+      "table_description": "Table car_makers with 22 rows.",
+      "column_descriptions": {
+        "Id": "Id. Type: integer.",
+        "Maker": "Maker. Type: text.",
+        "FullName": "Fullname. Type: text.",
+        "Country": "Country. Type: text."
+      }
+    },
+    "model_list": {
+      "all_columns": [
+        "ModelId",
+        "Maker",
+        "Model"
+      ],
+      "numeric_columns": [
+        "ModelId",
+        "Maker"
+      ],
+      "categorical_columns": [
+        "Model"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "ModelId"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_model_list_1": {
+          "columns": [
+            "Model"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 36,
+      "table_description": "Table model_list with 36 rows.",
+      "column_descriptions": {
+        "ModelId": "Modelid. Type: integer.",
+        "Maker": "Maker. Type: integer.",
+        "Model": "Model. Type: text."
+      }
+    },
+    "car_names": {
+      "all_columns": [
+        "MakeId",
+        "Model",
+        "Make"
+      ],
+      "numeric_columns": [
+        "MakeId"
+      ],
+      "categorical_columns": [
+        "Model",
+        "Make"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "MakeId"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 406,
+      "table_description": "Table car_names with 406 rows.",
+      "column_descriptions": {
+        "MakeId": "Makeid. Type: integer.",
+        "Model": "Model. Type: text.",
+        "Make": "Make. Type: text."
+      }
+    },
+    "cars_data": {
+      "all_columns": [
+        "Id",
+        "MPG",
+        "Cylinders",
+        "Edispl",
+        "Horsepower",
+        "Weight",
+        "Accelerate",
+        "Year"
+      ],
+      "numeric_columns": [
+        "Id",
+        "Cylinders",
+        "Edispl",
+        "Weight",
+        "Accelerate",
+        "Year"
+      ],
+      "categorical_columns": [
+        "MPG",
+        "Horsepower"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 406,
+      "table_description": "Table cars_data with 406 rows.",
+      "column_descriptions": {
+        "Id": "Id. Type: integer.",
+        "MPG": "Mpg. Type: text.",
+        "Cylinders": "Cylinders. Type: integer.",
+        "Edispl": "Edispl. Type: float.",
+        "Horsepower": "Horsepower. Type: text.",
+        "Weight": "Weight. Type: integer.",
+        "Accelerate": "Accelerate. Type: float.",
+        "Year": "Year. Type: integer."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "countries",
+      "from_column": "Continent",
+      "to_table": "continents",
+      "to_column": "ContId",
+      "join_hint": "countries.Continent = continents.ContId"
+    },
+    {
+      "from_table": "car_makers",
+      "from_column": "Country",
+      "to_table": "countries",
+      "to_column": "CountryId",
+      "join_hint": "car_makers.Country = countries.CountryId"
+    },
+    {
+      "from_table": "model_list",
+      "from_column": "Maker",
+      "to_table": "car_makers",
+      "to_column": "Id",
+      "join_hint": "model_list.Maker = car_makers.Id"
+    },
+    {
+      "from_table": "car_names",
+      "from_column": "Model",
+      "to_table": "model_list",
+      "to_column": "Model",
+      "join_hint": "car_names.Model = model_list.Model"
+    },
+    {
+      "from_table": "cars_data",
+      "from_column": "Id",
+      "to_table": "car_names",
+      "to_column": "MakeId",
+      "join_hint": "cars_data.Id = car_names.MakeId"
+    }
+  ]
+}

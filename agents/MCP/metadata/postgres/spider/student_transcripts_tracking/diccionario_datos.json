@@ -1,0 +1,284 @@
+{
+  "tablas": {
+    "Addresses": {
+      "descripcion": "Table Addresses from the student_transcripts_tracking database.",
+      "columnas": {
+        "address_id": {
+          "tipo": "number",
+          "descripcion": "Address Id. Primary key."
+        },
+        "line_1": {
+          "tipo": "text",
+          "descripcion": "Line 1."
+        },
+        "line_2": {
+          "tipo": "text",
+          "descripcion": "Line 2."
+        },
+        "line_3": {
+          "tipo": "text",
+          "descripcion": "Line 3."
+        },
+        "city": {
+          "tipo": "text",
+          "descripcion": "City."
+        },
+        "zip_postcode": {
+          "tipo": "text",
+          "descripcion": "Zip Postcode."
+        },
+        "state_province_county": {
+          "tipo": "text",
+          "descripcion": "State Province County."
+        },
+        "country": {
+          "tipo": "text",
+          "descripcion": "Country."
+        },
+        "other_address_details": {
+          "tipo": "text",
+          "descripcion": "Other Address Details."
+        }
+      }
+    },
+    "Courses": {
+      "descripcion": "Table Courses from the student_transcripts_tracking database.",
+      "columnas": {
+        "course_id": {
+          "tipo": "number",
+          "descripcion": "Course Id. Primary key."
+        },
+        "course_name": {
+          "tipo": "text",
+          "descripcion": "Course Name."
+        },
+        "course_description": {
+          "tipo": "text",
+          "descripcion": "Course Description."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Departments": {
+      "descripcion": "Table Departments from the student_transcripts_tracking database.",
+      "columnas": {
+        "department_id": {
+          "tipo": "number",
+          "descripcion": "Department Id. Primary key."
+        },
+        "department_name": {
+          "tipo": "text",
+          "descripcion": "Department Name."
+        },
+        "department_description": {
+          "tipo": "text",
+          "descripcion": "Department Description."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Degree_Programs": {
+      "descripcion": "Table Degree_Programs from the student_transcripts_tracking database.",
+      "columnas": {
+        "degree_program_id": {
+          "tipo": "number",
+          "descripcion": "Degree Program Id. Primary key."
+        },
+        "department_id": {
+          "tipo": "number",
+          "descripcion": "Department Id. References Departments.department_id."
+        },
+        "degree_summary_name": {
+          "tipo": "text",
+          "descripcion": "Degree Summary Name."
+        },
+        "degree_summary_description": {
+          "tipo": "text",
+          "descripcion": "Degree Summary Description."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Sections": {
+      "descripcion": "Table Sections from the student_transcripts_tracking database.",
+      "columnas": {
+        "section_id": {
+          "tipo": "number",
+          "descripcion": "Section Id. Primary key."
+        },
+        "course_id": {
+          "tipo": "number",
+          "descripcion": "Course Id. References Courses.course_id."
+        },
+        "section_name": {
+          "tipo": "text",
+          "descripcion": "Section Name."
+        },
+        "section_description": {
+          "tipo": "text",
+          "descripcion": "Section Description."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Semesters": {
+      "descripcion": "Table Semesters from the student_transcripts_tracking database.",
+      "columnas": {
+        "semester_id": {
+          "tipo": "number",
+          "descripcion": "Semester Id. Primary key."
+        },
+        "semester_name": {
+          "tipo": "text",
+          "descripcion": "Semester Name."
+        },
+        "semester_description": {
+          "tipo": "text",
+          "descripcion": "Semester Description."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Students": {
+      "descripcion": "Table Students from the student_transcripts_tracking database.",
+      "columnas": {
+        "student_id": {
+          "tipo": "number",
+          "descripcion": "Student Id. Primary key."
+        },
+        "current_address_id": {
+          "tipo": "number",
+          "descripcion": "Current Address Id. References Addresses.address_id."
+        },
+        "permanent_address_id": {
+          "tipo": "number",
+          "descripcion": "Permanent Address Id. References Addresses.address_id."
+        },
+        "first_name": {
+          "tipo": "text",
+          "descripcion": "First Name."
+        },
+        "middle_name": {
+          "tipo": "text",
+          "descripcion": "Middle Name."
+        },
+        "last_name": {
+          "tipo": "text",
+          "descripcion": "Last Name."
+        },
+        "cell_mobile_number": {
+          "tipo": "text",
+          "descripcion": "Cell Mobile Number."
+        },
+        "email_address": {
+          "tipo": "text",
+          "descripcion": "Email Address."
+        },
+        "ssn": {
+          "tipo": "text",
+          "descripcion": "Ssn."
+        },
+        "date_first_registered": {
+          "tipo": "time",
+          "descripcion": "Date First Registered."
+        },
+        "date_left": {
+          "tipo": "time",
+          "descripcion": "Date Left."
+        },
+        "other_student_details": {
+          "tipo": "text",
+          "descripcion": "Other Student Details."
+        }
+      }
+    },
+    "Student_Enrolment": {
+      "descripcion": "Table Student_Enrolment from the student_transcripts_tracking database.",
+      "columnas": {
+        "student_enrolment_id": {
+          "tipo": "number",
+          "descripcion": "Student Enrolment Id. Primary key."
+        },
+        "degree_program_id": {
+          "tipo": "number",
+          "descripcion": "Degree Program Id. References Degree_Programs.degree_program_id."
+        },
+        "semester_id": {
+          "tipo": "number",
+          "descripcion": "Semester Id. References Semesters.semester_id."
+        },
+        "student_id": {
+          "tipo": "number",
+          "descripcion": "Student Id. References Students.student_id."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Student_Enrolment_Courses": {
+      "descripcion": "Table Student_Enrolment_Courses from the student_transcripts_tracking database.",
+      "columnas": {
+        "student_course_id": {
+          "tipo": "number",
+          "descripcion": "Student Course Id. Primary key."
+        },
+        "course_id": {
+          "tipo": "number",
+          "descripcion": "Course Id. References Courses.course_id."
+        },
+        "student_enrolment_id": {
+          "tipo": "number",
+          "descripcion": "Student Enrolment Id. References Student_Enrolment.student_enrolment_id."
+        }
+      }
+    },
+    "Transcripts": {
+      "descripcion": "Table Transcripts from the student_transcripts_tracking database.",
+      "columnas": {
+        "transcript_id": {
+          "tipo": "number",
+          "descripcion": "Transcript Id. Primary key."
+        },
+        "transcript_date": {
+          "tipo": "time",
+          "descripcion": "Transcript Date."
+        },
+        "other_details": {
+          "tipo": "text",
+          "descripcion": "Other Details."
+        }
+      }
+    },
+    "Transcript_Contents": {
+      "descripcion": "Table Transcript_Contents from the student_transcripts_tracking database.",
+      "columnas": {
+        "student_course_id": {
+          "tipo": "number",
+          "descripcion": "Student Course Id. References Student_Enrolment_Courses.student_course_id."
+        },
+        "transcript_id": {
+          "tipo": "number",
+          "descripcion": "Transcript Id. References Transcripts.transcript_id."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

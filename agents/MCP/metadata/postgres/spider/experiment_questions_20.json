@@ -1,0 +1,122 @@
+[
+  {
+    "id": "car_1_1",
+    "db_id": "car_1",
+    "question": "Among the cars that do not have the minimum horsepower , what are the make ids and names of all those with less than 4 cylinders ?",
+    "sql_query": "select t2.makeid ,  t2.make from cars_data as t1 join car_names as t2 on t1.id  =  t2.makeid where t1.horsepower  >  (select min(horsepower) from cars_data) and t1.cylinders  <  4;"
+  },
+  {
+    "id": "car_1_2",
+    "db_id": "car_1",
+    "question": "Find the make and production time of the cars that were produced in the earliest year?",
+    "sql_query": "SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);"
+  },
+  {
+    "id": "concert_singer_1",
+    "db_id": "concert_singer",
+    "question": "What is the total number of singers?",
+    "sql_query": "SELECT count(*) FROM singer"
+  },
+  {
+    "id": "concert_singer_2",
+    "db_id": "concert_singer",
+    "question": "What is the average and maximum capacities for all stadiums ?",
+    "sql_query": "select avg(capacity) ,  max(capacity) from stadium"
+  },
+  {
+    "id": "dog_kennels_1",
+    "db_id": "dog_kennels",
+    "question": "What are the cost and treatment type description of each treatment?",
+    "sql_query": "SELECT T1.cost_of_treatment ,  T2.treatment_type_description FROM Treatments AS T1 JOIN treatment_types AS T2 ON T1.treatment_type_code  =  T2.treatment_type_code"
+  },
+  {
+    "id": "dog_kennels_2",
+    "db_id": "dog_kennels",
+    "question": "List the date of each treatment, together with the first name of the professional who operated it.",
+    "sql_query": "SELECT T1.date_of_treatment ,  T2.first_name FROM Treatments AS T1 JOIN Professionals AS T2 ON T1.professional_id  =  T2.professional_id"
+  },
+  {
+    "id": "flight_2_1",
+    "db_id": "flight_2",
+    "question": "Return the number of airlines in the USA.",
+    "sql_query": "SELECT count(*) FROM AIRLINES WHERE Country  =  \"USA\""
+  },
+  {
+    "id": "flight_2_2",
+    "db_id": "flight_2",
+    "question": "Return the number of flights.",
+    "sql_query": "SELECT count(*) FROM FLIGHTS"
+  },
+  {
+    "id": "museum_visit_1",
+    "db_id": "museum_visit",
+    "question": "How many museums were opened after 2013 or before 2008?",
+    "sql_query": "SELECT count(*) FROM museum WHERE open_year  >  2013 OR open_year  <  2008"
+  },
+  {
+    "id": "museum_visit_2",
+    "db_id": "museum_visit",
+    "question": "What is the average age of the visitors whose membership level is not higher than 4?",
+    "sql_query": "SELECT avg(age) FROM visitor WHERE Level_of_membership  <=  4"
+  },
+  {
+    "id": "network_1_1",
+    "db_id": "network_1",
+    "question": "What are the ids of students who both have friends and are liked?",
+    "sql_query": "SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes"
+  },
+  {
+    "id": "network_1_2",
+    "db_id": "network_1",
+    "question": "What are the names of high schoolers who have 3 or more friends?",
+    "sql_query": "SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id HAVING count(*)  >=  3"
+  },
+  {
+    "id": "pets_1_1",
+    "db_id": "pets_1",
+    "question": "Find the weight of the youngest dog.",
+    "sql_query": "SELECT weight FROM pets ORDER BY pet_age LIMIT 1"
+  },
+  {
+    "id": "pets_1_2",
+    "db_id": "pets_1",
+    "question": "How many pets have a greater weight than 10?",
+    "sql_query": "SELECT count(*) FROM pets WHERE weight  >  10"
+  },
+  {
+    "id": "student_transcripts_tracking_1",
+    "db_id": "student_transcripts_tracking",
+    "question": "How many different departments offer degrees?",
+    "sql_query": "SELECT count(DISTINCT department_id) FROM Degree_Programs"
+  },
+  {
+    "id": "student_transcripts_tracking_2",
+    "db_id": "student_transcripts_tracking",
+    "question": "What are the first, middle, and last names, along with the ids, of all students who enrolled in 2 degree programs in one semester?",
+    "sql_query": "SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2"
+  },
+  {
+    "id": "tvshow_1",
+    "db_id": "tvshow",
+    "question": "What is the content of TV Channel with serial name \"Sky Radio\"?",
+    "sql_query": "SELECT Content FROM TV_Channel WHERE series_name = \"Sky Radio\";"
+  },
+  {
+    "id": "tvshow_2",
+    "db_id": "tvshow",
+    "question": "What is minimum and maximum share of TV series?",
+    "sql_query": "SELECT max(SHARE) , min(SHARE) FROM TV_series;"
+  },
+  {
+    "id": "wta_1_1",
+    "db_id": "wta_1",
+    "question": "find the names of loser and winner who played in the match with greatest number of minutes.",
+    "sql_query": "SELECT winner_name ,  loser_name FROM matches ORDER BY minutes DESC LIMIT 1"
+  },
+  {
+    "id": "wta_1_2",
+    "db_id": "wta_1",
+    "question": "How many players are there?",
+    "sql_query": "SELECT count(*) FROM players"
+  }
+]

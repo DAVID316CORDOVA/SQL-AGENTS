@@ -1,0 +1,46 @@
+{
+  "tablas": {
+    "table_1_27713583_6": {
+      "descripcion": "Table table_1_27713583_6",
+      "columnas": {
+        "game": {
+          "tipo": "real",
+          "descripcion": "Game. Numeric value."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Text value."
+        },
+        "team": {
+          "tipo": "text",
+          "descripcion": "Team. Text value."
+        },
+        "score": {
+          "tipo": "text",
+          "descripcion": "Score. Text value."
+        },
+        "high_points": {
+          "tipo": "text",
+          "descripcion": "High points. Text value."
+        },
+        "high_rebounds": {
+          "tipo": "text",
+          "descripcion": "High rebounds. Text value."
+        },
+        "high_assists": {
+          "tipo": "text",
+          "descripcion": "High assists. Text value."
+        },
+        "location_attendance": {
+          "tipo": "text",
+          "descripcion": "Location Attendance. Text value."
+        },
+        "record": {
+          "tipo": "text",
+          "descripcion": "Record. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

@@ -1,0 +1,178 @@
+{
+  "available_entities": {
+    "TV_Channel": {
+      "all_columns": [
+        "id",
+        "series_name",
+        "Country",
+        "Language",
+        "Content",
+        "Pixel_aspect_ratio_PAR",
+        "Hight_definition_TV",
+        "Pay_per_view_PPV",
+        "Package_Option"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "id",
+        "series_name",
+        "Country",
+        "Language",
+        "Content",
+        "Pixel_aspect_ratio_PAR",
+        "Hight_definition_TV",
+        "Pay_per_view_PPV",
+        "Package_Option"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_TV_Channel_1": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table TV_Channel with 15 rows.",
+      "column_descriptions": {
+        "id": "Id. Type: text.",
+        "series_name": "Series Name. Type: text.",
+        "Country": "Country. Type: text.",
+        "Language": "Language. Type: text.",
+        "Content": "Content. Type: text.",
+        "Pixel_aspect_ratio_PAR": "Pixel Aspect Ratio Par. Type: text.",
+        "Hight_definition_TV": "Hight Definition Tv. Type: text.",
+        "Pay_per_view_PPV": "Pay Per View Ppv. Type: text.",
+        "Package_Option": "Package Option. Type: text."
+      }
+    },
+    "TV_series": {
+      "all_columns": [
+        "id",
+        "Episode",
+        "Air_Date",
+        "Rating",
+        "Share",
+        "18_49_Rating_Share",
+        "Viewers_m",
+        "Weekly_Rank",
+        "Channel"
+      ],
+      "numeric_columns": [
+        "id",
+        "Share",
+        "Weekly_Rank"
+      ],
+      "categorical_columns": [
+        "Episode",
+        "Air_Date",
+        "Rating",
+        "18_49_Rating_Share",
+        "Viewers_m",
+        "Channel"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_TV_series_1": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 12,
+      "table_description": "Table TV_series with 12 rows.",
+      "column_descriptions": {
+        "id": "Id. Type: float.",
+        "Episode": "Episode. Type: text.",
+        "Air_Date": "Air Date. Type: text.",
+        "Rating": "Rating. Type: text.",
+        "Share": "Share. Type: float.",
+        "18_49_Rating_Share": "18 49 Rating Share. Type: text.",
+        "Viewers_m": "Viewers M. Type: text.",
+        "Weekly_Rank": "Weekly Rank. Type: float.",
+        "Channel": "Channel. Type: text."
+      }
+    },
+    "Cartoon": {
+      "all_columns": [
+        "id",
+        "Title",
+        "Directed_by",
+        "Written_by",
+        "Original_air_date",
+        "Production_code",
+        "Channel"
+      ],
+      "numeric_columns": [
+        "id",
+        "Production_code"
+      ],
+      "categorical_columns": [
+        "Title",
+        "Directed_by",
+        "Written_by",
+        "Original_air_date",
+        "Channel"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Cartoon_1": {
+          "columns": [
+            "id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 12,
+      "table_description": "Table Cartoon with 12 rows.",
+      "column_descriptions": {
+        "id": "Id. Type: float.",
+        "Title": "Title. Type: text.",
+        "Directed_by": "Directed By. Type: text.",
+        "Written_by": "Written By. Type: text.",
+        "Original_air_date": "Original Air Date. Type: text.",
+        "Production_code": "Production Code. Type: float.",
+        "Channel": "Channel. Type: text."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "TV_series",
+      "from_column": "Channel",
+      "to_table": "TV_Channel",
+      "to_column": "id",
+      "join_hint": "TV_series.Channel = TV_Channel.id"
+    },
+    {
+      "from_table": "Cartoon",
+      "from_column": "Channel",
+      "to_table": "TV_Channel",
+      "to_column": "id",
+      "join_hint": "Cartoon.Channel = TV_Channel.id"
+    }
+  ]
+}

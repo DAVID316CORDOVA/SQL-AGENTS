@@ -1,0 +1,146 @@
+{
+  "tablas": {
+    "stadium": {
+      "descripcion": "Stores information about music venues and stadiums where concerts are held. Each row represents one stadium with its physical location, maximum seating capacity, and historical attendance statistics.",
+      "columnas": {
+        "Stadium_ID": {
+          "tipo": "number",
+          "descripcion": "Unique numeric identifier for each stadium. Primary key.",
+          "ejemplo": "1"
+        },
+        "Location": {
+          "tipo": "text",
+          "descripcion": "City or geographic location where the stadium is situated.",
+          "ejemplo": "Raith"
+        },
+        "Name": {
+          "tipo": "text",
+          "descripcion": "Official name of the stadium or venue.",
+          "ejemplo": "Stark's Park"
+        },
+        "Capacity": {
+          "tipo": "number",
+          "descripcion": "Maximum number of spectators the stadium can hold at full capacity.",
+          "ejemplo": "10104"
+        },
+        "Highest": {
+          "tipo": "number",
+          "descripcion": "Highest spectator attendance count ever recorded at this stadium. Counts people present, not revenue or ticket price.",
+          "ejemplo": "4812"
+        },
+        "Lowest": {
+          "tipo": "number",
+          "descripcion": "Lowest spectator attendance count ever recorded at this stadium. Counts people present, not revenue or ticket price.",
+          "ejemplo": "1294"
+        },
+        "Average": {
+          "tipo": "number",
+          "descripcion": "Average number of spectators (headcount) per event across all events at this stadium. Attendance count only — not a financial or pricing metric.",
+          "ejemplo": "2106"
+        }
+      }
+    },
+    "singer": {
+      "descripcion": "Stores biographical and discography information about music artists, singers, vocalists and performers who appear at concerts. Each row represents one artist with their nationality, country of origin, age, and their most representative song.",
+      "columnas": {
+        "Singer_ID": {
+          "tipo": "number",
+          "descripcion": "Unique numeric identifier for each singer or artist. Primary key.",
+          "ejemplo": "1"
+        },
+        "Name": {
+          "tipo": "text",
+          "descripcion": "Full stage name or real name of the singer, vocalist or musical artist.",
+          "ejemplo": "Joe Sharp"
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country of origin, nationality or nation where the singer comes from.",
+          "ejemplo": "Netherlands"
+        },
+        "Song_Name": {
+          "tipo": "text",
+          "descripcion": "Title of the singer's most notable or featured song in this system.",
+          "ejemplo": "Love"
+        },
+        "Song_release_year": {
+          "tipo": "text",
+          "descripcion": "Four-digit year when the singer's featured song was officially released.",
+          "ejemplo": "1991"
+        },
+        "Age": {
+          "tipo": "number",
+          "descripcion": "Current age of the singer in years. How old the artist is.",
+          "ejemplo": "52"
+        },
+        "Is_male": {
+          "tipo": "others",
+          "descripcion": "Gender flag indicating whether the singer is male. Stored as text: 'T' means male, 'F' means female.",
+          "ejemplo": "T"
+        }
+      }
+    },
+    "concert": {
+      "descripcion": "Records each concert event held at a stadium. Each row represents one concert with its name, musical theme or genre, hosting stadium, and the year it took place.",
+      "columnas": {
+        "concert_ID": {
+          "tipo": "number",
+          "descripcion": "Unique numeric identifier for each concert event. Primary key.",
+          "ejemplo": "1"
+        },
+        "concert_Name": {
+          "tipo": "text",
+          "descripcion": "Official name or title of the concert event.",
+          "ejemplo": "Auditions 1"
+        },
+        "Theme": {
+          "tipo": "text",
+          "descripcion": "Musical theme, genre, or style of the concert. Describes the artistic focus of the event.",
+          "ejemplo": "Pop"
+        },
+        "Stadium_ID": {
+          "tipo": "text",
+          "descripcion": "Foreign key referencing stadium.Stadium_ID. Identifies the venue where the concert was held.",
+          "ejemplo": "1"
+        },
+        "Year": {
+          "tipo": "text",
+          "descripcion": "Four-digit year when the concert took place.",
+          "ejemplo": "2014"
+        }
+      }
+    },
+    "singer_in_concert": {
+      "descripcion": "Bridge table resolving the many-to-many relationship between singers and concerts. Each row records that a specific singer performed at a specific concert. A concert may have multiple singers and a singer may appear in multiple concerts.",
+      "columnas": {
+        "concert_ID": {
+          "tipo": "number",
+          "descripcion": "Foreign key referencing concert.concert_ID. Part of the composite primary key.",
+          "ejemplo": "1"
+        },
+        "Singer_ID": {
+          "tipo": "text",
+          "descripcion": "Foreign key referencing singer.Singer_ID. Part of the composite primary key.",
+          "ejemplo": "2"
+        }
+      }
+    }
+  },
+  "relaciones": [
+    {
+      "desde": "concert.Stadium_ID",
+      "hasta": "stadium.Stadium_ID",
+      "descripcion": "Each concert is held at one stadium. A stadium can host multiple concerts over time."
+    },
+    {
+      "desde": "singer_in_concert.concert_ID",
+      "hasta": "concert.concert_ID",
+      "descripcion": "Links each singer participation record to its concert."
+    },
+    {
+      "desde": "singer_in_concert.Singer_ID",
+      "hasta": "singer.Singer_ID",
+      "descripcion": "Links each singer participation record to the performing singer."
+    }
+  ]
+}

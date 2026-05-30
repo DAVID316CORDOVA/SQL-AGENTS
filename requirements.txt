@@ -1,0 +1,37 @@
+# ── LLM providers ────────────────────────────────────────────────────────────
+anthropic          # Claude (Haiku, Sonnet) — también vía Bedrock con boto3
+openai             # GPT-4o y Gemini vía OpenAI-compatible API
+
+# ── Orchestration / agents ───────────────────────────────────────────────────
+langgraph          # Grafo de agentes (LangGraph StateGraph)
+mcp[cli]           # Model Context Protocol — servidor stdio + SSE
+
+# ── Vector store + embeddings ─────────────────────────────────────────────────
+chromadb           # Base vectorial para APS (tablas/columnas)
+sentence-transformers  # Embeddings multilingues (intfloat/multilingual-e5-base)
+# torch CPU-only (via index extra — evita descargar CUDA ~2 GB innecesario)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+numpy              # Operaciones vectoriales, calibración
+
+# ── Databases ─────────────────────────────────────────────────────────────────
+mysql-connector-python  # Backend MySQL
+psycopg2-binary         # Backend PostgreSQL
+
+# ── API / serving ─────────────────────────────────────────────────────────────
+fastapi            # API REST del orquestador y de cada agente
+uvicorn[standard]  # ASGI server para FastAPI
+httpx              # Cliente HTTP async (usado por mcp/sse)
+requests           # Cliente HTTP sync (nodes.py → /invoke)
+
+# ── Graph / schema tools ──────────────────────────────────────────────────────
+networkx           # Grafo de JOINs en MCP (BFS find_join_path)
+
+# ── Evaluation ────────────────────────────────────────────────────────────────
+deepeval           # Faithfulness, Groundedness, GEval, ToolCorrectnessMetric
+scikit-learn       # Brier Score, ECE (calibration_curve)
+optuna             # Búsqueda bayesiana de hiperparámetros (TPE, seed=66)
+matplotlib         # Gráficas de experimentos (summary/generate_report.py)
+
+# ── Utils ─────────────────────────────────────────────────────────────────────
+python-dotenv      # Variables de entorno desde .env

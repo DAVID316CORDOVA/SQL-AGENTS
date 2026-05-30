@@ -1,0 +1,44 @@
+{
+  "available_entities": {
+    "1960_formula_one_season_2_1140106_6": {
+      "all_columns": [
+        "race_name",
+        "circuit",
+        "date",
+        "winning_driver",
+        "constructor",
+        "report"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "race_name",
+        "circuit",
+        "date",
+        "winning_driver",
+        "constructor",
+        "report"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5,
+      "table_description": "Wikipedia table: 1960_formula_one_season_2_1140106_6.",
+      "column_descriptions": {
+        "race_name": "Race Name. Type: text.",
+        "circuit": "Circuit. Type: text.",
+        "date": "Date. Type: text.",
+        "winning_driver": "Winning driver. Type: text.",
+        "constructor": "Constructor. Type: text.",
+        "report": "Report. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

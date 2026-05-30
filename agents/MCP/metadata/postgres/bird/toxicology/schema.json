@@ -1,0 +1,104 @@
+{
+  "available_entities": {
+    "atom": {
+      "all_columns": [
+        "_id",
+        "atom_id",
+        "molecule_id",
+        "element"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "atom_id",
+        "molecule_id",
+        "element"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 9111,
+      "table_description": "Table atom with 9111 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "atom_id": "Atom Id. Type: text.",
+        "molecule_id": "Molecule Id. Type: text.",
+        "element": "Element. Type: text."
+      }
+    },
+    "bond": {
+      "all_columns": [
+        "_id",
+        "bond_id",
+        "molecule_id",
+        "bond_type"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "bond_id",
+        "molecule_id",
+        "bond_type"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 9156,
+      "table_description": "Table bond with 9156 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "bond_id": "Bond Id. Type: text.",
+        "molecule_id": "Molecule Id. Type: text.",
+        "bond_type": "Bond Type. Type: text."
+      }
+    },
+    "molecule": {
+      "all_columns": [
+        "_id",
+        "molecule_id",
+        "label"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "molecule_id",
+        "label"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 343,
+      "table_description": "Table molecule with 343 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "molecule_id": "Molecule Id. Type: text.",
+        "label": "Label. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

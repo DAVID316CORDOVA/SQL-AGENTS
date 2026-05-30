@@ -1,0 +1,90 @@
+[
+  {
+    "id": 472,
+    "db_id": "card_games",
+    "question": "Among the sets in the block \"Ice Age\", how many of them have an Italian translation?",
+    "sql_query": "SELECT\n  COUNT(DISTINCT `T1`.`id`)\nFROM `sets` AS `T1`\nINNER JOIN `set_translations` AS `T2`\n  ON `T2`.`setCode` = `T1`.`code`\nWHERE\n  `T1`.`block` = 'Ice Age'\n  AND `T2`.`language` = 'Italian'\n  AND NOT `T2`.`translation` IS NULL",
+    "evidence": "sets in the block \"Ice Age\" refers to block = 'Ice Age'; Italian translation refers to language = 'Italian' and translation is not null",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 1098,
+    "db_id": "european_football_2",
+    "question": "What is Ajax's highest chance creation passing score and what is it classified as?",
+    "sql_query": "SELECT\n  `t2`.`chanceCreationPassing`,\n  `t2`.`chanceCreationPassingClass`\nFROM `Team` AS `t1`\nINNER JOIN `Team_Attributes` AS `t2`\n  ON `t1`.`team_api_id` = `t2`.`team_api_id`\nWHERE\n  `t1`.`team_long_name` = 'Ajax'\nORDER BY\n  `t2`.`chanceCreationPassing` DESC\nLIMIT 1",
+    "evidence": "Ajax's refers to team_long_name = 'Ajax'; chance creation passing score refers to MAX(chanceCreationPassing); classified refer to chanceCreationPassingClass",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 1152,
+    "db_id": "thrombosis_prediction",
+    "question": "What is the ratio of outpatient to inpatient followed up treatment among all the 'SLE' diagnosed patient?",
+    "sql_query": "SELECT\n  SUM(CASE WHEN `Admission` = '+' THEN 1 ELSE 0 END) / SUM(CASE WHEN `Admission` = '-' THEN 1 ELSE 0 END)\nFROM `Patient`\nWHERE\n  `Diagnosis` = 'SLE'",
+    "evidence": "'SLE' diagnosed patient means Diagnosis = 'SLE'; inpatient refers to Admission = '+'; outpatient refers to Admission = '-'; calculation =  DIVIDE(COUNT(ID) where Diagnosis = 'SLE' and Admission = '+', COUNT(ID) where Diagnosis = 'SLE' and Admission = '-')",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 197,
+    "db_id": "toxicology",
+    "question": "Calculate the average number of oxygen atoms in single-bonded molecules.",
+    "sql_query": "SELECT\n  AVG(`oxygen_count`)\nFROM (\n  SELECT\n    `T1`.`molecule_id`,\n    COUNT(`T1`.`element`) AS `oxygen_count`\n  FROM `atom` AS `T1`\n  INNER JOIN `bond` AS `T2`\n    ON `T1`.`molecule_id` = `T2`.`molecule_id`\n  WHERE\n    `T2`.`bond_type` = '-' AND `T1`.`element` = 'o'\n  GROUP BY\n    `T1`.`molecule_id`\n) AS `oxygen_counts`",
+    "evidence": "single-bonded molecules refers to bond_type = '-' ; average number of oxygen atom = AVG(element = 'o')",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 728,
+    "db_id": "superhero",
+    "question": "Rank superheroes from Marvel Comics by their eye color popularity, starting with the most common color.",
+    "sql_query": "SELECT\n  `colour`.`colour` AS `EyeColor`,\n  COUNT(`superhero`.`id`) AS `Count`,\n  RANK() OVER (ORDER BY COUNT(`superhero`.`id`) DESC) AS `PopularityRank`\nFROM `superhero`\nINNER JOIN `colour`\n  ON `superhero`.`eye_colour_id` = `colour`.`id`\nINNER JOIN `publisher`\n  ON `superhero`.`publisher_id` = `publisher`.`id`\nWHERE\n  `publisher`.`publisher_name` = 'Marvel Comics'\nGROUP BY\n  `colour`.`colour`",
+    "evidence": "the superheroes from Marvel Comics refers to publisher_name = 'Marvel Comics'; most common color refers to COUNT(superhero.id) DESC;",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 568,
+    "db_id": "codebase_community",
+    "question": "Provide the display name of the user who made the vote No.6347.",
+    "sql_query": "SELECT\n  `T1`.`DisplayName`\nFROM `users` AS `T1`\nINNER JOIN `votes` AS `T2`\n  ON `T1`.`Id` = `T2`.`UserId`\nWHERE\n  `T2`.`Id` = 6347",
+    "evidence": "vote no. 6347 refers to Id = '6347'",
+    "difficulty": "simple"
+  },
+  {
+    "id": 26,
+    "db_id": "california_schools",
+    "question": "State the names and full communication address of high schools in Monterey which has more than 800 free or reduced price meals for ages 15-17?",
+    "sql_query": "SELECT\n  `T1`.`School Name`,\n  `T2`.`Street`,\n  `T2`.`City`,\n  `T2`.`State`,\n  `T2`.`Zip`\nFROM `frpm` AS `T1`\nINNER JOIN `schools` AS `T2`\n  ON `T1`.`CDSCode` = `T2`.`CDSCode`\nWHERE\n  `T2`.`County` = 'Monterey'\n  AND `T1`.`Free Meal Count (Ages 5-17)` > 800\n  AND `T1`.`School Type` = 'High Schools (Public)'",
+    "evidence": "Full communication address should include Street, City, State and zip code if any.",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 1011,
+    "db_id": "formula_1",
+    "question": "Which top 20 driver created the shortest lap time ever record in a Formula_1 race? Please give them full names.",
+    "sql_query": "WITH lap_times_in_seconds AS (SELECT driverId, (CASE WHEN SUBSTR(time, 1, INSTR(time, ':') - 1) <> '' THEN CAST(SUBSTR(time, 1, INSTR(time, ':') - 1) AS FLOAT) * 60 ELSE 0 END + CASE WHEN SUBSTR(time, INSTR(time, ':') + 1, INSTR(time, '.') - INSTR(time, ':') - 1) <> '' THEN CAST(SUBSTR(time, INSTR(time, ':') + 1, INSTR(time, '.') - INSTR(time, ':') - 1) AS FLOAT) ELSE 0 END + CASE WHEN SUBSTR(time, INSTR(time, '.') + 1) <> '' THEN CAST(SUBSTR(time, INSTR(time, '.') + 1) AS FLOAT) / 1000 ELSE 0 END) AS time_in_seconds FROM lapTimes) SELECT T2.forename, T2.surname, T1.driverId FROM (SELECT driverId, MIN(time_in_seconds) AS min_time_in_seconds FROM lap_times_in_seconds GROUP BY driverId) AS T1 INNER JOIN drivers AS T2 ON T1.driverId = T2.driverId ORDER BY T1.min_time_in_seconds ASC LIMIT 20",
+    "evidence": "shortest lap time refers to MIN(time); the time format for the shortest lap time is 'MM:SS.mmm' or 'M:SS.mmm'; full name of the driver refers to forename, surname",
+    "difficulty": "challenging"
+  },
+  {
+    "id": 1509,
+    "db_id": "debit_card_specializing",
+    "question": "Among the transactions made in the gas stations in the Czech Republic, how many of them are taken place after 2012/1/1?",
+    "sql_query": "SELECT\n  COUNT(`T1`.`TransactionID`)\nFROM `transactions_1k` AS `T1`\nINNER JOIN `gasstations` AS `T2`\n  ON `T1`.`GasStationID` = `T2`.`GasStationID`\nWHERE\n  `T2`.`Country` = 'CZE'\n  AND DATE_FORMAT(CAST(`T1`.`Date` AS DATETIME), '%Y') >= '2012'",
+    "evidence": "Czech Republic can be represented as the Country value in the gasstations table is 'CZE'",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 1317,
+    "db_id": "student_club",
+    "question": "Among the students from the Student_Club who attended the event \"Women's Soccer\", how many of them want a T-shirt that's in medium size?",
+    "sql_query": "SELECT\n  COUNT(`T1`.`event_id`)\nFROM `event` AS `T1`\nINNER JOIN `attendance` AS `T2`\n  ON `T1`.`event_id` = `T2`.`link_to_event`\nINNER JOIN `member` AS `T3`\n  ON `T2`.`link_to_member` = `T3`.`member_id`\nWHERE\n  `T1`.`event_name` = 'Women''s Soccer' AND `T3`.`t_shirt_size` = 'Medium'",
+    "evidence": "Women's Soccer is an event name; T-shirt that is in medium size refers to t_shirt_size = 'Medium'",
+    "difficulty": "moderate"
+  },
+  {
+    "id": 118,
+    "db_id": "financial",
+    "question": "For loan amount less than USD100,000, what is the percentage of accounts that is still running with no issue.",
+    "sql_query": "SELECT\n  CAST(SUM(`status` = 'C') AS DOUBLE) * 100 / COUNT(`account_id`)\nFROM `loan`\nWHERE\n  `amount` < 100000",
+    "evidence": "Status = 'C' stands for running contract, ok so far; Percentage of accounts by condition = [(total(amount) & condition) / (total amount)] * 100.",
+    "difficulty": "moderate"
+  }
+]

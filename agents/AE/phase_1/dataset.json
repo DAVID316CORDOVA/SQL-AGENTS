@@ -1,0 +1,136 @@
+{
+  "samples": [
+    {
+      "refined_query": "What is the maximum and average capacities for all stadiums?",
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "ag_strategy": "aggregation",
+      "generated_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "av_reasoning": "The SQL applies MAX and AVG on the Capacity column of the stadium table. No syntax errors, no DML operations, no joins without ON. Validation passed.",
+      "expected_explanation": "The query returns the maximum and average capacity of all stadiums by applying the MAX and AVG aggregation functions on the Capacity column of the stadium table."
+    },
+    {
+      "refined_query": "How many concerts has each singer performed in?",
+      "selected_tables": [
+        { "table_name": "singer" },
+        { "table_name": "singer_in_concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "concert_ID" }
+      ],
+      "ag_strategy": "join",
+      "av_iterations": 1,
+      "av_first_error": "Validation error: SELECT * is not allowed. Explicitly list the required columns.",
+      "generated_sql": "SELECT T1.name, COUNT(T2.concert_id) AS concert_count FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id GROUP BY T1.singer_id ORDER BY concert_count DESC",
+      "av_reasoning": "First attempt used SELECT * which is prohibited. Corrected to explicitly list T1.name and COUNT(T2.concert_id). Second attempt passed: JOIN condition valid, GROUP BY correctly scopes the COUNT, ORDER BY on alias is supported.",
+      "expected_explanation": "The query counts the number of concerts each singer has performed in by joining the singer and singer_in_concert tables on Singer_ID, grouping by singer, and ordering by concert count descending. The SQL was automatically corrected after the first validation attempt rejected the use of SELECT *."
+    },
+    {
+      "refined_query": "What is the average, minimum, and maximum age of all singers from France?",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Age" },
+        { "table_name": "singer", "column_name": "Country" }
+      ],
+      "ag_strategy": "aggregation",
+      "generated_sql": "SELECT avg(age), min(age), max(age) FROM singer WHERE country = 'France'",
+      "av_reasoning": "Aggregation query with WHERE filter on country. AVG, MIN, MAX applied to Age column are valid. String literal 'France' is correctly quoted. Validation passed.",
+      "expected_explanation": "The query computes the average, minimum and maximum age of singers whose country is France, using aggregation functions on the Age column with a WHERE filter on country."
+    },
+    {
+      "refined_query": "Show the name and the release year of the song by the youngest singer.",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Song_Name" },
+        { "table_name": "singer", "column_name": "Song_release_year" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "ag_strategy": "simple",
+      "generated_sql": "SELECT song_name, song_release_year FROM singer ORDER BY age LIMIT 1",
+      "av_reasoning": "ORDER BY age ASC with LIMIT 1 correctly identifies the youngest singer. Columns song_name, song_release_year and age exist in the singer table. Validation passed.",
+      "expected_explanation": "The query returns the song name and release year of the youngest singer, sorting singers ascending by age and taking only the first row."
+    },
+    {
+      "refined_query": "Show the names of singers whose songs are not from any concert.",
+      "selected_tables": [
+        { "table_name": "singer" },
+        { "table_name": "singer_in_concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "Singer_ID" }
+      ],
+      "ag_strategy": "subquery",
+      "generated_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "av_reasoning": "NOT IN subquery on singer_id. Both singer.singer_id and singer_in_concert.singer_id exist. The subquery returns a single column as required by NOT IN. No cartesian product or missing join condition. Validation passed.",
+      "expected_explanation": "The query returns the names of singers who have not performed in any concert, selecting from singer those whose singer_id does not appear in the singer_in_concert table."
+    },
+    {
+      "refined_query": "Show stadium names and the highest year of concerts in each stadium.",
+      "selected_tables": [
+        { "table_name": "concert" },
+        { "table_name": "stadium" }
+      ],
+      "selected_columns": [
+        { "table_name": "concert", "column_name": "Year" },
+        { "table_name": "concert", "column_name": "Stadium_ID" },
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Stadium_ID" }
+      ],
+      "ag_strategy": "join",
+      "generated_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+      "av_reasoning": "INNER JOIN between concert and stadium on stadium_id with GROUP BY and MAX aggregation. Join condition T1.stadium_id = T2.stadium_id is valid. GROUP BY correctly scopes MAX(year) per stadium. Validation passed.",
+      "expected_explanation": "The query returns the name of each stadium along with the most recent year in which a concert was held there. It joins concert and stadium by stadium_id and groups by stadium to compute the MAX year per stadium."
+    },
+    {
+      "refined_query": "What is the salary of each singer?",
+      "selected_tables": [],
+      "selected_columns": [],
+      "generated_sql": "",
+      "aps_rejection_reason": "No column or table matching 'salary' found in the schema. The singer table does not contain salary or payment data.",
+      "expected_explanation": "The database does not contain salary information for singers. The schema only provides singer names, countries, ages, and song details. Salary data cannot be retrieved from this system."
+    },
+    {
+      "user_input": "xlkjsdf qwerty bloop?",
+      "refined_query": "",
+      "selected_tables": [],
+      "selected_columns": [],
+      "generated_sql": "",
+      "ar_rejection_reason": "Input cannot be interpreted as a data query. No database entities, filters, or aggregations could be identified in the provided text.",
+      "expected_explanation": "The system could not understand the question. No recognizable database entities or query intent were detected. Please rephrase as a specific question about singers, concerts, or stadiums."
+    },
+    {
+      "refined_query": "Rank stadiums by number of concerts using a dense rank.",
+      "selected_tables": [
+        { "table_name": "stadium" },
+        { "table_name": "concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Stadium_ID" },
+        { "table_name": "concert", "column_name": "Stadium_ID" }
+      ],
+      "generated_sql": "",
+      "av_iterations": 3,
+      "last_av_error": "OperationalError: no such function: DENSE_RANK. Window functions are not supported in this database version.",
+      "av_reasoning": "All 3 generated SQL variants used DENSE_RANK() which is not supported by the current database engine. No reformulation avoiding window functions was successfully produced within the retry limit.",
+      "expected_explanation": "After 3 failed attempts, the system could not produce a valid query. DENSE_RANK window functions are not available in this database. You can instead ask for the count of concerts per stadium ordered by count."
+    },
+    {
+      "user_input": "Now show me the salary of the top singer.",
+      "refined_query": "Show the salary of the top singer by number of concerts.",
+      "selected_tables": [],
+      "selected_columns": [],
+      "generated_sql": "",
+      "last_useful_sql": "SELECT T1.name, COUNT(*) AS n_concerts FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id GROUP BY T1.singer_id ORDER BY n_concerts DESC LIMIT 1",
+      "aps_rejection_reason": "No salary or payment column found in the singer table. Prior query retrieved singer name and concert count.",
+      "expected_explanation": "The previous query successfully retrieved the top singer by concert count, but salary data is not available in this database. The singer table only contains name, country, age, and song information."
+    }
+  ]
+}

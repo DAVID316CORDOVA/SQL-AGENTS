@@ -1,0 +1,318 @@
+{
+  "available_entities": {
+    "budget": {
+      "all_columns": [
+        "_id",
+        "budget_id",
+        "category",
+        "spent",
+        "remaining",
+        "amount",
+        "event_status",
+        "link_to_event"
+      ],
+      "numeric_columns": [
+        "_id",
+        "spent",
+        "remaining",
+        "amount"
+      ],
+      "categorical_columns": [
+        "budget_id",
+        "category",
+        "event_status",
+        "link_to_event"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 52,
+      "table_description": "Table budget with 52 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "budget_id": "Budget Id. Type: text.",
+        "category": "Category. Type: text.",
+        "spent": "Spent. Type: double.",
+        "remaining": "Remaining. Type: double.",
+        "amount": "Amount. Type: bigint.",
+        "event_status": "Event Status. Type: text.",
+        "link_to_event": "Link To Event. Type: text."
+      }
+    },
+    "event": {
+      "all_columns": [
+        "_id",
+        "event_id",
+        "event_name",
+        "event_date",
+        "type",
+        "notes",
+        "location",
+        "status"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "event_id",
+        "event_name",
+        "event_date",
+        "type",
+        "notes",
+        "location",
+        "status"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 42,
+      "table_description": "Table event with 42 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "event_id": "Event Id. Type: text.",
+        "event_name": "Event Name. Type: text.",
+        "event_date": "Event Date. Type: text.",
+        "type": "Type. Type: text.",
+        "notes": "Notes. Type: text.",
+        "location": "Location. Type: text.",
+        "status": "Status. Type: text."
+      }
+    },
+    "expense": {
+      "all_columns": [
+        "_id",
+        "expense_id",
+        "expense_description",
+        "expense_date",
+        "cost",
+        "approved",
+        "link_to_member",
+        "link_to_budget"
+      ],
+      "numeric_columns": [
+        "_id",
+        "cost"
+      ],
+      "categorical_columns": [
+        "expense_id",
+        "expense_description",
+        "expense_date",
+        "approved",
+        "link_to_member",
+        "link_to_budget"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 32,
+      "table_description": "Table expense with 32 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "expense_id": "Expense Id. Type: text.",
+        "expense_description": "Expense Description. Type: text.",
+        "expense_date": "Expense Date. Type: text.",
+        "cost": "Cost. Type: double.",
+        "approved": "Approved. Type: text.",
+        "link_to_member": "Link To Member. Type: text.",
+        "link_to_budget": "Link To Budget. Type: text."
+      }
+    },
+    "income": {
+      "all_columns": [
+        "_id",
+        "income_id",
+        "date_received",
+        "amount",
+        "source",
+        "notes",
+        "link_to_member"
+      ],
+      "numeric_columns": [
+        "_id",
+        "amount"
+      ],
+      "categorical_columns": [
+        "income_id",
+        "date_received",
+        "source",
+        "notes",
+        "link_to_member"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 36,
+      "table_description": "Table income with 36 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "income_id": "Income Id. Type: text.",
+        "date_received": "Date Received. Type: text.",
+        "amount": "Amount. Type: bigint.",
+        "source": "Source. Type: text.",
+        "notes": "Notes. Type: text.",
+        "link_to_member": "Link To Member. Type: text."
+      }
+    },
+    "major": {
+      "all_columns": [
+        "_id",
+        "major_id",
+        "major_name",
+        "department",
+        "college"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "major_id",
+        "major_name",
+        "department",
+        "college"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 113,
+      "table_description": "Table major with 113 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "major_id": "Major Id. Type: text.",
+        "major_name": "Major Name. Type: text.",
+        "department": "Department. Type: text.",
+        "college": "College. Type: text."
+      }
+    },
+    "member": {
+      "all_columns": [
+        "_id",
+        "member_id",
+        "first_name",
+        "last_name",
+        "email",
+        "position",
+        "t_shirt_size",
+        "phone",
+        "zip",
+        "link_to_major"
+      ],
+      "numeric_columns": [
+        "_id",
+        "zip"
+      ],
+      "categorical_columns": [
+        "member_id",
+        "first_name",
+        "last_name",
+        "email",
+        "position",
+        "t_shirt_size",
+        "phone",
+        "link_to_major"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 33,
+      "table_description": "Table member with 33 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "member_id": "Member Id. Type: text.",
+        "first_name": "First Name. Type: text.",
+        "last_name": "Last Name. Type: text.",
+        "email": "Email. Type: text.",
+        "position": "Position. Type: text.",
+        "t_shirt_size": "T Shirt Size. Type: text.",
+        "phone": "Phone. Type: text.",
+        "zip": "Zip. Type: bigint.",
+        "link_to_major": "Link To Major. Type: text."
+      }
+    },
+    "zip_code": {
+      "all_columns": [
+        "_id",
+        "zip_code",
+        "type",
+        "city",
+        "county",
+        "state",
+        "short_state"
+      ],
+      "numeric_columns": [
+        "_id",
+        "zip_code"
+      ],
+      "categorical_columns": [
+        "type",
+        "city",
+        "county",
+        "state",
+        "short_state"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 41877,
+      "table_description": "Table zip_code with 41877 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "zip_code": "Zip Code. Type: bigint.",
+        "type": "Type. Type: text.",
+        "city": "City. Type: text.",
+        "county": "County. Type: text.",
+        "state": "State. Type: text.",
+        "short_state": "Short State. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

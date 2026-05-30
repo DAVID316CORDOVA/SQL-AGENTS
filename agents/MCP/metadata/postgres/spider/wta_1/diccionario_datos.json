@@ -1,0 +1,192 @@
+{
+  "tablas": {
+    "players": {
+      "descripcion": "Table players from the wta_1 database.",
+      "columnas": {
+        "player_id": {
+          "tipo": "number",
+          "descripcion": "Player Id. Primary key."
+        },
+        "first_name": {
+          "tipo": "text",
+          "descripcion": "First Name."
+        },
+        "last_name": {
+          "tipo": "text",
+          "descripcion": "Last Name."
+        },
+        "hand": {
+          "tipo": "text",
+          "descripcion": "Hand."
+        },
+        "birth_date": {
+          "tipo": "time",
+          "descripcion": "Birth Date."
+        },
+        "country_code": {
+          "tipo": "text",
+          "descripcion": "Country Code."
+        }
+      }
+    },
+    "matches": {
+      "descripcion": "Table matches from the wta_1 database.",
+      "columnas": {
+        "best_of": {
+          "tipo": "number",
+          "descripcion": "Best Of."
+        },
+        "draw_size": {
+          "tipo": "number",
+          "descripcion": "Draw Size."
+        },
+        "loser_age": {
+          "tipo": "number",
+          "descripcion": "Loser Age."
+        },
+        "loser_entry": {
+          "tipo": "text",
+          "descripcion": "Loser Entry."
+        },
+        "loser_hand": {
+          "tipo": "text",
+          "descripcion": "Loser Hand."
+        },
+        "loser_ht": {
+          "tipo": "number",
+          "descripcion": "Loser Ht."
+        },
+        "loser_id": {
+          "tipo": "number",
+          "descripcion": "Loser Id. References players.player_id."
+        },
+        "loser_ioc": {
+          "tipo": "text",
+          "descripcion": "Loser Ioc."
+        },
+        "loser_name": {
+          "tipo": "text",
+          "descripcion": "Loser Name."
+        },
+        "loser_rank": {
+          "tipo": "number",
+          "descripcion": "Loser Rank."
+        },
+        "loser_rank_points": {
+          "tipo": "number",
+          "descripcion": "Loser Rank Points."
+        },
+        "loser_seed": {
+          "tipo": "number",
+          "descripcion": "Loser Seed."
+        },
+        "match_num": {
+          "tipo": "number",
+          "descripcion": "Match Num."
+        },
+        "minutes": {
+          "tipo": "number",
+          "descripcion": "Minutes."
+        },
+        "round": {
+          "tipo": "text",
+          "descripcion": "Round."
+        },
+        "score": {
+          "tipo": "text",
+          "descripcion": "Score."
+        },
+        "surface": {
+          "tipo": "text",
+          "descripcion": "Surface."
+        },
+        "tourney_date": {
+          "tipo": "time",
+          "descripcion": "Tourney Date."
+        },
+        "tourney_id": {
+          "tipo": "text",
+          "descripcion": "Tourney Id."
+        },
+        "tourney_level": {
+          "tipo": "text",
+          "descripcion": "Tourney Level."
+        },
+        "tourney_name": {
+          "tipo": "text",
+          "descripcion": "Tourney Name."
+        },
+        "winner_age": {
+          "tipo": "number",
+          "descripcion": "Winner Age."
+        },
+        "winner_entry": {
+          "tipo": "text",
+          "descripcion": "Winner Entry."
+        },
+        "winner_hand": {
+          "tipo": "text",
+          "descripcion": "Winner Hand."
+        },
+        "winner_ht": {
+          "tipo": "number",
+          "descripcion": "Winner Ht."
+        },
+        "winner_id": {
+          "tipo": "number",
+          "descripcion": "Winner Id. References players.player_id."
+        },
+        "winner_ioc": {
+          "tipo": "text",
+          "descripcion": "Winner Ioc."
+        },
+        "winner_name": {
+          "tipo": "text",
+          "descripcion": "Winner Name."
+        },
+        "winner_rank": {
+          "tipo": "number",
+          "descripcion": "Winner Rank."
+        },
+        "winner_rank_points": {
+          "tipo": "number",
+          "descripcion": "Winner Rank Points."
+        },
+        "winner_seed": {
+          "tipo": "number",
+          "descripcion": "Winner Seed."
+        },
+        "year": {
+          "tipo": "number",
+          "descripcion": "Year."
+        }
+      }
+    },
+    "rankings": {
+      "descripcion": "Table rankings from the wta_1 database.",
+      "columnas": {
+        "ranking_date": {
+          "tipo": "time",
+          "descripcion": "Ranking Date."
+        },
+        "ranking": {
+          "tipo": "number",
+          "descripcion": "Ranking."
+        },
+        "player_id": {
+          "tipo": "number",
+          "descripcion": "Player Id. References players.player_id."
+        },
+        "ranking_points": {
+          "tipo": "number",
+          "descripcion": "Ranking Points."
+        },
+        "tours": {
+          "tipo": "number",
+          "descripcion": "Tours."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

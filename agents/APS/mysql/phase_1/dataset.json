@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "version": "phase1-APS-mysql-v2",
+    "agent_under_test": "APS (MySQL)",
+    "dataset_source": "Spider 1.0 / concert_singer. 10 preguntas representativas. Para cada pregunta se conocen las tablas y columnas gold que el APS debe recuperar via similarity search.",
+    "active_dataset_value": "spider:concert_singer",
+    "design_principle": "Variar la metrica de similitud (cosine / ip / l2) y medir F1 sobre la recuperacion de tablas y columnas. Hiperparametros del LLM y embeddings se mantienen fijos.",
+    "metrics": ["precision@5_tables", "recall_tables", "F1_tables", "precision@5_columns", "recall_columns", "F1_columns"],
+    "objective_function": "combined = (F1_tables + F1_columns) / 2   (max teorico = 1.0)",
+    "n_total": 10
+  },
+  "samples": [
+    {
+      "id": 1,
+      "refined_query": "List the names of singers who performed in concerts at stadiums with a capacity over 5000.",
+      "expected_tables":  ["singer", "singer_in_concert", "concert", "stadium"],
+      "expected_columns": ["singer.Name", "singer.Singer_ID", "singer_in_concert.Singer_ID", "singer_in_concert.concert_ID", "concert.concert_ID", "concert.Stadium_ID", "stadium.Stadium_ID", "stadium.Capacity"]
+    },
+    {
+      "id": 2,
+      "refined_query": "What is the most common theme among concerts performed by singers from France?",
+      "expected_tables":  ["singer", "singer_in_concert", "concert"],
+      "expected_columns": ["singer.Country", "singer.Singer_ID", "singer_in_concert.Singer_ID", "singer_in_concert.concert_ID", "concert.concert_ID", "concert.Theme"]
+    },
+    {
+      "id": 3,
+      "refined_query": "Show the name of the singer who performed in the most recent concert.",
+      "expected_tables":  ["singer", "singer_in_concert", "concert"],
+      "expected_columns": ["singer.Name", "singer.Singer_ID", "singer_in_concert.Singer_ID", "singer_in_concert.concert_ID", "concert.concert_ID", "concert.Year"]
+    },
+    {
+      "id": 4,
+      "refined_query": "Show the name and the release year of the song by the youngest singer.",
+      "expected_tables":  ["singer"],
+      "expected_columns": ["singer.Song_Name", "singer.Song_release_year", "singer.Age"]
+    },
+    {
+      "id": 5,
+      "refined_query": "What are all distinct countries where singers above age 20 are from?",
+      "expected_tables":  ["singer"],
+      "expected_columns": ["singer.Country", "singer.Age"]
+    },
+    {
+      "id": 6,
+      "refined_query": "List all song names by singers above the average age.",
+      "expected_tables":  ["singer"],
+      "expected_columns": ["singer.Song_Name", "singer.Age"]
+    },
+    {
+      "id": 7,
+      "refined_query": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+      "expected_tables":  ["stadium"],
+      "expected_columns": ["stadium.Location", "stadium.Name", "stadium.Capacity"]
+    },
+    {
+      "id": 8,
+      "refined_query": "Show the names of singers whose songs are not from any concert.",
+      "expected_tables":  ["singer", "singer_in_concert"],
+      "expected_columns": ["singer.Name", "singer.Singer_ID", "singer_in_concert.Singer_ID"]
+    },
+    {
+      "id": 9,
+      "refined_query": "Show the names of stadiums that did not have any concert.",
+      "expected_tables":  ["stadium", "concert"],
+      "expected_columns": ["stadium.Name", "stadium.Stadium_ID", "concert.Stadium_ID"]
+    },
+    {
+      "id": 10,
+      "refined_query": "Show stadium names and the highest year of concerts in each stadium.",
+      "expected_tables":  ["concert", "stadium"],
+      "expected_columns": ["concert.Year", "concert.Stadium_ID", "stadium.Name", "stadium.Stadium_ID"]
+    }
+  ]
+}

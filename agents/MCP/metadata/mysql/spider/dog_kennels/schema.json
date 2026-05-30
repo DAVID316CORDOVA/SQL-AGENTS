@@ -1,0 +1,393 @@
+{
+  "available_entities": {
+    "Breeds": {
+      "all_columns": [
+        "breed_code",
+        "breed_name"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "breed_code",
+        "breed_name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "breed_code"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Breeds_1": {
+          "columns": [
+            "breed_code"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Breeds with 3 rows.",
+      "column_descriptions": {
+        "breed_code": "Breed Code. Type: text.",
+        "breed_name": "Breed Name. Type: text."
+      }
+    },
+    "Charges": {
+      "all_columns": [
+        "charge_id",
+        "charge_type",
+        "charge_amount"
+      ],
+      "numeric_columns": [
+        "charge_id"
+      ],
+      "categorical_columns": [
+        "charge_type",
+        "charge_amount"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "charge_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Charges with 3 rows.",
+      "column_descriptions": {
+        "charge_id": "Charge Id. Type: integer.",
+        "charge_type": "Charge Type. Type: text.",
+        "charge_amount": "Charge Amount. Type: text."
+      }
+    },
+    "Sizes": {
+      "all_columns": [
+        "size_code",
+        "size_description"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "size_code",
+        "size_description"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "size_code"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Sizes_1": {
+          "columns": [
+            "size_code"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Sizes with 3 rows.",
+      "column_descriptions": {
+        "size_code": "Size Code. Type: text.",
+        "size_description": "Size Description. Type: text."
+      }
+    },
+    "Treatment_Types": {
+      "all_columns": [
+        "treatment_type_code",
+        "treatment_type_description"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "treatment_type_code",
+        "treatment_type_description"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "treatment_type_code"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Treatment_Types_1": {
+          "columns": [
+            "treatment_type_code"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Treatment_Types with 3 rows.",
+      "column_descriptions": {
+        "treatment_type_code": "Treatment Type Code. Type: text.",
+        "treatment_type_description": "Treatment Type Description. Type: text."
+      }
+    },
+    "Owners": {
+      "all_columns": [
+        "owner_id",
+        "first_name",
+        "last_name",
+        "street",
+        "city",
+        "state",
+        "zip_code",
+        "email_address",
+        "home_phone",
+        "cell_number"
+      ],
+      "numeric_columns": [
+        "owner_id"
+      ],
+      "categorical_columns": [
+        "first_name",
+        "last_name",
+        "street",
+        "city",
+        "state",
+        "zip_code",
+        "email_address",
+        "home_phone",
+        "cell_number"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "owner_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Owners with 15 rows.",
+      "column_descriptions": {
+        "owner_id": "Owner Id. Type: integer.",
+        "first_name": "First Name. Type: text.",
+        "last_name": "Last Name. Type: text.",
+        "street": "Street. Type: text.",
+        "city": "City. Type: text.",
+        "state": "State. Type: text.",
+        "zip_code": "Zip Code. Type: text.",
+        "email_address": "Email Address. Type: text.",
+        "home_phone": "Home Phone. Type: text.",
+        "cell_number": "Cell Number. Type: text."
+      }
+    },
+    "Dogs": {
+      "all_columns": [
+        "dog_id",
+        "owner_id",
+        "abandoned_yn",
+        "breed_code",
+        "size_code",
+        "name",
+        "age",
+        "date_of_birth",
+        "gender",
+        "weight",
+        "date_arrived",
+        "date_adopted",
+        "date_departed"
+      ],
+      "numeric_columns": [
+        "dog_id",
+        "owner_id"
+      ],
+      "categorical_columns": [
+        "abandoned_yn",
+        "breed_code",
+        "size_code",
+        "name",
+        "age",
+        "date_of_birth",
+        "gender",
+        "weight",
+        "date_arrived",
+        "date_adopted",
+        "date_departed"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "dog_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Dogs with 15 rows.",
+      "column_descriptions": {
+        "dog_id": "Dog Id. Type: integer.",
+        "owner_id": "Owner Id. Type: integer.",
+        "abandoned_yn": "Abandoned Yn. Type: text.",
+        "breed_code": "Breed Code. Type: text.",
+        "size_code": "Size Code. Type: text.",
+        "name": "Name. Type: text.",
+        "age": "Age. Type: text.",
+        "date_of_birth": "Date Of Birth. Type: text.",
+        "gender": "Gender. Type: text.",
+        "weight": "Weight. Type: text.",
+        "date_arrived": "Date Arrived. Type: text.",
+        "date_adopted": "Date Adopted. Type: text.",
+        "date_departed": "Date Departed. Type: text."
+      }
+    },
+    "Professionals": {
+      "all_columns": [
+        "professional_id",
+        "role_code",
+        "first_name",
+        "street",
+        "city",
+        "state",
+        "zip_code",
+        "last_name",
+        "email_address",
+        "home_phone",
+        "cell_number"
+      ],
+      "numeric_columns": [
+        "professional_id"
+      ],
+      "categorical_columns": [
+        "role_code",
+        "first_name",
+        "street",
+        "city",
+        "state",
+        "zip_code",
+        "last_name",
+        "email_address",
+        "home_phone",
+        "cell_number"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "professional_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Professionals with 15 rows.",
+      "column_descriptions": {
+        "professional_id": "Professional Id. Type: integer.",
+        "role_code": "Role Code. Type: text.",
+        "first_name": "First Name. Type: text.",
+        "street": "Street. Type: text.",
+        "city": "City. Type: text.",
+        "state": "State. Type: text.",
+        "zip_code": "Zip Code. Type: text.",
+        "last_name": "Last Name. Type: text.",
+        "email_address": "Email Address. Type: text.",
+        "home_phone": "Home Phone. Type: text.",
+        "cell_number": "Cell Number. Type: text."
+      }
+    },
+    "Treatments": {
+      "all_columns": [
+        "treatment_id",
+        "dog_id",
+        "professional_id",
+        "treatment_type_code",
+        "date_of_treatment",
+        "cost_of_treatment"
+      ],
+      "numeric_columns": [
+        "treatment_id",
+        "dog_id",
+        "professional_id"
+      ],
+      "categorical_columns": [
+        "treatment_type_code",
+        "date_of_treatment",
+        "cost_of_treatment"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "treatment_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Treatments with 15 rows.",
+      "column_descriptions": {
+        "treatment_id": "Treatment Id. Type: integer.",
+        "dog_id": "Dog Id. Type: integer.",
+        "professional_id": "Professional Id. Type: integer.",
+        "treatment_type_code": "Treatment Type Code. Type: text.",
+        "date_of_treatment": "Date Of Treatment. Type: text.",
+        "cost_of_treatment": "Cost Of Treatment. Type: text."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "Dogs",
+      "from_column": "owner_id",
+      "to_table": "Owners",
+      "to_column": "owner_id",
+      "join_hint": "Dogs.owner_id = Owners.owner_id"
+    },
+    {
+      "from_table": "Dogs",
+      "from_column": "owner_id",
+      "to_table": "Owners",
+      "to_column": "owner_id",
+      "join_hint": "Dogs.owner_id = Owners.owner_id"
+    },
+    {
+      "from_table": "Dogs",
+      "from_column": "size_code",
+      "to_table": "Sizes",
+      "to_column": "size_code",
+      "join_hint": "Dogs.size_code = Sizes.size_code"
+    },
+    {
+      "from_table": "Dogs",
+      "from_column": "breed_code",
+      "to_table": "Breeds",
+      "to_column": "breed_code",
+      "join_hint": "Dogs.breed_code = Breeds.breed_code"
+    },
+    {
+      "from_table": "Treatments",
+      "from_column": "dog_id",
+      "to_table": "Dogs",
+      "to_column": "dog_id",
+      "join_hint": "Treatments.dog_id = Dogs.dog_id"
+    },
+    {
+      "from_table": "Treatments",
+      "from_column": "professional_id",
+      "to_table": "Professionals",
+      "to_column": "professional_id",
+      "join_hint": "Treatments.professional_id = Professionals.professional_id"
+    },
+    {
+      "from_table": "Treatments",
+      "from_column": "treatment_type_code",
+      "to_table": "Treatment_Types",
+      "to_column": "treatment_type_code",
+      "join_hint": "Treatments.treatment_type_code = Treatment_Types.treatment_type_code"
+    }
+  ]
+}

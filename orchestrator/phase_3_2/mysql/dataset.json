@@ -1,0 +1,158 @@
+{
+  "test_cases": [
+    {
+      "id": 1,
+      "type": "orchestrator_rejection_opinion",
+      "description": "Route: Orchestrator -> AR -> AE -- subjective opinion, AR rejects with confidence=0.15",
+      "question": "Who is the best singer in the world?",
+      "expected_sql": null,
+      "expected_explanation": "This question asks for a subjective opinion and cannot be answered with the database. The system only processes factual queries about the concert_singer dataset.",
+      "expected_tables": [],
+      "expected_tools": ["AR", "AE"]
+    },
+    {
+      "id": 2,
+      "type": "ar_rejection_dml",
+      "description": "Route: Orchestrator -> AR -> AE -- AR rejects DML statement",
+      "question": "Delete all concerts from 2010.",
+      "expected_sql": null,
+      "expected_explanation": "This is a DELETE statement (DML operation). The system only processes SELECT queries for data retrieval. The request has been rejected.",
+      "expected_tables": [],
+      "expected_tools": ["AR", "AE"]
+    },
+    {
+      "id": 3,
+      "type": "aps_rejection",
+      "description": "Route: Orchestrator -> AR -> APS -> AE -- APS finds no matching tables in schema",
+      "question": "What is the average ticket price per concert?",
+      "expected_sql": null,
+      "expected_explanation": "The requested information about ticket prices is not available in the database schema. The concert_singer dataset does not contain pricing data.",
+      "expected_tables": [],
+      "expected_tools": ["AR", "APS", "APS.search_tables", "APS.search_columns", "AE"]
+    },
+    {
+      "id": 4,
+      "type": "as_activation",
+      "description": "Route: Orchestrator -> AS -- sustentation question with prior result injected",
+      "question": "Why did the pipeline use a JOIN between concert and stadium?",
+      "expected_sql": null,
+      "expected_explanation": "The JOIN was needed because the query required data from both the concert table (year) and the stadium table (name). Both share the stadium_id key used as the join condition.",
+      "expected_tables": [],
+      "expected_tools": ["AS"],
+      "conversation_history": [
+        {
+          "role": "user",
+          "content": "Show stadium names and the highest year of concerts in each stadium."
+        },
+        {
+          "role": "assistant",
+          "content": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id"
+        }
+      ],
+      "last_result_for_as": {
+        "final_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+        "ar_result":  {"is_valid_query": true, "refined_query": "Show stadium names and the highest year of concerts in each stadium.", "confidence_score": 0.95},
+        "aps_result": {"success": true, "tables": {"concert": {"all_columns": ["Concert_ID","Stadium_ID","Year","Theme","Location"]}, "stadium": {"all_columns": ["Stadium_ID","Location","Name","Capacity","Highest","Lowest","Average"]}}, "confidence_score": 0.88},
+        "ag_result":  {"sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id", "confidence_score": 0.92},
+        "av_result":  {"is_valid": true, "confidence_score": 0.95, "decision_word": "correct"},
+        "ae_result":  {"explanation": {"final_reasoning": "The query returns each stadium name with the most recent concert year, joining concert and stadium on stadium_id."}}
+      }
+    },
+    {
+      "id": 5,
+      "type": "full_pipeline_simple",
+      "description": "Route: full pipeline -- simple MAX/AVG aggregation, single table",
+      "question": "What is the maximum and average capacity of all stadiums?",
+      "expected_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "expected_explanation": "The query returns the maximum and average capacity of all stadiums by applying MAX and AVG on the Capacity column of the stadium table.",
+      "expected_tables": ["stadium"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety",
+        "AV", "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "full_pipeline_join",
+      "description": "Route: full pipeline -- JOIN between two tables, activates find_join_path",
+      "question": "Show stadium names and the highest year of concerts held in each stadium.",
+      "expected_sql": "SELECT T1.Name, MAX(T2.Year) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID, T1.Name",
+      "expected_explanation": "The query joins concert and stadium on stadium_id and groups by stadium to compute the MAX year of concerts per stadium.",
+      "expected_tables": ["concert", "stadium"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety", "AG.find_join_path",
+        "AV", "AV.check_syntax_rules", "AV.check_query_efficiency",
+        "AE"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "full_pipeline_subquery",
+      "description": "Route: full pipeline -- NOT IN subquery, activates find_joins_among_tables",
+      "question": "Show the names of singers who have not performed in any concert.",
+      "expected_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "expected_explanation": "The query finds singers not associated with any concert using a NOT IN subquery against the singer_in_concert table.",
+      "expected_tables": ["singer", "singer_in_concert"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety", "AG.find_joins_among_tables",
+        "AV", "AV.check_syntax_rules", "AV.check_query_efficiency",
+        "AE"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "full_pipeline_distinct_filter",
+      "description": "Route: full pipeline -- DISTINCT with WHERE filter",
+      "question": "What are all distinct countries where singers above age 20 are from?",
+      "expected_sql": "SELECT DISTINCT country FROM singer WHERE age > 20",
+      "expected_explanation": "The query returns unique countries of singers older than 20, using DISTINCT to eliminate duplicates.",
+      "expected_tables": ["singer"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety",
+        "AV", "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "full_pipeline_groupby",
+      "description": "Route: full pipeline -- GROUP BY with MAX per category",
+      "question": "Show the maximum age of singers in each country.",
+      "expected_sql": "SELECT country, max(age) FROM singer GROUP BY country",
+      "expected_explanation": "The query returns each country with the maximum singer age, grouping all singers by country and computing MAX of age per group.",
+      "expected_tables": ["singer"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety",
+        "AV", "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "full_pipeline_av_correction",
+      "description": "Route: full pipeline -- AV rejects AG (WHERE with aggregate), AG corrects to HAVING. Tests AV->AG correction loop.",
+      "question": "List the countries that have more than one singer in the database.",
+      "expected_sql": "SELECT country FROM singer GROUP BY country HAVING COUNT(*) > 1",
+      "expected_explanation": "The query groups singers by country and uses HAVING to filter only countries with more than one singer. HAVING is required because the filter applies to an aggregate (COUNT), not to individual rows.",
+      "expected_tables": ["singer"],
+      "expected_tools": [
+        "AR",
+        "APS", "APS.search_tables", "APS.search_columns",
+        "AG", "AG.validate_sql_safety",
+        "AV", "AV.check_syntax_rules", "AV.check_semantic_patterns",
+        "AE"
+      ]
+    }
+  ]
+}

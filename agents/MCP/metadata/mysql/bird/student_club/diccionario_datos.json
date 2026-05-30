@@ -1,0 +1,252 @@
+{
+  "tablas": {
+    "budget": {
+      "descripcion": "Table budget from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "budget_id": {
+          "tipo": "text",
+          "descripcion": "Budget Id. Type: text."
+        },
+        "category": {
+          "tipo": "text",
+          "descripcion": "Category. Type: text."
+        },
+        "spent": {
+          "tipo": "numeric",
+          "descripcion": "Spent. Type: double."
+        },
+        "remaining": {
+          "tipo": "numeric",
+          "descripcion": "Remaining. Type: double."
+        },
+        "amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: bigint."
+        },
+        "event_status": {
+          "tipo": "text",
+          "descripcion": "Event Status. Type: text."
+        },
+        "link_to_event": {
+          "tipo": "text",
+          "descripcion": "Link To Event. Type: text."
+        }
+      }
+    },
+    "event": {
+      "descripcion": "Table event from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "event_id": {
+          "tipo": "text",
+          "descripcion": "Event Id. Type: text."
+        },
+        "event_name": {
+          "tipo": "text",
+          "descripcion": "Event Name. Type: text."
+        },
+        "event_date": {
+          "tipo": "text",
+          "descripcion": "Event Date. Type: text."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "notes": {
+          "tipo": "text",
+          "descripcion": "Notes. Type: text."
+        },
+        "location": {
+          "tipo": "text",
+          "descripcion": "Location. Type: text."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Type: text."
+        }
+      }
+    },
+    "expense": {
+      "descripcion": "Table expense from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "expense_id": {
+          "tipo": "text",
+          "descripcion": "Expense Id. Type: text."
+        },
+        "expense_description": {
+          "tipo": "text",
+          "descripcion": "Expense Description. Type: text."
+        },
+        "expense_date": {
+          "tipo": "text",
+          "descripcion": "Expense Date. Type: text."
+        },
+        "cost": {
+          "tipo": "numeric",
+          "descripcion": "Cost. Type: double."
+        },
+        "approved": {
+          "tipo": "text",
+          "descripcion": "Approved. Type: text."
+        },
+        "link_to_member": {
+          "tipo": "text",
+          "descripcion": "Link To Member. Type: text."
+        },
+        "link_to_budget": {
+          "tipo": "text",
+          "descripcion": "Link To Budget. Type: text."
+        }
+      }
+    },
+    "income": {
+      "descripcion": "Table income from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "income_id": {
+          "tipo": "text",
+          "descripcion": "Income Id. Type: text."
+        },
+        "date_received": {
+          "tipo": "text",
+          "descripcion": "Date Received. Type: text."
+        },
+        "amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: bigint."
+        },
+        "source": {
+          "tipo": "text",
+          "descripcion": "Source. Type: text."
+        },
+        "notes": {
+          "tipo": "text",
+          "descripcion": "Notes. Type: text."
+        },
+        "link_to_member": {
+          "tipo": "text",
+          "descripcion": "Link To Member. Type: text."
+        }
+      }
+    },
+    "major": {
+      "descripcion": "Table major from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "major_id": {
+          "tipo": "text",
+          "descripcion": "Major Id. Type: text."
+        },
+        "major_name": {
+          "tipo": "text",
+          "descripcion": "Major Name. Type: text."
+        },
+        "department": {
+          "tipo": "text",
+          "descripcion": "Department. Type: text."
+        },
+        "college": {
+          "tipo": "text",
+          "descripcion": "College. Type: text."
+        }
+      }
+    },
+    "member": {
+      "descripcion": "Table member from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "member_id": {
+          "tipo": "text",
+          "descripcion": "Member Id. Type: text."
+        },
+        "first_name": {
+          "tipo": "text",
+          "descripcion": "First Name. Type: text."
+        },
+        "last_name": {
+          "tipo": "text",
+          "descripcion": "Last Name. Type: text."
+        },
+        "email": {
+          "tipo": "text",
+          "descripcion": "Email. Type: text."
+        },
+        "position": {
+          "tipo": "text",
+          "descripcion": "Position. Type: text."
+        },
+        "t_shirt_size": {
+          "tipo": "text",
+          "descripcion": "T Shirt Size. Type: text."
+        },
+        "phone": {
+          "tipo": "text",
+          "descripcion": "Phone. Type: text."
+        },
+        "zip": {
+          "tipo": "numeric",
+          "descripcion": "Zip. Type: bigint."
+        },
+        "link_to_major": {
+          "tipo": "text",
+          "descripcion": "Link To Major. Type: text."
+        }
+      }
+    },
+    "zip_code": {
+      "descripcion": "Table zip_code from the student_club BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "zip_code": {
+          "tipo": "numeric",
+          "descripcion": "Zip Code. Type: bigint."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "city": {
+          "tipo": "text",
+          "descripcion": "City. Type: text."
+        },
+        "county": {
+          "tipo": "text",
+          "descripcion": "County. Type: text."
+        },
+        "state": {
+          "tipo": "text",
+          "descripcion": "State. Type: text."
+        },
+        "short_state": {
+          "tipo": "text",
+          "descripcion": "Short State. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

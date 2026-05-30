@@ -1,0 +1,50 @@
+[
+  {
+    "id": "car_1_1",
+    "db_id": "car_1",
+    "question": "Among the cars that do not have the minimum horsepower , what are the make ids and names of all those with less than 4 cylinders ?",
+    "sql_query": "select t2.makeid ,  t2.make from cars_data as t1 join car_names as t2 on t1.id  =  t2.makeid where t1.horsepower  >  (select min(horsepower) from cars_data) and t1.cylinders  <  4;"
+  },
+  {
+    "id": "museum_1",
+    "db_id": "museum_visit",
+    "question": "How many museums were opened after 2013 or before 2008?",
+    "sql_query": "SELECT count(*) FROM museum WHERE open_year  >  2013 OR open_year  <  2008"
+  },
+  {
+    "id": "network_1a",
+    "db_id": "network_1",
+    "question": "What are the ids of students who both have friends and are liked?",
+    "sql_query": "SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes"
+  },
+  {
+    "id": "network_1b",
+    "db_id": "network_1",
+    "question": "What are the names of high schoolers who have 3 or more friends?",
+    "sql_query": "SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id HAVING count(*)  >=  3"
+  },
+  {
+    "id": "stt_1",
+    "db_id": "student_transcripts_tracking",
+    "question": "What are the first, middle, and last names, along with the ids, of all students who enrolled in 2 degree programs in one semester?",
+    "sql_query": "SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2"
+  },
+  {
+    "id": "tvshow_1",
+    "db_id": "tvshow",
+    "question": "What is the content of TV Channel with serial name \"Sky Radio\"?",
+    "sql_query": "SELECT Content FROM TV_Channel WHERE series_name = \"Sky Radio\";"
+  },
+  {
+    "id": "tvshow_2",
+    "db_id": "tvshow",
+    "question": "What is minimum and maximum share of TV series?",
+    "sql_query": "SELECT max(SHARE) , min(SHARE) FROM TV_series;"
+  },
+  {
+    "id": "wta_1_1",
+    "db_id": "wta_1",
+    "question": "find the names of loser and winner who played in the match with greatest number of minutes.",
+    "sql_query": "SELECT winner_name ,  loser_name FROM matches ORDER BY minutes DESC LIMIT 1"
+  }
+]

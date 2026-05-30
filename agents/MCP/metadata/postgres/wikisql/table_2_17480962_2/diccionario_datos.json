@@ -1,0 +1,30 @@
+{
+  "tablas": {
+    "table_2_17480962_2": {
+      "descripcion": "Table table_2_17480962_2",
+      "columnas": {
+        "finished": {
+          "tipo": "text",
+          "descripcion": "Finished. Text value."
+        },
+        "horse": {
+          "tipo": "text",
+          "descripcion": "Horse. Text value."
+        },
+        "jockey": {
+          "tipo": "text",
+          "descripcion": "Jockey. Text value."
+        },
+        "trainer": {
+          "tipo": "text",
+          "descripcion": "Trainer. Text value."
+        },
+        "odds": {
+          "tipo": "text",
+          "descripcion": "Odds. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

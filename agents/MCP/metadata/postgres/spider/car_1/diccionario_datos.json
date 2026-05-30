@@ -1,0 +1,127 @@
+{
+  "tablas": {
+    "continents": {
+      "descripcion": "Table continents from the car_1 database.",
+      "columnas": {
+        "ContId": {
+          "tipo": "number",
+          "descripcion": "Contid. Primary key."
+        },
+        "Continent": {
+          "tipo": "text",
+          "descripcion": "Continent."
+        }
+      }
+    },
+    "countries": {
+      "descripcion": "Table countries from the car_1 database.",
+      "columnas": {
+        "CountryId": {
+          "tipo": "number",
+          "descripcion": "Countryid. Primary key."
+        },
+        "CountryName": {
+          "tipo": "text",
+          "descripcion": "Countryname."
+        },
+        "Continent": {
+          "tipo": "number",
+          "descripcion": "Continent. References continents.ContId."
+        }
+      }
+    },
+    "car_makers": {
+      "descripcion": "Table car_makers from the car_1 database.",
+      "columnas": {
+        "Id": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key."
+        },
+        "Maker": {
+          "tipo": "text",
+          "descripcion": "Maker."
+        },
+        "FullName": {
+          "tipo": "text",
+          "descripcion": "Fullname."
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country. References countries.CountryId."
+        }
+      }
+    },
+    "model_list": {
+      "descripcion": "Table model_list from the car_1 database.",
+      "columnas": {
+        "ModelId": {
+          "tipo": "number",
+          "descripcion": "Modelid. Primary key."
+        },
+        "Maker": {
+          "tipo": "number",
+          "descripcion": "Maker. References car_makers.Id."
+        },
+        "Model": {
+          "tipo": "text",
+          "descripcion": "Model."
+        }
+      }
+    },
+    "car_names": {
+      "descripcion": "Table car_names from the car_1 database.",
+      "columnas": {
+        "MakeId": {
+          "tipo": "number",
+          "descripcion": "Makeid. Primary key."
+        },
+        "Model": {
+          "tipo": "text",
+          "descripcion": "Model. References model_list.Model."
+        },
+        "Make": {
+          "tipo": "text",
+          "descripcion": "Make."
+        }
+      }
+    },
+    "cars_data": {
+      "descripcion": "Table cars_data from the car_1 database.",
+      "columnas": {
+        "Id": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key. References car_names.MakeId."
+        },
+        "MPG": {
+          "tipo": "text",
+          "descripcion": "Mpg."
+        },
+        "Cylinders": {
+          "tipo": "number",
+          "descripcion": "Cylinders."
+        },
+        "Edispl": {
+          "tipo": "number",
+          "descripcion": "Edispl."
+        },
+        "Horsepower": {
+          "tipo": "text",
+          "descripcion": "Horsepower."
+        },
+        "Weight": {
+          "tipo": "number",
+          "descripcion": "Weight."
+        },
+        "Accelerate": {
+          "tipo": "number",
+          "descripcion": "Accelerate."
+        },
+        "Year": {
+          "tipo": "number",
+          "descripcion": "Year."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

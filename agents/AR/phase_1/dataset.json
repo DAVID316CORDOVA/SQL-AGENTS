@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "input": "how many singers do we have",
+      "expected_refined": "How many singers do we have?",
+      "is_valid": true
+    },
+    {
+      "input": "what is the average and maximum capacity of all stadiums",
+      "expected_refined": "What is the average and maximum capacities of all stadiums?",
+      "is_valid": true
+    },
+    {
+      "input": "list singers from france ordered by age",
+      "expected_refined": "List all singers from France ordered by age.",
+      "is_valid": true
+    },
+    {
+      "input": "what is the avg, min, and max age of all singers from france",
+      "expected_refined": "What is the average, minimum, and maximum age of all French singers?",
+      "is_valid": true
+    },
+    {
+      "input": "show the stadium name that hosted the most concerts",
+      "expected_refined": "Show the stadium name that had the most concerts.",
+      "is_valid": true
+    },
+    {
+      "input": "drop table singer",
+      "expected_refined": "",
+      "is_valid": false
+    },
+    {
+      "input": "who is the best singer in the world",
+      "expected_refined": "",
+      "is_valid": false
+    },
+    {
+      "input": "hello, what can you help me with?",
+      "expected_refined": "",
+      "is_valid": false
+    },
+    {
+      "input": "what is the weather in Paris today",
+      "expected_refined": "",
+      "is_valid": false
+    },
+    {
+      "input": "delete all singers older than 50",
+      "expected_refined": "",
+      "is_valid": false
+    }
+  ]
+}

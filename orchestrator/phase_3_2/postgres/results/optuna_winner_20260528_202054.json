@@ -1,0 +1,9 @@
+{
+  "agent": "Orchestrator",
+  "backend": "postgres",
+  "model": "claude-haiku-4-5",
+  "temperature": 0.3,
+  "combined_score": 2.5537,
+  "n_trials": 9,
+  "generated_at": "2026-05-29T07:42:19.902930"
+}

@@ -1,0 +1,445 @@
+{
+  "tablas": {
+    "circuits": {
+      "descripcion": "Table circuits from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "circuitId": {
+          "tipo": "numeric",
+          "descripcion": "Circuitid. Type: bigint."
+        },
+        "circuitRef": {
+          "tipo": "text",
+          "descripcion": "Circuitref. Type: text."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "location": {
+          "tipo": "text",
+          "descripcion": "Location. Type: text."
+        },
+        "country": {
+          "tipo": "text",
+          "descripcion": "Country. Type: text."
+        },
+        "lat": {
+          "tipo": "numeric",
+          "descripcion": "Lat. Type: double."
+        },
+        "lng": {
+          "tipo": "numeric",
+          "descripcion": "Lng. Type: double."
+        },
+        "alt": {
+          "tipo": "numeric",
+          "descripcion": "Alt. Type: bigint."
+        },
+        "url": {
+          "tipo": "text",
+          "descripcion": "Url. Type: text."
+        }
+      }
+    },
+    "constructorresults": {
+      "descripcion": "Table constructorresults from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "constructorResultsId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorresultsid. Type: bigint."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "constructorId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorid. Type: bigint."
+        },
+        "points": {
+          "tipo": "numeric",
+          "descripcion": "Points. Type: double."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Type: text."
+        }
+      }
+    },
+    "constructors": {
+      "descripcion": "Table constructors from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "constructorId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorid. Type: bigint."
+        },
+        "constructorRef": {
+          "tipo": "text",
+          "descripcion": "Constructorref. Type: text."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "nationality": {
+          "tipo": "text",
+          "descripcion": "Nationality. Type: text."
+        },
+        "url": {
+          "tipo": "text",
+          "descripcion": "Url. Type: text."
+        }
+      }
+    },
+    "constructorstandings": {
+      "descripcion": "Table constructorstandings from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "constructorStandingsId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorstandingsid. Type: bigint."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "constructorId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorid. Type: bigint."
+        },
+        "points": {
+          "tipo": "numeric",
+          "descripcion": "Points. Type: double."
+        },
+        "position": {
+          "tipo": "numeric",
+          "descripcion": "Position. Type: bigint."
+        },
+        "positionText": {
+          "tipo": "text",
+          "descripcion": "Positiontext. Type: text."
+        },
+        "wins": {
+          "tipo": "numeric",
+          "descripcion": "Wins. Type: bigint."
+        }
+      }
+    },
+    "drivers": {
+      "descripcion": "Table drivers from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "driverId": {
+          "tipo": "numeric",
+          "descripcion": "Driverid. Type: bigint."
+        },
+        "driverRef": {
+          "tipo": "text",
+          "descripcion": "Driverref. Type: text."
+        },
+        "number": {
+          "tipo": "numeric",
+          "descripcion": "Number. Type: bigint."
+        },
+        "code": {
+          "tipo": "text",
+          "descripcion": "Code. Type: text."
+        },
+        "forename": {
+          "tipo": "text",
+          "descripcion": "Forename. Type: text."
+        },
+        "surname": {
+          "tipo": "text",
+          "descripcion": "Surname. Type: text."
+        },
+        "dob": {
+          "tipo": "text",
+          "descripcion": "Dob. Type: text."
+        },
+        "nationality": {
+          "tipo": "text",
+          "descripcion": "Nationality. Type: text."
+        },
+        "url": {
+          "tipo": "text",
+          "descripcion": "Url. Type: text."
+        }
+      }
+    },
+    "driverstandings": {
+      "descripcion": "Table driverstandings from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "driverStandingsId": {
+          "tipo": "numeric",
+          "descripcion": "Driverstandingsid. Type: bigint."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "driverId": {
+          "tipo": "numeric",
+          "descripcion": "Driverid. Type: bigint."
+        },
+        "points": {
+          "tipo": "numeric",
+          "descripcion": "Points. Type: double."
+        },
+        "position": {
+          "tipo": "numeric",
+          "descripcion": "Position. Type: bigint."
+        },
+        "positionText": {
+          "tipo": "text",
+          "descripcion": "Positiontext. Type: text."
+        },
+        "wins": {
+          "tipo": "numeric",
+          "descripcion": "Wins. Type: bigint."
+        }
+      }
+    },
+    "qualifying": {
+      "descripcion": "Table qualifying from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "qualifyId": {
+          "tipo": "numeric",
+          "descripcion": "Qualifyid. Type: bigint."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "driverId": {
+          "tipo": "numeric",
+          "descripcion": "Driverid. Type: bigint."
+        },
+        "constructorId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorid. Type: bigint."
+        },
+        "number": {
+          "tipo": "numeric",
+          "descripcion": "Number. Type: bigint."
+        },
+        "position": {
+          "tipo": "numeric",
+          "descripcion": "Position. Type: bigint."
+        },
+        "q1": {
+          "tipo": "text",
+          "descripcion": "Q1. Type: text."
+        },
+        "q2": {
+          "tipo": "text",
+          "descripcion": "Q2. Type: text."
+        },
+        "q3": {
+          "tipo": "text",
+          "descripcion": "Q3. Type: text."
+        }
+      }
+    },
+    "races": {
+      "descripcion": "Table races from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "year": {
+          "tipo": "numeric",
+          "descripcion": "Year. Type: bigint."
+        },
+        "round": {
+          "tipo": "numeric",
+          "descripcion": "Round. Type: bigint."
+        },
+        "circuitId": {
+          "tipo": "numeric",
+          "descripcion": "Circuitid. Type: bigint."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "time": {
+          "tipo": "text",
+          "descripcion": "Time. Type: text."
+        },
+        "url": {
+          "tipo": "text",
+          "descripcion": "Url. Type: text."
+        }
+      }
+    },
+    "results": {
+      "descripcion": "Table results from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "resultId": {
+          "tipo": "numeric",
+          "descripcion": "Resultid. Type: bigint."
+        },
+        "raceId": {
+          "tipo": "numeric",
+          "descripcion": "Raceid. Type: bigint."
+        },
+        "driverId": {
+          "tipo": "numeric",
+          "descripcion": "Driverid. Type: bigint."
+        },
+        "constructorId": {
+          "tipo": "numeric",
+          "descripcion": "Constructorid. Type: bigint."
+        },
+        "number": {
+          "tipo": "numeric",
+          "descripcion": "Number. Type: bigint."
+        },
+        "grid": {
+          "tipo": "numeric",
+          "descripcion": "Grid. Type: bigint."
+        },
+        "position": {
+          "tipo": "numeric",
+          "descripcion": "Position. Type: bigint."
+        },
+        "positionText": {
+          "tipo": "text",
+          "descripcion": "Positiontext. Type: text."
+        },
+        "positionOrder": {
+          "tipo": "numeric",
+          "descripcion": "Positionorder. Type: bigint."
+        },
+        "points": {
+          "tipo": "numeric",
+          "descripcion": "Points. Type: double."
+        },
+        "laps": {
+          "tipo": "numeric",
+          "descripcion": "Laps. Type: bigint."
+        },
+        "time": {
+          "tipo": "text",
+          "descripcion": "Time. Type: text."
+        },
+        "milliseconds": {
+          "tipo": "numeric",
+          "descripcion": "Milliseconds. Type: bigint."
+        },
+        "fastestLap": {
+          "tipo": "numeric",
+          "descripcion": "Fastestlap. Type: bigint."
+        },
+        "rank": {
+          "tipo": "numeric",
+          "descripcion": "Rank. Type: bigint."
+        },
+        "fastestLapTime": {
+          "tipo": "text",
+          "descripcion": "Fastestlaptime. Type: text."
+        },
+        "fastestLapSpeed": {
+          "tipo": "text",
+          "descripcion": "Fastestlapspeed. Type: text."
+        },
+        "statusId": {
+          "tipo": "numeric",
+          "descripcion": "Statusid. Type: bigint."
+        }
+      }
+    },
+    "seasons": {
+      "descripcion": "Table seasons from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "year": {
+          "tipo": "numeric",
+          "descripcion": "Year. Type: bigint."
+        },
+        "url": {
+          "tipo": "text",
+          "descripcion": "Url. Type: text."
+        }
+      }
+    },
+    "sqlite_sequence": {
+      "descripcion": "Table sqlite_sequence from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "seq": {
+          "tipo": "text",
+          "descripcion": "Seq. Type: text."
+        }
+      }
+    },
+    "status": {
+      "descripcion": "Table status from the formula_1 BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "statusId": {
+          "tipo": "numeric",
+          "descripcion": "Statusid. Type: bigint."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

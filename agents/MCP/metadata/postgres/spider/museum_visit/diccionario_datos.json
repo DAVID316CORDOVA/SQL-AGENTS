@@ -1,0 +1,68 @@
+{
+  "tablas": {
+    "museum": {
+      "descripcion": "Table museum from the museum_visit database.",
+      "columnas": {
+        "Museum_ID": {
+          "tipo": "number",
+          "descripcion": "Museum Id. Primary key."
+        },
+        "Name": {
+          "tipo": "text",
+          "descripcion": "Name."
+        },
+        "Num_of_Staff": {
+          "tipo": "number",
+          "descripcion": "Num Of Staff."
+        },
+        "Open_Year": {
+          "tipo": "text",
+          "descripcion": "Year when museum was opened. Numeric year stored as text (e.g. '2014'). Compatible with range conditions: > 2013, < 2008, between years."
+        }
+      }
+    },
+    "visitor": {
+      "descripcion": "Table visitor from the museum_visit database.",
+      "columnas": {
+        "ID": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key."
+        },
+        "Name": {
+          "tipo": "text",
+          "descripcion": "Name."
+        },
+        "Level_of_membership": {
+          "tipo": "number",
+          "descripcion": "Level Of Membership."
+        },
+        "Age": {
+          "tipo": "number",
+          "descripcion": "Age."
+        }
+      }
+    },
+    "visit": {
+      "descripcion": "Table visit from the museum_visit database.",
+      "columnas": {
+        "Museum_ID": {
+          "tipo": "number",
+          "descripcion": "Museum Id. Primary key. References museum.Museum_ID."
+        },
+        "visitor_ID": {
+          "tipo": "text",
+          "descripcion": "Visitor Id. References visitor.ID."
+        },
+        "Num_of_Ticket": {
+          "tipo": "number",
+          "descripcion": "Num Of Ticket."
+        },
+        "Total_spent": {
+          "tipo": "number",
+          "descripcion": "Total Spent."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

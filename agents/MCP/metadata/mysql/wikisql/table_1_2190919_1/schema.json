@@ -1,0 +1,57 @@
+{
+  "available_entities": {
+    "table_1_2190919_1": {
+      "all_columns": [
+        "year",
+        "starts",
+        "wins",
+        "top_10",
+        "poles",
+        "avg_start",
+        "avg_finish",
+        "winnings",
+        "position",
+        "team_s"
+      ],
+      "numeric_columns": [
+        "year",
+        "starts",
+        "wins",
+        "top_10",
+        "poles"
+      ],
+      "categorical_columns": [
+        "avg_start",
+        "avg_finish",
+        "winnings",
+        "position",
+        "team_s"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5,
+      "table_description": "Wikipedia table: table_1_2190919_1.",
+      "column_descriptions": {
+        "year": "Year. Type: real.",
+        "starts": "Starts. Type: real.",
+        "wins": "Wins. Type: real.",
+        "top_10": "Top 10. Type: real.",
+        "poles": "Poles. Type: real.",
+        "avg_start": "Avg. Start. Type: text.",
+        "avg_finish": "Avg. Finish. Type: text.",
+        "winnings": "Winnings. Type: text.",
+        "position": "Position. Type: text.",
+        "team_s": "Team(s). Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

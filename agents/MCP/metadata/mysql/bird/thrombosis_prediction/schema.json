@@ -1,0 +1,115 @@
+{
+  "available_entities": {
+    "examination": {
+      "all_columns": [
+        "_id",
+        "ID",
+        "Examination Date",
+        "aCL IgG",
+        "aCL IgM",
+        "ANA",
+        "ANA Pattern",
+        "aCL IgA",
+        "Diagnosis",
+        "KCT",
+        "RVVT",
+        "LAC",
+        "Symptoms",
+        "Thrombosis"
+      ],
+      "numeric_columns": [
+        "_id",
+        "ID",
+        "aCL IgG",
+        "aCL IgM",
+        "ANA",
+        "aCL IgA",
+        "Thrombosis"
+      ],
+      "categorical_columns": [
+        "Examination Date",
+        "ANA Pattern",
+        "Diagnosis",
+        "KCT",
+        "RVVT",
+        "LAC",
+        "Symptoms"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 106,
+      "table_description": "Table examination with 106 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "ID": "Id. Type: bigint.",
+        "Examination Date": "Examination Date. Type: text.",
+        "aCL IgG": "Acl Igg. Type: double.",
+        "aCL IgM": "Acl Igm. Type: double.",
+        "ANA": "Ana. Type: bigint.",
+        "ANA Pattern": "Ana Pattern. Type: text.",
+        "aCL IgA": "Acl Iga. Type: bigint.",
+        "Diagnosis": "Diagnosis. Type: text.",
+        "KCT": "Kct. Type: text.",
+        "RVVT": "Rvvt. Type: text.",
+        "LAC": "Lac. Type: text.",
+        "Symptoms": "Symptoms. Type: text.",
+        "Thrombosis": "Thrombosis. Type: bigint."
+      }
+    },
+    "patient": {
+      "all_columns": [
+        "_id",
+        "ID",
+        "SEX",
+        "Birthday",
+        "Description",
+        "First Date",
+        "Admission",
+        "Diagnosis"
+      ],
+      "numeric_columns": [
+        "_id",
+        "ID"
+      ],
+      "categorical_columns": [
+        "SEX",
+        "Birthday",
+        "Description",
+        "First Date",
+        "Admission",
+        "Diagnosis"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1238,
+      "table_description": "Table patient with 1238 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "ID": "Id. Type: bigint.",
+        "SEX": "Sex. Type: text.",
+        "Birthday": "Birthday. Type: text.",
+        "Description": "Description. Type: text.",
+        "First Date": "First Date. Type: text.",
+        "Admission": "Admission. Type: text.",
+        "Diagnosis": "Diagnosis. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

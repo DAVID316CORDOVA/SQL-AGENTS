@@ -1,0 +1,103 @@
+{
+  "tablas": {
+    "examination": {
+      "descripcion": "Table examination from the thrombosis_prediction BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "ID": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "Examination Date": {
+          "tipo": "text",
+          "descripcion": "Examination Date. Type: text."
+        },
+        "aCL IgG": {
+          "tipo": "numeric",
+          "descripcion": "Acl Igg. Type: double."
+        },
+        "aCL IgM": {
+          "tipo": "numeric",
+          "descripcion": "Acl Igm. Type: double."
+        },
+        "ANA": {
+          "tipo": "numeric",
+          "descripcion": "Ana. Type: bigint."
+        },
+        "ANA Pattern": {
+          "tipo": "text",
+          "descripcion": "Ana Pattern. Type: text."
+        },
+        "aCL IgA": {
+          "tipo": "numeric",
+          "descripcion": "Acl Iga. Type: bigint."
+        },
+        "Diagnosis": {
+          "tipo": "text",
+          "descripcion": "Diagnosis. Type: text."
+        },
+        "KCT": {
+          "tipo": "text",
+          "descripcion": "Kct. Type: text."
+        },
+        "RVVT": {
+          "tipo": "text",
+          "descripcion": "Rvvt. Type: text."
+        },
+        "LAC": {
+          "tipo": "text",
+          "descripcion": "Lac. Type: text."
+        },
+        "Symptoms": {
+          "tipo": "text",
+          "descripcion": "Symptoms. Type: text."
+        },
+        "Thrombosis": {
+          "tipo": "numeric",
+          "descripcion": "Thrombosis. Type: bigint."
+        }
+      }
+    },
+    "patient": {
+      "descripcion": "Table patient from the thrombosis_prediction BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "ID": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "SEX": {
+          "tipo": "text",
+          "descripcion": "Sex. Type: text."
+        },
+        "Birthday": {
+          "tipo": "text",
+          "descripcion": "Birthday. Type: text."
+        },
+        "Description": {
+          "tipo": "text",
+          "descripcion": "Description. Type: text."
+        },
+        "First Date": {
+          "tipo": "text",
+          "descripcion": "First Date. Type: text."
+        },
+        "Admission": {
+          "tipo": "text",
+          "descripcion": "Admission. Type: text."
+        },
+        "Diagnosis": {
+          "tipo": "text",
+          "descripcion": "Diagnosis. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

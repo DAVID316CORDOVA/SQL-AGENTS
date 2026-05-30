@@ -1,0 +1,484 @@
+{
+  "available_entities": {
+    "Addresses": {
+      "all_columns": [
+        "address_id",
+        "line_1",
+        "line_2",
+        "line_3",
+        "city",
+        "zip_postcode",
+        "state_province_county",
+        "country",
+        "other_address_details"
+      ],
+      "numeric_columns": [
+        "address_id"
+      ],
+      "categorical_columns": [
+        "line_1",
+        "line_2",
+        "line_3",
+        "city",
+        "zip_postcode",
+        "state_province_county",
+        "country",
+        "other_address_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "address_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Addresses with 15 rows.",
+      "column_descriptions": {
+        "address_id": "Address Id. Type: integer.",
+        "line_1": "Line 1. Type: text.",
+        "line_2": "Line 2. Type: text.",
+        "line_3": "Line 3. Type: text.",
+        "city": "City. Type: text.",
+        "zip_postcode": "Zip Postcode. Type: text.",
+        "state_province_county": "State Province County. Type: text.",
+        "country": "Country. Type: text.",
+        "other_address_details": "Other Address Details. Type: text."
+      }
+    },
+    "Courses": {
+      "all_columns": [
+        "course_id",
+        "course_name",
+        "course_description",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "course_id"
+      ],
+      "categorical_columns": [
+        "course_name",
+        "course_description",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "course_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Courses with 15 rows.",
+      "column_descriptions": {
+        "course_id": "Course Id. Type: integer.",
+        "course_name": "Course Name. Type: text.",
+        "course_description": "Course Description. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Departments": {
+      "all_columns": [
+        "department_id",
+        "department_name",
+        "department_description",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "department_id"
+      ],
+      "categorical_columns": [
+        "department_name",
+        "department_description",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "department_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Departments with 15 rows.",
+      "column_descriptions": {
+        "department_id": "Department Id. Type: integer.",
+        "department_name": "Department Name. Type: text.",
+        "department_description": "Department Description. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Degree_Programs": {
+      "all_columns": [
+        "degree_program_id",
+        "department_id",
+        "degree_summary_name",
+        "degree_summary_description",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "degree_program_id",
+        "department_id"
+      ],
+      "categorical_columns": [
+        "degree_summary_name",
+        "degree_summary_description",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "degree_program_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Degree_Programs with 15 rows.",
+      "column_descriptions": {
+        "degree_program_id": "Degree Program Id. Type: integer.",
+        "department_id": "Department Id. Type: integer.",
+        "degree_summary_name": "Degree Summary Name. Type: text.",
+        "degree_summary_description": "Degree Summary Description. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Sections": {
+      "all_columns": [
+        "section_id",
+        "course_id",
+        "section_name",
+        "section_description",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "section_id",
+        "course_id"
+      ],
+      "categorical_columns": [
+        "section_name",
+        "section_description",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "section_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Sections with 15 rows.",
+      "column_descriptions": {
+        "section_id": "Section Id. Type: integer.",
+        "course_id": "Course Id. Type: integer.",
+        "section_name": "Section Name. Type: text.",
+        "section_description": "Section Description. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Semesters": {
+      "all_columns": [
+        "semester_id",
+        "semester_name",
+        "semester_description",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "semester_id"
+      ],
+      "categorical_columns": [
+        "semester_name",
+        "semester_description",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "semester_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Semesters with 15 rows.",
+      "column_descriptions": {
+        "semester_id": "Semester Id. Type: integer.",
+        "semester_name": "Semester Name. Type: text.",
+        "semester_description": "Semester Description. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Students": {
+      "all_columns": [
+        "student_id",
+        "current_address_id",
+        "permanent_address_id",
+        "first_name",
+        "middle_name",
+        "last_name",
+        "cell_mobile_number",
+        "email_address",
+        "ssn",
+        "date_first_registered",
+        "date_left",
+        "other_student_details"
+      ],
+      "numeric_columns": [
+        "student_id",
+        "current_address_id",
+        "permanent_address_id"
+      ],
+      "categorical_columns": [
+        "first_name",
+        "middle_name",
+        "last_name",
+        "cell_mobile_number",
+        "email_address",
+        "ssn",
+        "date_first_registered",
+        "date_left",
+        "other_student_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Students with 15 rows.",
+      "column_descriptions": {
+        "student_id": "Student Id. Type: integer.",
+        "current_address_id": "Current Address Id. Type: integer.",
+        "permanent_address_id": "Permanent Address Id. Type: integer.",
+        "first_name": "First Name. Type: text.",
+        "middle_name": "Middle Name. Type: text.",
+        "last_name": "Last Name. Type: text.",
+        "cell_mobile_number": "Cell Mobile Number. Type: text.",
+        "email_address": "Email Address. Type: text.",
+        "ssn": "Ssn. Type: text.",
+        "date_first_registered": "Date First Registered. Type: text.",
+        "date_left": "Date Left. Type: text.",
+        "other_student_details": "Other Student Details. Type: text."
+      }
+    },
+    "Student_Enrolment": {
+      "all_columns": [
+        "student_enrolment_id",
+        "degree_program_id",
+        "semester_id",
+        "student_id",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "student_enrolment_id",
+        "degree_program_id",
+        "semester_id",
+        "student_id"
+      ],
+      "categorical_columns": [
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_enrolment_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Student_Enrolment with 15 rows.",
+      "column_descriptions": {
+        "student_enrolment_id": "Student Enrolment Id. Type: integer.",
+        "degree_program_id": "Degree Program Id. Type: integer.",
+        "semester_id": "Semester Id. Type: integer.",
+        "student_id": "Student Id. Type: integer.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Student_Enrolment_Courses": {
+      "all_columns": [
+        "student_course_id",
+        "course_id",
+        "student_enrolment_id"
+      ],
+      "numeric_columns": [
+        "student_course_id",
+        "course_id",
+        "student_enrolment_id"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_course_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Student_Enrolment_Courses with 15 rows.",
+      "column_descriptions": {
+        "student_course_id": "Student Course Id. Type: integer.",
+        "course_id": "Course Id. Type: integer.",
+        "student_enrolment_id": "Student Enrolment Id. Type: integer."
+      }
+    },
+    "Transcripts": {
+      "all_columns": [
+        "transcript_id",
+        "transcript_date",
+        "other_details"
+      ],
+      "numeric_columns": [
+        "transcript_id"
+      ],
+      "categorical_columns": [
+        "transcript_date",
+        "other_details"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "transcript_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Transcripts with 15 rows.",
+      "column_descriptions": {
+        "transcript_id": "Transcript Id. Type: integer.",
+        "transcript_date": "Transcript Date. Type: text.",
+        "other_details": "Other Details. Type: text."
+      }
+    },
+    "Transcript_Contents": {
+      "all_columns": [
+        "student_course_id",
+        "transcript_id"
+      ],
+      "numeric_columns": [
+        "student_course_id",
+        "transcript_id"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {},
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Table Transcript_Contents with 15 rows.",
+      "column_descriptions": {
+        "student_course_id": "Student Course Id. Type: integer.",
+        "transcript_id": "Transcript Id. Type: integer."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "Degree_Programs",
+      "from_column": "department_id",
+      "to_table": "Departments",
+      "to_column": "department_id",
+      "join_hint": "Degree_Programs.department_id = Departments.department_id"
+    },
+    {
+      "from_table": "Sections",
+      "from_column": "course_id",
+      "to_table": "Courses",
+      "to_column": "course_id",
+      "join_hint": "Sections.course_id = Courses.course_id"
+    },
+    {
+      "from_table": "Students",
+      "from_column": "permanent_address_id",
+      "to_table": "Addresses",
+      "to_column": "address_id",
+      "join_hint": "Students.permanent_address_id = Addresses.address_id"
+    },
+    {
+      "from_table": "Students",
+      "from_column": "current_address_id",
+      "to_table": "Addresses",
+      "to_column": "address_id",
+      "join_hint": "Students.current_address_id = Addresses.address_id"
+    },
+    {
+      "from_table": "Student_Enrolment",
+      "from_column": "student_id",
+      "to_table": "Students",
+      "to_column": "student_id",
+      "join_hint": "Student_Enrolment.student_id = Students.student_id"
+    },
+    {
+      "from_table": "Student_Enrolment",
+      "from_column": "semester_id",
+      "to_table": "Semesters",
+      "to_column": "semester_id",
+      "join_hint": "Student_Enrolment.semester_id = Semesters.semester_id"
+    },
+    {
+      "from_table": "Student_Enrolment",
+      "from_column": "degree_program_id",
+      "to_table": "Degree_Programs",
+      "to_column": "degree_program_id",
+      "join_hint": "Student_Enrolment.degree_program_id = Degree_Programs.degree_program_id"
+    },
+    {
+      "from_table": "Student_Enrolment_Courses",
+      "from_column": "student_enrolment_id",
+      "to_table": "Student_Enrolment",
+      "to_column": "student_enrolment_id",
+      "join_hint": "Student_Enrolment_Courses.student_enrolment_id = Student_Enrolment.student_enrolment_id"
+    },
+    {
+      "from_table": "Student_Enrolment_Courses",
+      "from_column": "course_id",
+      "to_table": "Courses",
+      "to_column": "course_id",
+      "join_hint": "Student_Enrolment_Courses.course_id = Courses.course_id"
+    },
+    {
+      "from_table": "Transcript_Contents",
+      "from_column": "transcript_id",
+      "to_table": "Transcripts",
+      "to_column": "transcript_id",
+      "join_hint": "Transcript_Contents.transcript_id = Transcripts.transcript_id"
+    },
+    {
+      "from_table": "Transcript_Contents",
+      "from_column": "student_course_id",
+      "to_table": "Student_Enrolment_Courses",
+      "to_column": "student_course_id",
+      "join_hint": "Transcript_Contents.student_course_id = Student_Enrolment_Courses.student_course_id"
+    }
+  ]
+}

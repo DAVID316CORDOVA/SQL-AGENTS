@@ -1,0 +1,32 @@
+{
+  "agent": "AE",
+  "model": "gpt-4o",
+  "temperature": 0.3,
+  "phase_1": {
+    "Faithfulness": 0.828,
+    "Groundedness": 0.928,
+    "ROUGE-L": 0.394,
+    "Brier": 0.01,
+    "ECE": 0.1,
+    "combined_score": 0.759,
+    "trial_number": 0,
+    "optuna_result": "agents/AE/phase_1/results/grid_2x2_20260524_125238.json",
+    "sanity_check": "agents/AE/phase_1/results/sanity_claude_sonnet_4_6_t03_20260524_125716.json",
+    "skills_invoked": "10/10 (100%)"
+  },
+  "notes": [
+    "Grid 2x2: gpt-4o + claude-sonnet-4-6 at T={0.3, 0.7}.",
+    "claude-sonnet-4-6 T=0.3 wins with combined=0.759 and near-perfect calibration (Brier=0.010).",
+    "gpt-4o has higher F (0.897) but poor calibration (Brier=0.250) due to outcome=0 when G < 0.80.",
+    "force_tools=True garantiza que format_sql_readable se invoque en el 100% de muestras con SQL.",
+    "skills_used ahora rastrean invocaciones REALES via _execute_skill (no auto-reporte del modelo).",
+    "Prompt: SYSTEM_PROMPT_EN — audiencia tecnica, usa SQL terms correctamente."
+  ],
+  "combined_score": 0.759,
+  "Faithfulness": 0.845,
+  "Groundedness": 0.93,
+  "ROUGE-L": 0.461,
+  "Brier": 0.058,
+  "ECE": 0.16,
+  "note": "fase1 optuna TPE seed=66 — ganador gpt-4o T=0.3"
+}

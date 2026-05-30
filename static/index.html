@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QueryAgent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #13131a;
+    --surface:     #1a1a24;
+    --surface-2:   #21212e;
+    --surface-3:   #292938;
+    --border:      #30303f;
+    --border-2:    #4a4a60;
+    --text:        #f0f0f8;
+    --text-2:      #a8a8c0;
+    --text-3:      #5c5c78;
+    --accent:      #6366f1;
+    --accent-dim:  #1e1b4b;
+    --accent-text: #818cf8;
+    --green:       #22c55e;
+    --green-dim:   #052e16;
+    --red:         #ef4444;
+    --red-dim:     #1f0a0a;
+    --amber:       #f59e0b;
+    --amber-dim:   #1c1205;
+    --radius:      8px;
+    --radius-lg:   12px;
+    --shadow:      0 0 0 1px var(--border), 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+
+  /* ── ICONS (inline SVG helper classes) ── */
+  .icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .icon svg { display: block; }
+
+  /* ══════════════════════════════════════════
+     LOGIN SCREEN
+  ══════════════════════════════════════════ */
+  #login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg);
+    padding: 24px;
+  }
+
+  .login-wrap {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .login-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-mark svg { color: #fff; }
+
+  .brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--text);
+  }
+
+  .login-heading {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .login-sub {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 28px;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  .field-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 6px;
+  }
+
+  .field-input {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 12px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field-input:focus { border-color: var(--accent); }
+  .field-input::placeholder { color: var(--text-3); }
+
+  /* DB Toggle */
+  .db-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .db-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    color: var(--text-2);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: left;
+  }
+
+  .db-btn:hover { border-color: var(--border-2); color: var(--text); }
+
+  .db-btn.active {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    color: var(--accent-text);
+  }
+
+  .db-btn .db-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* Dataset selector */
+  .field-select {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 12px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2352525b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+
+  .field-select:focus { border-color: var(--accent); }
+  .field-select option { background: var(--surface-2); }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.15s, transform 0.1s;
+    letter-spacing: -0.1px;
+  }
+
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* ══════════════════════════════════════════
+     APP LAYOUT
+  ══════════════════════════════════════════ */
+  #app-screen {
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .header-logo {
+    width: 26px;
+    height: 26px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-logo svg { color: #fff; }
+
+  .header-wordmark {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+
+  .header-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .db-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 3px 10px 3px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    flex-shrink: 0;
+  }
+
+  .db-chip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  .dataset-label {
+    font-size: 12px;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px 4px 6px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .user-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .btn-icon {
+    width: 32px; height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-icon:hover { border-color: var(--border-2); color: var(--text); background: var(--surface-2); }
+  .btn-icon.danger:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); }
+
+  /* ── CHAT AREA ── */
+  #chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    align-self: stretch;
+  }
+
+  /* Wrapper to center the chat column */
+  .chat-outer {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-scroll {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── WELCOME STATE ── */
+  .welcome-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 60px 20px;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .welcome-icon {
+    width: 52px; height: 52px;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-text);
+  }
+
+  .welcome-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: var(--text);
+  }
+
+  .welcome-sub {
+    font-size: 13px;
+    color: var(--text-2);
+    max-width: 340px;
+    line-height: 1.6;
+    margin-top: -12px;
+  }
+
+  .example-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .example-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+
+  .example-card:hover {
+    border-color: var(--border-2);
+    background: var(--surface-3);
+    color: var(--text);
+  }
+
+  .example-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  /* ── MESSAGES ── */
+  .msg-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .msg-group.user { align-self: flex-end; align-items: flex-end; }
+  .msg-group.system { align-self: flex-start; align-items: flex-start; }
+
+  .msg-meta {
+    font-size: 11px;
+    color: var(--text-3);
+    padding: 0 4px;
+  }
+
+  .msg-bubble {
+    padding: 10px 14px;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 580px;
+  }
+
+  .msg-group.user .msg-bubble {
+    background: var(--accent);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg-group.system .msg-bubble {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-group.msg-error .msg-bubble {
+    background: var(--red-dim);
+    border-color: color-mix(in srgb, var(--red) 30%, transparent);
+    color: #fca5a5;
+  }
+
+  .msg-group.msg-info .msg-bubble {
+    background: var(--accent-dim);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--accent-text);
+  }
+
+  /* ── SQL RESULT CARD ── */
+  .result-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .result-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    gap: 8px;
+  }
+
+  .result-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .result-type-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 99px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .tag-green { background: var(--green-dim); color: var(--green); }
+  .tag-amber { background: var(--amber-dim); color: var(--amber); }
+  .tag-purple { background: var(--accent-dim); color: var(--accent-text); }
+
+  .btn-copy {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-3);
+    padding: 4px 9px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-copy:hover { border-color: var(--border-2); color: var(--text-2); }
+  .btn-copy.copied { border-color: var(--green); color: var(--green); }
+
+  .sql-code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 12.5px;
+    padding: 16px;
+    color: #c4cfd8;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.75;
+    background: #0d1117;
+    tab-size: 2;
+  }
+
+  /* SQL syntax */
+  .kw  { color: #79b8ff; font-weight: 500; }
+  .fn  { color: #ffd33d; }
+  .str { color: #85e89d; }
+  .num { color: #f97583; }
+  .cmt { color: #6a737d; font-style: italic; }
+
+  .explanation-panel {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.65;
+    background: var(--surface);
+  }
+
+  .explanation-panel .ep-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-3);
+    margin-bottom: 5px;
+  }
+
+  /* ── LOADING ── */
+  .loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    border-bottom-left-radius: 4px;
+    color: var(--text-3);
+    font-size: 13px;
+  }
+
+  .loading-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .loading-dots span {
+    width: 5px; height: 5px;
+    background: var(--text-3);
+    border-radius: 50%;
+    animation: ld 1.4s infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes ld {
+    0%, 60%, 100% { transform: scale(0.6); opacity: 0.4; }
+    30%           { transform: scale(1);   opacity: 1;   }
+  }
+
+  /* ── INPUT AREA ── */
+  .input-wrapper {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+    padding: 12px 20px 14px;
+  }
+
+  .input-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 8px 8px 8px 14px;
+    transition: border-color 0.15s;
+  }
+
+  .input-box:focus-within { border-color: var(--border-2); }
+
+  #message-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    max-height: 140px;
+    min-height: 22px;
+    line-height: 1.5;
+    padding: 2px 0;
+  }
+
+  #message-input::placeholder { color: var(--text-3); }
+
+  .btn-send {
+    width: 34px; height: 34px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.15s, transform 0.1s;
+    color: #fff;
+  }
+
+  .btn-send:hover { opacity: 0.9; }
+  .btn-send:active { transform: scale(0.95); }
+  .btn-send:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .input-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-3);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .action-btn:hover {
+    border-color: var(--border);
+    color: var(--text-2);
+    background: var(--surface-2);
+  }
+
+  .action-btn svg { flex-shrink: 0; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-left: auto;
+  }
+
+  kbd {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-family: inherit;
+    color: var(--text-3);
+  }
+
+  /* ══════════════════════════════════════════
+     MODAL
+  ══════════════════════════════════════════ */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.open { display: flex; }
+
+  .modal {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 380px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-head h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .modal-close {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-3);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: var(--surface-3); color: var(--text-2); }
+
+  .modal-body { padding: 16px; }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-val {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    font-feature-settings: "tnum";
+  }
+
+  .btn-modal {
+    width: 100%;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-2);
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+    margin-top: 8px;
+  }
+  .btn-modal:first-child { margin-top: 0; }
+  .btn-modal:hover { border-color: var(--border-2); color: var(--text); }
+  .btn-modal.danger:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); }
+
+  .modal-status {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    min-height: 16px;
+    color: var(--green);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+  <div class="login-wrap">
+
+    <div class="login-brand">
+      <div class="brand-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/>
+          <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
+          <path d="M3 12a9 3 0 0 0 18 0"/>
+        </svg>
+      </div>
+      <span class="brand-name">QueryAgent</span>
+    </div>
+
+    <p class="login-heading">Consulta tu base de datos</p>
+    <p class="login-sub">Escribe preguntas en lenguaje natural y el sistema genera el SQL automáticamente.</p>
+
+    <div class="field">
+      <label class="field-label" for="username-input">Nombre de usuario</label>
+      <input class="field-input" type="text" id="username-input" placeholder="Tu nombre" maxlength="30" autofocus autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label class="field-label">Motor de base de datos</label>
+      <div class="db-toggle">
+        <button class="db-btn active" data-value="mysql" onclick="selectDb('mysql', this)">
+          <span class="db-dot"></span>
+          MySQL
+        </button>
+        <button class="db-btn" data-value="postgres" onclick="selectDb('postgres', this)">
+          <span class="db-dot"></span>
+          PostgreSQL
+        </button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Dataset</label>
+      <select class="field-select" id="family-select" onchange="onFamilyChange()">
+        <option value="">Cargando...</option>
+      </select>
+      <select class="field-select" id="dataset-select" style="display:none;margin-top:8px">
+        <option value="">Selecciona una base de datos</option>
+      </select>
+    </div>
+
+    <button class="btn-primary" id="login-btn" onclick="login()">Iniciar sesión</button>
+
+  </div>
+</div>
+
+<!-- ══ MODALS ══ -->
+
+<!-- Memoria -->
+<div class="modal-backdrop" id="modal-memory" onclick="closeModal('modal-memory')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3>Memoria de sesión</h3>
+      <button class="modal-close" onclick="closeModal('modal-memory')">&#215;</button>
+    </div>
+    <div class="modal-body">
+      <div class="stat-row">
+        <span>Corto plazo (sesión)</span>
+        <span class="stat-val" id="stat-short">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Largo plazo (ChromaDB)</span>
+        <span class="stat-val" id="stat-long">—</span>
+      </div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px">
+        <button class="btn-modal danger" onclick="clearLtm('hour')">Borrar memoria — última hora</button>
+        <button class="btn-modal danger" onclick="clearLtm('all')">Borrar memoria — historial completo</button>
+      </div>
+      <div class="modal-status" id="memory-status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Estadísticas -->
+<div class="modal-backdrop" id="modal-stats" onclick="closeModal('modal-stats')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3>Estadísticas de sesión</h3>
+      <button class="modal-close" onclick="closeModal('modal-stats')">&#215;</button>
+    </div>
+    <div class="modal-body">
+      <div class="stat-row">
+        <span>Inicio de sesión</span>
+        <span style="font-size:12px;color:var(--text-2)" id="stat-session-start">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Última sesión anterior</span>
+        <span style="font-size:12px;color:var(--text-3)" id="stat-last-session">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Consultas SQL</span>
+        <span class="stat-val" id="stat-total">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Exitosas</span>
+        <span class="stat-val" style="color:var(--green)" id="stat-success">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Rechazadas</span>
+        <span class="stat-val" style="color:var(--red)" id="stat-rejected">—</span>
+      </div>
+      <div class="stat-row">
+        <span>Errores</span>
+        <span class="stat-val" style="color:var(--amber)" id="stat-error">—</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reindexar -->
+<div class="modal-backdrop" id="modal-reindex" onclick="closeModal('modal-reindex')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3>Reindexar schema</h3>
+      <button class="modal-close" onclick="closeModal('modal-reindex')">&#215;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:12px">
+        Regenera los embeddings del schema. Úsalo si cambiaron las tablas o columnas de la base de datos.
+      </p>
+      <button class="btn-modal" id="reindex-btn" onclick="doReindex()">
+        Reindexar — <span id="reindex-db-label">MySQL</span>
+      </button>
+      <div class="modal-status" id="reindex-status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="app-screen">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-brand">
+        <div class="header-logo">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
+            <path d="M3 12a9 3 0 0 0 18 0"/>
+          </svg>
+        </div>
+        <span class="header-wordmark">QueryAgent</span>
+      </div>
+      <div class="header-sep"></div>
+      <div class="db-chip">
+        <span class="db-chip-dot"></span>
+        <span id="header-db-label">MySQL</span>
+      </div>
+      <span class="dataset-label" id="header-dataset-label"></span>
+    </div>
+
+    <div class="header-right">
+
+      <!-- Herramientas -->
+      <button class="btn-icon" title="Cambiar tema de conversación" onclick="resetContext()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+      </button>
+
+      <button class="btn-icon" title="Memoria" onclick="showMemory()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4"/>
+          <path d="M4 20a8 8 0 0 1 16 0"/>
+        </svg>
+      </button>
+
+      <button class="btn-icon" title="Estadísticas" onclick="showStats()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6"  y1="20" x2="6"  y2="14"/>
+        </svg>
+      </button>
+
+      <button class="btn-icon" title="Reindexar schema" onclick="showReindex()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </button>
+
+      <div class="header-sep"></div>
+
+      <div class="user-chip">
+        <div class="user-avatar" id="header-avatar">D</div>
+        <span id="header-username">Usuario</span>
+      </div>
+
+      <button onclick="logout()" style="display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;color:var(--text-2);font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)';this.style.background='var(--red-dim)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)';this.style.background='none'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Salir
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Chat -->
+  <div class="chat-outer">
+    <div class="chat-scroll">
+      <div id="chat-container">
+
+        <!-- Welcome state -->
+        <div class="welcome-state" id="welcome-msg">
+          <div class="welcome-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="welcome-title" id="welcome-text">Buenos días</p>
+            <p class="welcome-sub">Escribe una pregunta en lenguaje natural sobre la base de datos activa.</p>
+          </div>
+          <div class="example-grid" id="example-grid">
+            <div class="example-card" onclick="insertHint(this.dataset.q)" data-q="How many singers are there?">
+              <p class="example-card-label">Conteo</p>
+              How many singers are there?
+            </div>
+            <div class="example-card" onclick="insertHint(this.dataset.q)" data-q="List singers from France with age above 20">
+              <p class="example-card-label">Filtro</p>
+              List singers from France older than 20
+            </div>
+            <div class="example-card" onclick="insertHint(this.dataset.q)" data-q="Show stadium names and the maximum capacity">
+              <p class="example-card-label">Agregación</p>
+              Show stadium names and max capacity
+            </div>
+            <div class="example-card" onclick="insertHint(this.dataset.q)" data-q="Which stadiums hosted more than 2 concerts?">
+              <p class="example-card-label">HAVING</p>
+              Stadiums with more than 2 concerts
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="input-wrapper">
+    <div class="input-inner">
+      <div class="input-box">
+        <textarea id="message-input"
+          placeholder="Haz una pregunta sobre la base de datos..."
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"></textarea>
+        <button class="btn-send" id="send-btn" onclick="sendMessage()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="input-actions">
+        <button class="action-btn" onclick="resetContext()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+          </svg>
+          Nuevo tema
+        </button>
+        <div class="input-hint">
+          <kbd>Enter</kbd> enviar &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> nueva línea
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let sessionId = null;
+  let username  = '';
+  let dbType    = 'mysql';
+  let activeDatasetLabel = '';
+  let isProcessing = false;
+  let allDatasets  = [];
+
+  /* ── DB selector ── */
+  function selectDb(value, el) {
+    document.querySelectorAll('.db-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    dbType = value;
+    populateDatasets();
+  }
+
+  /* ── Dataset load ── */
+  async function loadDatasets() {
+    try {
+      const r = await fetch('/api/datasets');
+      allDatasets = (await r.json()).datasets || [];
+    } catch {
+      allDatasets = [{id:'demo_db', label:'Demo DB (escuela)', engine:'mysql'}];
+    }
+    populateDatasets();
+  }
+
+  function populateDatasets() {
+    const fam = document.getElementById('family-select');
+    fam.innerHTML = '';
+    const filtered = allDatasets.filter(d => d.engine === 'both' || d.engine === dbType);
+    const families = [], seen = new Set();
+    filtered.forEach(d => {
+      const g = d.group || d.label;
+      if (!seen.has(g)) { seen.add(g); families.push(g); }
+    });
+    families.forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g;
+      const entry = filtered.find(d => (d.group || d.label) === g);
+      opt.dataset.singleId = (!entry.group) ? entry.id : '';
+      opt.textContent = g;
+      fam.appendChild(opt);
+    });
+    onFamilyChange();
+  }
+
+  function onFamilyChange() {
+    const fam = document.getElementById('family-select');
+    const sub = document.getElementById('dataset-select');
+    const sel = fam.options[fam.selectedIndex];
+    if (!sel) return;
+    if (sel.dataset.singleId) {
+      sub.style.display = 'none';
+    } else {
+      const familyName = sel.value;
+      const filtered = allDatasets.filter(d => (d.group === familyName) && (d.engine === 'both' || d.engine === dbType));
+      sub.innerHTML = '';
+      filtered.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d.id; opt.textContent = d.label;
+        sub.appendChild(opt);
+      });
+      sub.style.display = filtered.length ? 'block' : 'none';
+    }
+  }
+
+  function getActiveDataset() {
+    const fam = document.getElementById('family-select');
+    const sub = document.getElementById('dataset-select');
+    const sel = fam.options[fam.selectedIndex];
+    if (!sel) return 'demo_db';
+    return sel.dataset.singleId || sub.value || 'demo_db';
+  }
+
+  function getActiveDatasetLabel() {
+    const fam = document.getElementById('family-select');
+    const sub = document.getElementById('dataset-select');
+    const sel = fam.options[fam.selectedIndex];
+    if (!sel) return '';
+    if (sel.dataset.singleId) return sel.textContent.trim();
+    const subSel = sub.options[sub.selectedIndex];
+    return subSel ? `${sel.textContent.trim()} / ${subSel.textContent.trim()}` : sel.textContent.trim();
+  }
+
+  /* ── LOGIN ── */
+  async function login() {
+    const nameInput = document.getElementById('username-input');
+    const name = nameInput.value.trim();
+    if (!name) { nameInput.focus(); return; }
+
+    const btn = document.getElementById('login-btn');
+    btn.disabled = true;
+    btn.textContent = 'Conectando...';
+
+    try {
+      const activeDataset = getActiveDataset();
+      activeDatasetLabel  = getActiveDatasetLabel();
+
+      const resp = await fetch('/api/session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: name, db_type: dbType, active_dataset: activeDataset})
+      });
+      const data = await resp.json();
+      sessionId = data.session_id;
+      username  = data.username;
+
+      document.getElementById('header-username').textContent  = username;
+      document.getElementById('header-avatar').textContent    = username[0].toUpperCase();
+      document.getElementById('header-db-label').textContent  = dbType === 'mysql' ? 'MySQL' : 'PostgreSQL';
+      document.getElementById('header-dataset-label').textContent = activeDatasetLabel;
+      document.getElementById('welcome-text').textContent     = `Hola, ${username}`;
+      document.getElementById('reindex-db-label').textContent = dbType === 'postgres' ? 'PostgreSQL' : 'MySQL';
+
+      document.getElementById('login-screen').style.display  = 'none';
+      document.getElementById('app-screen').style.display    = 'flex';
+      document.getElementById('message-input').focus();
+      loadHints();
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Iniciar sesión';
+      alert('Error al conectar. Verifica que el servidor esté activo.');
+    }
+  }
+
+  async function logout() {
+    if (sessionId) {
+      try { await fetch(`/api/session/${sessionId}`, {method:'DELETE'}); } catch {}
+    }
+    sessionId = null;
+    document.getElementById('chat-container').innerHTML = buildWelcome();
+    document.getElementById('app-screen').style.display   = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('username-input').value = '';
+    const btn = document.getElementById('login-btn');
+    btn.disabled = false; btn.textContent = 'Iniciar sesión';
+  }
+
+  function buildWelcome() {
+    return `
+      <div class="welcome-state" id="welcome-msg">
+        <div class="welcome-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="welcome-title" id="welcome-text">Buenos días</p>
+          <p class="welcome-sub">Escribe una pregunta en lenguaje natural sobre la base de datos activa.</p>
+        </div>
+      </div>`;
+  }
+
+  /* ── INPUT HELPERS ── */
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+  }
+
+  function insertHint(text) {
+    const input = document.getElementById('message-input');
+    input.value = text;
+    input.focus();
+    autoResize(input);
+  }
+
+  function scrollToBottom() {
+    const c = document.querySelector('.chat-scroll');
+    if (c) c.scrollTop = c.scrollHeight;
+  }
+
+  /* ── MESSAGE RENDERING ── */
+  function getChat() { return document.getElementById('chat-container'); }
+
+  function removeWelcome() {
+    const w = document.getElementById('welcome-msg');
+    if (w) w.remove();
+  }
+
+  function addUserMessage(text) {
+    removeWelcome();
+    const div = document.createElement('div');
+    div.className = 'msg-group user';
+    div.innerHTML = `<div class="msg-bubble">${escHtml(text)}</div>`;
+    getChat().appendChild(div);
+    scrollToBottom();
+  }
+
+  function addLoadingMessage() {
+    const div = document.createElement('div');
+    div.id = 'loading-msg';
+    div.className = 'msg-group system';
+    div.innerHTML = `
+      <div class="loading-indicator">
+        <div class="loading-dots"><span></span><span></span><span></span></div>
+        Procesando consulta
+      </div>`;
+    getChat().appendChild(div);
+    scrollToBottom();
+    return div;
+  }
+
+  function removeLoading() {
+    const el = document.getElementById('loading-msg');
+    if (el) el.remove();
+  }
+
+  function addSystemMessage(text, type = 'system') {
+    const div = document.createElement('div');
+    div.className = `msg-group ${type}`;
+    div.innerHTML = `<div class="msg-bubble">${escHtml(text)}</div>`;
+    getChat().appendChild(div);
+    scrollToBottom();
+  }
+
+  function addNoColumnMessage(data) {
+    const div = document.createElement('div');
+    div.className = 'msg-group msg-error';
+    let inner = `<div class="msg-bubble"><strong>Sin datos disponibles</strong><br>${escHtml(data.message)}`;
+    if (data.prev_sql) {
+      const prev = data.prev_query ? ` (para: <em>${escHtml(data.prev_query)}</em>)` : '';
+      inner += `<br><br>Lo más cercano disponible${prev}:<pre style="margin:8px 0 0;font-size:11.5px;opacity:.8;font-family:monospace">${escHtml(data.prev_sql)}</pre>`;
+    }
+    inner += `</div>`;
+    div.innerHTML = inner;
+    getChat().appendChild(div);
+    scrollToBottom();
+  }
+
+  function addSqlResult(data) {
+    const id = 'sql-' + Date.now();
+
+    let tags = `<span class="tag tag-green">${data.confidence}% confianza</span>`;
+    if (data.cache_hit) {
+      const src = data.cache_source === 'short_term' ? 'sesión' : 'largo plazo';
+      tags += ` <span class="tag tag-amber">caché · ${src}</span>`;
+    }
+    if (data.context_switched) {
+      tags += ` <span class="tag tag-purple">contexto reiniciado</span>`;
+    }
+
+    const expHtml = data.explanation
+      ? `<div class="explanation-panel"><div class="ep-label">Explicación</div>${escHtml(data.explanation)}</div>`
+      : '';
+
+    const div = document.createElement('div');
+    div.className = 'msg-group system';
+    div.innerHTML = `
+      <div class="result-card">
+        <div class="result-toolbar">
+          <div class="result-toolbar-left">
+            <span class="result-type-label">SQL generado</span>
+            ${tags}
+          </div>
+          <button class="btn-copy" onclick="copySql('${id}', this)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <div class="sql-code" id="${id}">${colorSql(data.sql)}</div>
+        ${expHtml}
+      </div>`;
+    getChat().appendChild(div);
+    scrollToBottom();
+  }
+
+  /* ── SQL SYNTAX COLORING ── */
+  function colorSql(sql) {
+    const KW = ['SELECT','FROM','WHERE','INNER JOIN','LEFT JOIN','RIGHT JOIN','FULL JOIN',
+      'JOIN','ON','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','WITH','AS',
+      'AND','OR','NOT','IN','EXISTS','IS','NULL','LIKE','BETWEEN','CASE','WHEN',
+      'THEN','ELSE','END','DISTINCT','INTO','VALUES','SET','UPDATE','DELETE'];
+    const FN = ['COUNT','SUM','AVG','MAX','MIN','COALESCE','IFNULL','IF','CAST',
+      'SUBSTRING','LENGTH','UPPER','LOWER','TRIM','ROUND','NOW','CONCAT','DATE'];
+
+    // Solo escapar < > & — NO escapar comillas: las comillas son SQL válido
+    // y se muestran en un bloque de código, no en HTML libre
+    let r = String(sql).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    FN.forEach(f => {
+      r = r.replace(new RegExp(`\\b(${f})\\b`, 'gi'), '<span class="fn">$1</span>');
+    });
+    KW.forEach(k => {
+      r = r.replace(new RegExp(`\\b(${k})\\b`, 'gi'), '<span class="kw">$1</span>');
+    });
+    r = r.replace(/'[^']*'/g, m => `<span class="str">${m}</span>`);
+    r = r.replace(/\b(\d+(\.\d+)?)\b/g, '<span class="num">$1</span>');
+    return r;
+  }
+
+  /* ── UTILS ── */
+  function escHtml(text) {
+    return String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  async function copySql(id, btn) {
+    const el = document.getElementById(id);
+    try {
+      await navigator.clipboard.writeText(el.innerText);
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copiado`;
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar`;
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch {}
+  }
+
+  /* ── SEND MESSAGE ── */
+  async function sendMessage() {
+    if (isProcessing || !sessionId) return;
+    const input = document.getElementById('message-input');
+    const text  = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    isProcessing = true;
+    document.getElementById('send-btn').disabled = true;
+
+    addUserMessage(text);
+    addLoadingMessage();
+
+    try {
+      const resp = await fetch('/api/query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({session_id: sessionId, message: text})
+      });
+      const data = await resp.json();
+      removeLoading();
+
+      switch (data.type) {
+        case 'success':      addSqlResult(data); break;
+        case 'no_column':    addNoColumnMessage(data); break;
+        case 'rejected':     addSystemMessage(data.message, 'msg-error'); break;
+        case 'error':        addSystemMessage(data.message, 'msg-error'); break;
+        case 'conversacional':
+        case 'sustentacion':
+        case 'system':       addSystemMessage(data.message, 'msg-info'); break;
+        default:             addSystemMessage('Respuesta no reconocida.', 'msg-error');
+      }
+    } catch {
+      removeLoading();
+      addSystemMessage('Error de conexión con el servidor.', 'msg-error');
+    }
+
+    isProcessing = false;
+    document.getElementById('send-btn').disabled = false;
+    document.getElementById('message-input').focus();
+  }
+
+  /* ── HINTS DINÁMICOS ── */
+  async function loadHints() {
+    if (!sessionId) return;
+    try {
+      const resp = await fetch(`/api/hints/${sessionId}`);
+      const data = await resp.json();
+      const grid = document.getElementById('example-grid');
+      if (!grid) return;
+      if (data.hints && data.hints.length > 0) {
+        data.hints.slice(0, 4).forEach(q => {
+          const card = grid.querySelector('[data-q]');
+          if (card) {
+            card.dataset.q  = q;
+            card.childNodes[card.childNodes.length - 1].textContent = q.length > 60 ? q.slice(0, 58) + '…' : q;
+          }
+        });
+      }
+    } catch {}
+  }
+
+  /* ── RESET CONTEXT ── */
+  async function resetContext() {
+    if (!sessionId) return;
+    try { await fetch(`/api/reset/${sessionId}`, {method:'POST'}); } catch {}
+    document.getElementById('chat-container').innerHTML = buildWelcome();
+    document.getElementById('message-input').focus();
+  }
+
+  /* ── MEMORIA ── */
+  async function showMemory() {
+    if (!sessionId) return;
+    document.getElementById('stat-short').textContent = '…';
+    document.getElementById('stat-long').textContent  = '…';
+    document.getElementById('memory-status').textContent = '';
+    openModal('modal-memory');
+    await refreshMemoryStats();
+  }
+
+  async function refreshMemoryStats() {
+    try {
+      const d = await (await fetch(`/api/stats/${sessionId}`)).json();
+      document.getElementById('stat-short').textContent = d.short_term;
+      document.getElementById('stat-long').textContent  = d.long_term;
+    } catch {
+      document.getElementById('stat-short').textContent = 'Error';
+    }
+  }
+
+  async function clearLtm(scope) {
+    if (!sessionId) return;
+    const label = scope === 'hour' ? 'la última hora' : 'todo el historial';
+    if (!confirm(`Borrar memoria de largo plazo — ${label}?`)) return;
+    const st = document.getElementById('memory-status');
+    st.style.color = 'var(--text-2)';
+    st.textContent = 'Borrando...';
+    try {
+      const d = await (await fetch(`/api/memory/${sessionId}?scope=${scope}`, {method:'DELETE'})).json();
+      st.style.color = 'var(--green)';
+      st.textContent = `${d.deleted} entrada(s) eliminada(s)`;
+      await refreshMemoryStats();
+    } catch {
+      st.style.color = 'var(--red)';
+      st.textContent = 'Error al borrar';
+    }
+  }
+
+  /* ── ESTADÍSTICAS ── */
+  async function showStats() {
+    if (!sessionId) return;
+    ['stat-total','stat-success','stat-rejected','stat-error','stat-session-start','stat-last-session']
+      .forEach(id => document.getElementById(id).textContent = '…');
+    openModal('modal-stats');
+    try {
+      const d = await (await fetch(`/api/stats/${sessionId}`)).json();
+      document.getElementById('stat-total').textContent    = d.q_total;
+      document.getElementById('stat-success').textContent  = d.q_success;
+      document.getElementById('stat-rejected').textContent = d.q_rejected;
+      document.getElementById('stat-error').textContent    = d.q_error;
+      const fmt = iso => {
+        if (!iso) return 'nunca';
+        const dt = new Date(iso);
+        return dt.toLocaleTimeString('es', {hour:'2-digit', minute:'2-digit'}) + ' · ' +
+               dt.toLocaleDateString('es');
+      };
+      document.getElementById('stat-session-start').textContent = fmt(d.session_start);
+      document.getElementById('stat-last-session').textContent  = fmt(d.last_session);
+    } catch {
+      document.getElementById('stat-total').textContent = 'Error';
+    }
+  }
+
+  /* ── REINDEXAR ── */
+  function showReindex() {
+    document.getElementById('reindex-status').textContent = '';
+    document.getElementById('reindex-btn').disabled = false;
+    openModal('modal-reindex');
+  }
+
+  async function doReindex() {
+    const btn = document.getElementById('reindex-btn');
+    const st  = document.getElementById('reindex-status');
+    btn.disabled = true;
+    st.style.color = 'var(--text-2)';
+    st.textContent = 'Reindexando...';
+    try {
+      const d = await (await fetch('/api/reindex', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({db_type: dbType, session_id: sessionId || ''})
+      })).json();
+      if (d.ok) {
+        st.style.color = 'var(--green)';
+        st.textContent = `Listo — ${d.tables_indexed} tablas indexadas`;
+      } else {
+        st.style.color = 'var(--red)';
+        st.textContent = 'Error al reindexar';
+      }
+    } catch {
+      st.style.color = 'var(--red)';
+      st.textContent = 'Error de conexión';
+    }
+    btn.disabled = false;
+  }
+
+  /* ── MODAL HELPERS ── */
+  function openModal(id)  { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')
+      document.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+  });
+
+  /* ── INIT ── */
+  document.getElementById('username-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') login();
+  });
+  loadDatasets();
+</script>
+</body>
+</html>

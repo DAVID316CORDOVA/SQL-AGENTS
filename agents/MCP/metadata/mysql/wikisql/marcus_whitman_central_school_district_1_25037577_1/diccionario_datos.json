@@ -1,0 +1,34 @@
+{
+  "tablas": {
+    "marcus_whitman_central_school_district_1_25037577_1": {
+      "descripcion": "Table marcus_whitman_central_school_district_1_25037577_1",
+      "columnas": {
+        "year": {
+          "tipo": "text",
+          "descripcion": "Year. Text value."
+        },
+        "superintendent": {
+          "tipo": "text",
+          "descripcion": "Superintendent. Text value."
+        },
+        "middlesex_principal": {
+          "tipo": "text",
+          "descripcion": "Middlesex Principal. Text value."
+        },
+        "gorham_principal": {
+          "tipo": "text",
+          "descripcion": "Gorham Principal. Text value."
+        },
+        "middle_school_principal": {
+          "tipo": "text",
+          "descripcion": "Middle School Principal. Text value."
+        },
+        "high_school_principal": {
+          "tipo": "text",
+          "descripcion": "High School Principal. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

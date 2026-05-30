@@ -1,0 +1,144 @@
+{
+  "samples": [
+    {
+      "refined_query": "Show the names and countries of singers who performed in concerts in 2014.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "singer_in_concert"},
+        {"table_name": "concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Country"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Year"}
+      ],
+      "sql": "SELECT DISTINCT s.Name, s.Country FROM singer s JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID JOIN concert c ON sic.concert_ID = c.concert_ID WHERE c.Year = 2014",
+      "expected_decision_word": "correct",
+      "expected_reasoning": "[OK] Validation: APPROVED. All columns (Name, Country, Singer_ID, concert_ID, Year) exist in the APS schema. Both JOINs use valid ON clauses. DISTINCT is correctly applied because the bridge table singer_in_concert can produce duplicate singer rows. WHERE filters on concert.Year = 2014, which matches the user's intent. No forbidden constructs or MySQL-specific syntax detected."
+    },
+    {
+      "refined_query": "List all song names by singers above the average age.",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Song_Name"},
+        {"table_name": "singer", "column_name": "Age"}
+      ],
+      "sql": "SELECT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)",
+      "expected_decision_word": "correct",
+      "expected_reasoning": "[OK] Validation: APPROVED. Song_Name and Age exist in the APS schema for singer. The scalar subquery computes AVG(Age) over the same table, directly matching the user's intent of 'above the average age'. No SELECT *, no DML, no forbidden constructs. AVG() and scalar subqueries are valid PostgreSQL syntax."
+    },
+    {
+      "refined_query": "Show the names of singers who have not performed in any concert.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "singer_in_concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"}
+      ],
+      "sql": "SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM singer_in_concert)",
+      "expected_decision_word": "correct",
+      "expected_reasoning": "[OK] Validation: APPROVED. Name and Singer_ID exist in singer; Singer_ID exists in singer_in_concert. NOT IN with a scalar subquery correctly implements exclusion semantics — singers absent from singer_in_concert have not performed. This directly answers 'who have not performed in any concert'. Valid PostgreSQL syntax, no forbidden constructs."
+    },
+    {
+      "refined_query": "Show stadium names and the highest year of concerts held in each stadium.",
+      "selected_tables": [
+        {"table_name": "concert"},
+        {"table_name": "stadium"}
+      ],
+      "selected_columns": [
+        {"table_name": "concert", "column_name": "Year"},
+        {"table_name": "concert", "column_name": "Stadium_ID"},
+        {"table_name": "stadium", "column_name": "Name"},
+        {"table_name": "stadium", "column_name": "Stadium_ID"}
+      ],
+      "sql": "SELECT T2.name, MAX(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id, T2.name",
+      "expected_decision_word": "correct",
+      "expected_reasoning": "[OK] Validation: APPROVED. year and stadium_id exist in concert; name and stadium_id exist in stadium. JOIN ON stadium_id is valid. MAX(year) correctly answers 'highest year'. GROUP BY stadium_id and name groups per venue. PostgreSQL requires all non-aggregated SELECT columns to appear in GROUP BY — T2.name is included. No forbidden constructs."
+    },
+    {
+      "refined_query": "What percentage of singers are male?",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer", "column_name": "Is_male"}
+      ],
+      "sql": "SELECT CAST(SUM(CASE WHEN Is_male = TRUE THEN 1 ELSE 0 END) AS FLOAT) * 100.0 / COUNT(Singer_ID) FROM singer",
+      "expected_decision_word": "correct",
+      "expected_reasoning": "[OK] Validation: APPROVED. Is_male and Singer_ID exist in the APS schema. CAST AS FLOAT is valid PostgreSQL syntax for floating-point division. Is_male = TRUE is the correct PostgreSQL boolean comparison (not 1/0). CASE WHEN counts male singers and divides by total COUNT(Singer_ID) — this produces the percentage asked for. No forbidden constructs."
+    },
+    {
+      "refined_query": "Show singer email addresses.",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"}
+      ],
+      "sql": "SELECT email FROM singer",
+      "expected_decision_word": "incorrect",
+      "expected_reasoning": "[ERROR] Schema violation: column 'email' does not exist in the APS schema for table 'singer'. The APS only provided column 'Name'. The SQL references a column that was never extracted from the schema — this query cannot be executed."
+    },
+    {
+      "refined_query": "Show artist names.",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"}
+      ],
+      "sql": "SELECT Name FROM artists",
+      "expected_decision_word": "incorrect",
+      "expected_reasoning": "[ERROR] Schema violation: table 'artists' does not exist in the APS schema. The APS only provided table 'singer'. The SQL queries a table that was never provided — this query cannot be executed against the available schema."
+    },
+    {
+      "refined_query": "Show all stadium information.",
+      "selected_tables": [
+        {"table_name": "stadium"}
+      ],
+      "selected_columns": [
+        {"table_name": "stadium", "column_name": "Name"},
+        {"table_name": "stadium", "column_name": "Capacity"}
+      ],
+      "sql": "SELECT * FROM stadium",
+      "expected_decision_word": "incorrect",
+      "expected_reasoning": "[ERROR] Forbidden construct: SELECT * is prohibited. The APS provided specific columns (Name, Capacity) — the SQL must reference only those explicit columns, not use a wildcard. check_syntax_rules detected this violation."
+    },
+    {
+      "refined_query": "Show singer names grouped by country.",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Country"}
+      ],
+      "sql": "SELECT Country, GROUP_CONCAT(Name) FROM singer GROUP BY Country",
+      "expected_decision_word": "incorrect",
+      "expected_reasoning": "[ERROR] MySQL-specific syntax detected: GROUP_CONCAT is not available in PostgreSQL. The correct PostgreSQL equivalent is STRING_AGG(Name, ',') with GROUP BY. check_syntax_rules detected this engine-incompatible construct."
+    },
+    {
+      "refined_query": "How many concerts were held in 2014?",
+      "selected_tables": [
+        {"table_name": "concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Year"}
+      ],
+      "sql": "SELECT concert_ID FROM concert WHERE Year = 2014",
+      "expected_decision_word": "incorrect",
+      "expected_reasoning": "[ERROR] Semantic mismatch: the user asked 'how many concerts' (expects a single count), but the SQL returns individual concert IDs as a list. The correct SQL should use COUNT(concert_ID) as the aggregation. Returning raw IDs does not answer a count question."
+    }
+  ]
+}

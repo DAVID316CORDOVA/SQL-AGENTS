@@ -1,0 +1,72 @@
+{
+  "tablas": {
+    "airlines": {
+      "descripcion": "Table airlines from the flight_2 database.",
+      "columnas": {
+        "uid": {
+          "tipo": "number",
+          "descripcion": "Uid. Primary key."
+        },
+        "Airline": {
+          "tipo": "text",
+          "descripcion": "Airline."
+        },
+        "Abbreviation": {
+          "tipo": "text",
+          "descripcion": "Abbreviation."
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country."
+        }
+      }
+    },
+    "airports": {
+      "descripcion": "Table airports from the flight_2 database.",
+      "columnas": {
+        "City": {
+          "tipo": "text",
+          "descripcion": "City."
+        },
+        "AirportCode": {
+          "tipo": "text",
+          "descripcion": "Airportcode. Primary key."
+        },
+        "AirportName": {
+          "tipo": "text",
+          "descripcion": "Airportname."
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country."
+        },
+        "CountryAbbrev": {
+          "tipo": "text",
+          "descripcion": "Countryabbrev."
+        }
+      }
+    },
+    "flights": {
+      "descripcion": "Table flights from the flight_2 database.",
+      "columnas": {
+        "Airline": {
+          "tipo": "number",
+          "descripcion": "Airline. Primary key."
+        },
+        "FlightNo": {
+          "tipo": "number",
+          "descripcion": "Flightno."
+        },
+        "SourceAirport": {
+          "tipo": "text",
+          "descripcion": "Sourceairport. References airports.AirportCode."
+        },
+        "DestAirport": {
+          "tipo": "text",
+          "descripcion": "Destairport. References airports.AirportCode."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

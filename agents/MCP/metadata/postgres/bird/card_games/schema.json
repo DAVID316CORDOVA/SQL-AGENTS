@@ -1,0 +1,531 @@
+{
+  "available_entities": {
+    "cards": {
+      "all_columns": [
+        "_id",
+        "id",
+        "artist",
+        "asciiName",
+        "availability",
+        "borderColor",
+        "cardKingdomFoilId",
+        "cardKingdomId",
+        "colorIdentity",
+        "colorIndicator",
+        "colors",
+        "convertedManaCost",
+        "duelDeck",
+        "edhrecRank",
+        "faceConvertedManaCost",
+        "faceName",
+        "flavorName",
+        "flavorText",
+        "frameEffects",
+        "frameVersion",
+        "hand",
+        "hasAlternativeDeckLimit",
+        "hasContentWarning",
+        "hasFoil",
+        "hasNonFoil",
+        "isAlternative",
+        "isFullArt",
+        "isOnlineOnly",
+        "isOversized",
+        "isPromo",
+        "isReprint",
+        "isReserved",
+        "isStarter",
+        "isStorySpotlight",
+        "isTextless",
+        "isTimeshifted",
+        "keywords",
+        "layout",
+        "leadershipSkills",
+        "life",
+        "loyalty",
+        "manaCost",
+        "mcmId",
+        "mcmMetaId",
+        "mtgArenaId",
+        "mtgjsonV4Id",
+        "mtgoFoilId",
+        "mtgoId",
+        "multiverseId",
+        "name",
+        "number",
+        "originalReleaseDate",
+        "originalText",
+        "originalType",
+        "otherFaceIds",
+        "power",
+        "printings",
+        "promoTypes",
+        "purchaseUrls",
+        "rarity",
+        "scryfallId",
+        "scryfallIllustrationId",
+        "scryfallOracleId",
+        "setCode",
+        "side",
+        "subtypes",
+        "supertypes",
+        "tcgplayerProductId",
+        "text",
+        "toughness",
+        "type",
+        "types",
+        "uuid",
+        "variations",
+        "watermark"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id",
+        "convertedManaCost",
+        "edhrecRank",
+        "faceConvertedManaCost",
+        "hasAlternativeDeckLimit",
+        "hasContentWarning",
+        "hasFoil",
+        "hasNonFoil",
+        "isAlternative",
+        "isFullArt",
+        "isOnlineOnly",
+        "isOversized",
+        "isPromo",
+        "isReprint",
+        "isReserved",
+        "isStarter",
+        "isStorySpotlight",
+        "isTextless",
+        "isTimeshifted"
+      ],
+      "categorical_columns": [
+        "artist",
+        "asciiName",
+        "availability",
+        "borderColor",
+        "cardKingdomFoilId",
+        "cardKingdomId",
+        "colorIdentity",
+        "colorIndicator",
+        "colors",
+        "duelDeck",
+        "faceName",
+        "flavorName",
+        "flavorText",
+        "frameEffects",
+        "frameVersion",
+        "hand",
+        "keywords",
+        "layout",
+        "leadershipSkills",
+        "life",
+        "loyalty",
+        "manaCost",
+        "mcmId",
+        "mcmMetaId",
+        "mtgArenaId",
+        "mtgjsonV4Id",
+        "mtgoFoilId",
+        "mtgoId",
+        "multiverseId",
+        "name",
+        "number",
+        "originalReleaseDate",
+        "originalText",
+        "originalType",
+        "otherFaceIds",
+        "power",
+        "printings",
+        "promoTypes",
+        "purchaseUrls",
+        "rarity",
+        "scryfallId",
+        "scryfallIllustrationId",
+        "scryfallOracleId",
+        "setCode",
+        "side",
+        "subtypes",
+        "supertypes",
+        "tcgplayerProductId",
+        "text",
+        "toughness",
+        "type",
+        "types",
+        "uuid",
+        "variations",
+        "watermark"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 56822,
+      "table_description": "Table cards with 56822 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "artist": "Artist. Type: text.",
+        "asciiName": "Asciiname. Type: text.",
+        "availability": "Availability. Type: text.",
+        "borderColor": "Bordercolor. Type: text.",
+        "cardKingdomFoilId": "Cardkingdomfoilid. Type: text.",
+        "cardKingdomId": "Cardkingdomid. Type: text.",
+        "colorIdentity": "Coloridentity. Type: text.",
+        "colorIndicator": "Colorindicator. Type: text.",
+        "colors": "Colors. Type: text.",
+        "convertedManaCost": "Convertedmanacost. Type: double.",
+        "duelDeck": "Dueldeck. Type: text.",
+        "edhrecRank": "Edhrecrank. Type: bigint.",
+        "faceConvertedManaCost": "Faceconvertedmanacost. Type: double.",
+        "faceName": "Facename. Type: text.",
+        "flavorName": "Flavorname. Type: text.",
+        "flavorText": "Flavortext. Type: text.",
+        "frameEffects": "Frameeffects. Type: text.",
+        "frameVersion": "Frameversion. Type: text.",
+        "hand": "Hand. Type: text.",
+        "hasAlternativeDeckLimit": "Hasalternativedecklimit. Type: bigint.",
+        "hasContentWarning": "Hascontentwarning. Type: bigint.",
+        "hasFoil": "Hasfoil. Type: bigint.",
+        "hasNonFoil": "Hasnonfoil. Type: bigint.",
+        "isAlternative": "Isalternative. Type: bigint.",
+        "isFullArt": "Isfullart. Type: bigint.",
+        "isOnlineOnly": "Isonlineonly. Type: bigint.",
+        "isOversized": "Isoversized. Type: bigint.",
+        "isPromo": "Ispromo. Type: bigint.",
+        "isReprint": "Isreprint. Type: bigint.",
+        "isReserved": "Isreserved. Type: bigint.",
+        "isStarter": "Isstarter. Type: bigint.",
+        "isStorySpotlight": "Isstoryspotlight. Type: bigint.",
+        "isTextless": "Istextless. Type: bigint.",
+        "isTimeshifted": "Istimeshifted. Type: bigint.",
+        "keywords": "Keywords. Type: text.",
+        "layout": "Layout. Type: text.",
+        "leadershipSkills": "Leadershipskills. Type: text.",
+        "life": "Life. Type: text.",
+        "loyalty": "Loyalty. Type: text.",
+        "manaCost": "Manacost. Type: text.",
+        "mcmId": "Mcmid. Type: text.",
+        "mcmMetaId": "Mcmmetaid. Type: text.",
+        "mtgArenaId": "Mtgarenaid. Type: text.",
+        "mtgjsonV4Id": "Mtgjsonv4Id. Type: text.",
+        "mtgoFoilId": "Mtgofoilid. Type: text.",
+        "mtgoId": "Mtgoid. Type: text.",
+        "multiverseId": "Multiverseid. Type: text.",
+        "name": "Name. Type: text.",
+        "number": "Number. Type: text.",
+        "originalReleaseDate": "Originalreleasedate. Type: text.",
+        "originalText": "Originaltext. Type: text.",
+        "originalType": "Originaltype. Type: text.",
+        "otherFaceIds": "Otherfaceids. Type: text.",
+        "power": "Power. Type: text.",
+        "printings": "Printings. Type: text.",
+        "promoTypes": "Promotypes. Type: text.",
+        "purchaseUrls": "Purchaseurls. Type: text.",
+        "rarity": "Rarity. Type: text.",
+        "scryfallId": "Scryfallid. Type: text.",
+        "scryfallIllustrationId": "Scryfallillustrationid. Type: text.",
+        "scryfallOracleId": "Scryfalloracleid. Type: text.",
+        "setCode": "Setcode. Type: text.",
+        "side": "Side. Type: text.",
+        "subtypes": "Subtypes. Type: text.",
+        "supertypes": "Supertypes. Type: text.",
+        "tcgplayerProductId": "Tcgplayerproductid. Type: text.",
+        "text": "Text. Type: text.",
+        "toughness": "Toughness. Type: text.",
+        "type": "Type. Type: text.",
+        "types": "Types. Type: text.",
+        "uuid": "Uuid. Type: text.",
+        "variations": "Variations. Type: text.",
+        "watermark": "Watermark. Type: text."
+      }
+    },
+    "foreign_data": {
+      "all_columns": [
+        "_id",
+        "id",
+        "flavorText",
+        "language",
+        "multiverseid",
+        "name",
+        "text",
+        "type",
+        "uuid"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id",
+        "multiverseid"
+      ],
+      "categorical_columns": [
+        "flavorText",
+        "language",
+        "name",
+        "text",
+        "type",
+        "uuid"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 229186,
+      "table_description": "Table foreign_data with 229186 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "flavorText": "Flavortext. Type: text.",
+        "language": "Language. Type: text.",
+        "multiverseid": "Multiverseid. Type: bigint.",
+        "name": "Name. Type: text.",
+        "text": "Text. Type: text.",
+        "type": "Type. Type: text.",
+        "uuid": "Uuid. Type: text."
+      }
+    },
+    "legalities": {
+      "all_columns": [
+        "_id",
+        "id",
+        "format",
+        "status",
+        "uuid"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "format",
+        "status",
+        "uuid"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 427907,
+      "table_description": "Table legalities with 427907 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "format": "Format. Type: text.",
+        "status": "Status. Type: text.",
+        "uuid": "Uuid. Type: text."
+      }
+    },
+    "rulings": {
+      "all_columns": [
+        "_id",
+        "id",
+        "date",
+        "text",
+        "uuid"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "date",
+        "text",
+        "uuid"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 87769,
+      "table_description": "Table rulings with 87769 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "date": "Date. Type: text.",
+        "text": "Text. Type: text.",
+        "uuid": "Uuid. Type: text."
+      }
+    },
+    "set_translations": {
+      "all_columns": [
+        "_id",
+        "id",
+        "language",
+        "setCode",
+        "translation"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "language",
+        "setCode",
+        "translation"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1210,
+      "table_description": "Table set_translations with 1210 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "language": "Language. Type: text.",
+        "setCode": "Setcode. Type: text.",
+        "translation": "Translation. Type: text."
+      }
+    },
+    "sets": {
+      "all_columns": [
+        "_id",
+        "id",
+        "baseSetSize",
+        "block",
+        "booster",
+        "code",
+        "isFoilOnly",
+        "isForeignOnly",
+        "isNonFoilOnly",
+        "isOnlineOnly",
+        "isPartialPreview",
+        "keyruneCode",
+        "mcmId",
+        "mcmIdExtras",
+        "mcmName",
+        "mtgoCode",
+        "name",
+        "parentCode",
+        "releaseDate",
+        "tcgplayerGroupId",
+        "totalSetSize",
+        "type"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id",
+        "baseSetSize",
+        "isFoilOnly",
+        "isForeignOnly",
+        "isNonFoilOnly",
+        "isOnlineOnly",
+        "isPartialPreview",
+        "mcmId",
+        "mcmIdExtras",
+        "tcgplayerGroupId",
+        "totalSetSize"
+      ],
+      "categorical_columns": [
+        "block",
+        "booster",
+        "code",
+        "keyruneCode",
+        "mcmName",
+        "mtgoCode",
+        "name",
+        "parentCode",
+        "releaseDate",
+        "type"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 551,
+      "table_description": "Table sets with 551 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "baseSetSize": "Basesetsize. Type: bigint.",
+        "block": "Block. Type: text.",
+        "booster": "Booster. Type: text.",
+        "code": "Code. Type: text.",
+        "isFoilOnly": "Isfoilonly. Type: bigint.",
+        "isForeignOnly": "Isforeignonly. Type: bigint.",
+        "isNonFoilOnly": "Isnonfoilonly. Type: bigint.",
+        "isOnlineOnly": "Isonlineonly. Type: bigint.",
+        "isPartialPreview": "Ispartialpreview. Type: bigint.",
+        "keyruneCode": "Keyrunecode. Type: text.",
+        "mcmId": "Mcmid. Type: bigint.",
+        "mcmIdExtras": "Mcmidextras. Type: bigint.",
+        "mcmName": "Mcmname. Type: text.",
+        "mtgoCode": "Mtgocode. Type: text.",
+        "name": "Name. Type: text.",
+        "parentCode": "Parentcode. Type: text.",
+        "releaseDate": "Releasedate. Type: text.",
+        "tcgplayerGroupId": "Tcgplayergroupid. Type: bigint.",
+        "totalSetSize": "Totalsetsize. Type: bigint.",
+        "type": "Type. Type: text."
+      }
+    },
+    "sqlite_sequence": {
+      "all_columns": [
+        "_id",
+        "name",
+        "seq"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "name",
+        "seq"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table sqlite_sequence with 6 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "name": "Name. Type: text.",
+        "seq": "Seq. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

@@ -1,0 +1,204 @@
+{
+  "available_entities": {
+    "stadium": {
+      "all_columns": [
+        "Stadium_ID",
+        "Location",
+        "Name",
+        "Capacity",
+        "Highest",
+        "Lowest",
+        "Average"
+      ],
+      "numeric_columns": [
+        "Stadium_ID",
+        "Capacity",
+        "Highest",
+        "Lowest",
+        "Average"
+      ],
+      "categorical_columns": [
+        "Location",
+        "Name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Stadium_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_stadium_1": {
+          "columns": [
+            "Stadium_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 9,
+      "table_description": "Table stadium with 9 rows.",
+      "column_descriptions": {
+        "Stadium_ID": "Stadium Id. Type: integer.",
+        "Location": "Location. Type: text.",
+        "Name": "Name. Type: text.",
+        "Capacity": "Capacity. Type: integer.",
+        "Highest": "Highest. Type: integer.",
+        "Lowest": "Lowest. Type: integer.",
+        "Average": "Average. Type: integer."
+      }
+    },
+    "singer": {
+      "all_columns": [
+        "Singer_ID",
+        "Name",
+        "Country",
+        "Song_Name",
+        "Song_release_year",
+        "Age",
+        "Is_male"
+      ],
+      "numeric_columns": [
+        "Singer_ID",
+        "Age"
+      ],
+      "categorical_columns": [
+        "Name",
+        "Country",
+        "Song_Name",
+        "Song_release_year",
+        "Is_male"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Singer_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_singer_1": {
+          "columns": [
+            "Singer_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table singer with 6 rows.",
+      "column_descriptions": {
+        "Singer_ID": "Singer Id. Type: integer.",
+        "Name": "Name. Type: text.",
+        "Country": "Country. Type: text.",
+        "Song_Name": "Song Name. Type: text.",
+        "Song_release_year": "Song Release Year. Type: text.",
+        "Age": "Age. Type: integer.",
+        "Is_male": "Is Male. Type: text."
+      }
+    },
+    "concert": {
+      "all_columns": [
+        "concert_ID",
+        "concert_Name",
+        "Theme",
+        "Stadium_ID",
+        "Year"
+      ],
+      "numeric_columns": [
+        "concert_ID"
+      ],
+      "categorical_columns": [
+        "concert_Name",
+        "Theme",
+        "Stadium_ID",
+        "Year"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "concert_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_concert_1": {
+          "columns": [
+            "concert_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table concert with 6 rows.",
+      "column_descriptions": {
+        "concert_ID": "Concert Id. Type: integer.",
+        "concert_Name": "Concert Name. Type: text.",
+        "Theme": "Theme. Type: text.",
+        "Stadium_ID": "Stadium Id. Type: text.",
+        "Year": "Year. Type: text."
+      }
+    },
+    "singer_in_concert": {
+      "all_columns": [
+        "concert_ID",
+        "Singer_ID"
+      ],
+      "numeric_columns": [
+        "concert_ID"
+      ],
+      "categorical_columns": [
+        "Singer_ID"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "concert_ID",
+            "Singer_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_singer_in_concert_1": {
+          "columns": [
+            "concert_ID",
+            "Singer_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 10,
+      "table_description": "Table singer_in_concert with 10 rows.",
+      "column_descriptions": {
+        "concert_ID": "Concert Id. Type: integer.",
+        "Singer_ID": "Singer Id. Type: text."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "concert",
+      "from_column": "Stadium_ID",
+      "to_table": "stadium",
+      "to_column": "Stadium_ID",
+      "join_hint": "concert.Stadium_ID = stadium.Stadium_ID"
+    },
+    {
+      "from_table": "singer_in_concert",
+      "from_column": "Singer_ID",
+      "to_table": "singer",
+      "to_column": "Singer_ID",
+      "join_hint": "singer_in_concert.Singer_ID = singer.Singer_ID"
+    },
+    {
+      "from_table": "singer_in_concert",
+      "from_column": "concert_ID",
+      "to_table": "concert",
+      "to_column": "concert_ID",
+      "join_hint": "singer_in_concert.concert_ID = concert.concert_ID"
+    }
+  ]
+}

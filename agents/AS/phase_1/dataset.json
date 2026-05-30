@@ -1,0 +1,178 @@
+{
+  "samples": [
+    {
+      "user_input": "What is the maximum and average capacities for all stadiums?",
+      "refined_query": "What is the maximum and average capacities for all stadiums?",
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "generated_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "ae_explanation": "The query returns the maximum and average capacities of all stadiums by applying the MAX and AVG aggregate functions on the Capacity column of the stadium table.",
+      "ag_strategy": "aggregation",
+      "av_iterations": 0,
+      "av_reasoning": "Simple aggregation on Capacity using MAX and AVG. No syntax errors, no DML operations, no reference to non-existent columns. Validated on first attempt.",
+      "user_question": "What did you understand from my original question?",
+      "expected_justification": "AR refined the question as an aggregation query on the Capacity column of the stadium table, mapping 'maximum and average' to the MAX and AVG functions without any WHERE filters or groupings. The query operates on all rows of the table, and AR identified no additional constraints. High confidence in the interpretation."
+    },
+    {
+      "user_input": "What is the average, minimum, and maximum age of all singers from France?",
+      "refined_query": "What is the average, minimum, and maximum age of all singers from France?",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Age" },
+        { "table_name": "singer", "column_name": "Country" }
+      ],
+      "generated_sql": "SELECT avg(age), min(age), max(age) FROM singer WHERE country = 'France'",
+      "ae_explanation": "The query computes the average, minimum, and maximum age of singers whose country is France, using aggregate functions on the Age column with a WHERE filter on country.",
+      "ag_strategy": "aggregation",
+      "av_iterations": 0,
+      "av_reasoning": "Aggregation query with WHERE filter on country. AVG, MIN, MAX on Age are valid aggregate functions. String literal 'France' is correctly quoted. No DML operations. Validated on first attempt.",
+      "user_question": "How did you interpret the France filter?",
+      "expected_justification": "AR identified singer as the main entity and treated the nationality as a WHERE constraint on the country column rather than an output column. It mapped the three aggregations (avg, min, max) over the age column and set country='France' as the row filter, not as a GROUP BY dimension."
+    },
+    {
+      "user_input": "Show the name and the release year of the song by the youngest singer.",
+      "refined_query": "Show the name and the release year of the song by the youngest singer.",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Song_Name" },
+        { "table_name": "singer", "column_name": "Song_release_year" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "generated_sql": "SELECT song_name, song_release_year FROM singer ORDER BY age LIMIT 1",
+      "ae_explanation": "The query returns the song name and release year of the youngest singer by ordering singers ascending by age and taking only the first row.",
+      "ag_strategy": "simple",
+      "av_iterations": 0,
+      "av_reasoning": "ORDER BY age ASC with LIMIT 1 correctly retrieves the single row with the lowest age. Columns song_name, song_release_year and age all exist in the singer table. No DML. Validated on first attempt.",
+      "user_question": "What did you understand by 'youngest singer'?",
+      "expected_justification": "AR mapped 'youngest singer' to an ascending ORDER BY age with LIMIT 1, without assuming a specific name or identity. It identified song_name and song_release_year as the requested output columns and age as the sorting criterion, treating 'youngest' as a ranking constraint rather than a filter."
+    },
+    {
+      "user_input": "What is the maximum and average capacities for all stadiums?",
+      "refined_query": "What is the maximum and average capacities for all stadiums?",
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "generated_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "ae_explanation": "The query returns the maximum and average capacities of all stadiums by applying the MAX and AVG aggregate functions on the Capacity column of the stadium table.",
+      "ag_strategy": "aggregation",
+      "av_iterations": 0,
+      "av_reasoning": "Simple aggregation on a single table. No JOIN required. Validated on first attempt.",
+      "user_question": "Why did you select only the stadium table?",
+      "expected_justification": "APS assigned high semantic similarity to stadium for the concept 'capacities', while singer and concert scored below the similarity threshold. Since all the information needed for the MAX and AVG aggregations was contained in the stadium table alone, no JOIN to other tables was required."
+    },
+    {
+      "user_input": "Show the names of singers whose songs are not from any concert.",
+      "refined_query": "Show the names of singers whose songs are not from any concert.",
+      "selected_tables": [
+        { "table_name": "singer" },
+        { "table_name": "singer_in_concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "Singer_ID" }
+      ],
+      "generated_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "ae_explanation": "The query returns the names of singers who have not performed in any concert by selecting from singer those whose singer_id does not appear in the singer_in_concert table.",
+      "ag_strategy": "subquery",
+      "av_iterations": 0,
+      "av_reasoning": "NOT IN subquery on singer_id. Both singer.singer_id and singer_in_concert.singer_id exist. Subquery returns a single column as required by NOT IN. No DML. Validated on first attempt.",
+      "user_question": "Why did you include the singer_in_concert table?",
+      "expected_justification": "APS selected both singer and singer_in_concert because excluding singers that appear in any concert requires a reference set — the singer_in_concert table provides that set via the shared singer_id JOIN key. The second table is not used for the final output but acts as the reference for the NOT IN exclusion check."
+    },
+    {
+      "user_input": "List all song names by singers above the average age.",
+      "refined_query": "List all song names by singers above the average age.",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Song_Name" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "generated_sql": "SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)",
+      "ae_explanation": "The query returns the song names of singers whose age exceeds the average singer age. The average is computed in a subquery and compared against each singer's age.",
+      "ag_strategy": "subquery",
+      "av_iterations": 0,
+      "av_reasoning": "Scalar subquery computes AVG(age) and returns a single value for the '>' comparison. Both song_name and age columns exist in singer. Validated on first attempt.",
+      "user_question": "Why did you use a subquery?",
+      "expected_justification": "AG chose a scalar subquery because 'above average age' requires comparing each individual row against a global aggregate computed over the entire table. A scalar subquery is the canonical way to express that comparison: it returns a single value that is then used as the threshold in the WHERE clause, without losing per-row detail."
+    },
+    {
+      "user_input": "Show the names of singers whose songs are not from any concert.",
+      "refined_query": "Show the names of singers whose songs are not from any concert.",
+      "selected_tables": [
+        { "table_name": "singer" },
+        { "table_name": "singer_in_concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "Singer_ID" }
+      ],
+      "generated_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "ae_explanation": "The query returns the names of singers who have not performed in any concert by selecting from singer those whose singer_id does not appear in the singer_in_concert table.",
+      "ag_strategy": "subquery",
+      "av_iterations": 0,
+      "av_reasoning": "NOT IN subquery is syntactically valid, returns a single column, and references existing columns. Validated on first attempt.",
+      "user_question": "Why NOT IN instead of LEFT JOIN?",
+      "expected_justification": "AG chose NOT IN for expressive directness: the semantic intent — 'singers whose id does not appear in singer_in_concert' — maps almost literally to NOT IN, making the query easy to read and verify. A LEFT JOIN with a NULL check on singer_in_concert.singer_id would produce the same result set but is less direct and requires understanding the NULL-filtering idiom."
+    },
+    {
+      "user_input": "Show stadium names and the highest year of concerts in each stadium.",
+      "refined_query": "Show stadium names and the highest year of concerts in each stadium.",
+      "selected_tables": [
+        { "table_name": "concert" },
+        { "table_name": "stadium" }
+      ],
+      "selected_columns": [
+        { "table_name": "concert", "column_name": "Year" },
+        { "table_name": "concert", "column_name": "Stadium_ID" },
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Stadium_ID" }
+      ],
+      "generated_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+      "ae_explanation": "The query returns each stadium's name together with the most recent year a concert was held there. It joins concert and stadium on stadium_id and groups by stadium to compute the MAX year per stadium.",
+      "ag_strategy": "join",
+      "av_iterations": 0,
+      "av_reasoning": "INNER JOIN between concert and stadium on stadium_id with GROUP BY and MAX aggregation. Join condition valid. GROUP BY correctly scopes MAX(year) per stadium. Validated on first attempt.",
+      "user_question": "Why did you use JOIN and GROUP BY?",
+      "expected_justification": "AG combined concert and stadium with a JOIN on stadium_id because the stadium name is in one table and the concert year is in the other — a JOIN is required to access both. It then grouped by stadium_id so that MAX(year) is computed independently per stadium; without that grouping, MAX would collapse all rows to a single global value."
+    },
+    {
+      "user_input": "What are all distinct countries where singers above age 20 are from?",
+      "refined_query": "What are all distinct countries where singers above age 20 are from?",
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Country" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "generated_sql": "SELECT DISTINCT country FROM singer WHERE age > 20",
+      "ae_explanation": "The query returns the unique countries of singers whose age is greater than 20, using DISTINCT to remove duplicate country entries.",
+      "ag_strategy": "simple",
+      "av_iterations": 1,
+      "av_first_error": "First attempt was missing the DISTINCT keyword, causing duplicate country values to appear in the result set.",
+      "av_reasoning": "First attempt was rejected: DISTINCT keyword was absent, producing duplicate country rows. AG regenerated adding DISTINCT to the SELECT clause. Second attempt validated successfully — all referenced columns exist and the WHERE clause is syntactically correct.",
+      "user_question": "How many times did the SQL fail validation before being fixed?",
+      "expected_justification": "AV rejected the first SQL attempt because the DISTINCT keyword was missing, which would have returned duplicate country entries for singers sharing the same nationality. AG regenerated the query adding DISTINCT to the SELECT clause, and AV approved it on the second attempt — one correction cycle in total."
+    },
+    {
+      "user_input": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+      "refined_query": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Location" },
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "generated_sql": "SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",
+      "ae_explanation": "The query returns the location and name of stadiums whose capacity is between 5000 and 10000 inclusive, using a BETWEEN range filter on the Capacity column.",
+      "ag_strategy": "simple",
+      "av_iterations": 0,
+      "av_reasoning": "BETWEEN range filter on Capacity is syntactically valid and inclusive on both bounds. All referenced columns (location, name, capacity) exist in the stadium table. No DML operations detected. Validated on first attempt.",
+      "user_question": "How many validation iterations were needed?",
+      "expected_justification": "Only one iteration was needed. AV validated the query on the first attempt: the BETWEEN range is syntactically correct and inclusive on both bounds, all referenced columns (location, name, capacity) exist in the stadium table, and no DML operations were detected. No corrections or SQL regeneration were required."
+    }
+  ]
+}

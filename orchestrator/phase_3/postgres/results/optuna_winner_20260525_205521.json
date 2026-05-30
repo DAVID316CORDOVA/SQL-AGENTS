@@ -1,0 +1,9 @@
+{
+  "agent": "Orchestrator",
+  "backend": "postgres",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.5,
+  "combined_score": 2.2532,
+  "n_trials": 10,
+  "generated_at": "2026-05-25T20:55:21.915064"
+}

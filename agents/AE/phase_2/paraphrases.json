@@ -1,0 +1,189 @@
+{
+  "intents": [
+    {
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "ag_strategy": "aggregation",
+      "generated_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "av_reasoning": "The SQL applies MAX and AVG on the Capacity column of the stadium table. No syntax errors, no DML operations. Validation passed.",
+      "expected_explanation": "The query returns the maximum and average capacity of all stadiums by applying the MAX and AVG aggregation functions on the Capacity column of the stadium table.",
+      "paraphrases": [
+        "max and avg capacity of all stadiums",
+        "for all stadiums, what's the largest and the mean capacity?",
+        "highest and mean seating capacity across every arena"
+      ],
+      "refined_query": "What is the maximum and average capacities for all stadiums?"
+    },
+    {
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Country" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "ag_strategy": "simple",
+      "generated_sql": "SELECT name, country, age FROM singer ORDER BY age DESC",
+      "av_reasoning": "Simple SELECT with ORDER BY DESC on Age. Columns name, country, age exist in the singer table. No issues detected. Validation passed.",
+      "expected_explanation": "The query lists the name, country and age of each singer, sorted by age in descending order so that the oldest singers appear first.",
+      "paraphrases": [
+        "list singers name country age, oldest first",
+        "give me every singer's name, country and age, sorting from oldest to youngest",
+        "display each performer's full name, nation and age, ranking the most senior first"
+      ],
+      "refined_query": "Show name, country, age for all singers ordered by age from the oldest to the youngest."
+    },
+    {
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Age" },
+        { "table_name": "singer", "column_name": "Country" }
+      ],
+      "ag_strategy": "aggregation",
+      "generated_sql": "SELECT avg(age), min(age), max(age) FROM singer WHERE country = 'France'",
+      "av_reasoning": "Aggregation query with WHERE filter on country. AVG, MIN, MAX on Age are valid. String literal 'France' correctly quoted. Validation passed.",
+      "expected_explanation": "The query computes the average, minimum and maximum age of singers whose country is France, using aggregation functions on the Age column with a WHERE filter on country.",
+      "paraphrases": [
+        "avg min and max age of french singers",
+        "for singers based in France, what are the mean, youngest and oldest ages?",
+        "central, lowest and highest age values among vocalists from France"
+      ],
+      "refined_query": "What is the average, minimum, and maximum age of all singers from France?"
+    },
+    {
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Song_Name" },
+        { "table_name": "singer", "column_name": "Song_release_year" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "ag_strategy": "simple",
+      "generated_sql": "SELECT song_name, song_release_year FROM singer ORDER BY age LIMIT 1",
+      "av_reasoning": "ORDER BY age ASC with LIMIT 1 correctly retrieves the youngest singer. Columns song_name, song_release_year and age exist. Validation passed.",
+      "expected_explanation": "The query returns the song name and release year of the youngest singer, sorting singers ascending by age and taking only the first row.",
+      "paraphrases": [
+        "song name and release year for the youngest singer",
+        "which song does the youngest singer have, and when was it released?",
+        "title and publication year of the track recorded by the most junior performer"
+      ],
+      "refined_query": "Show the name and the release year of the song by the youngest singer."
+    },
+    {
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Country" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "ag_strategy": "simple",
+      "generated_sql": "SELECT DISTINCT country FROM singer WHERE age > 20",
+      "av_reasoning": "DISTINCT on country with WHERE age > 20. Column country and age exist in singer. No semantic issues. Validation passed.",
+      "expected_explanation": "The query returns the unique countries of singers whose age is greater than 20, using DISTINCT to remove duplicates.",
+      "paraphrases": [
+        "unique countries of singers older than 20",
+        "from which different nations do singers over 20 come?",
+        "list each distinct nationality of vocalists past the age of 20"
+      ],
+      "refined_query": "What are all distinct countries where singers above age 20 are from?"
+    },
+    {
+      "selected_tables": [{ "table_name": "singer" }],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Song_Name" },
+        { "table_name": "singer", "column_name": "Age" }
+      ],
+      "ag_strategy": "subquery",
+      "generated_sql": "SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)",
+      "av_reasoning": "Scalar subquery computing AVG(age) for comparison. Subquery returns a single value as required by '>'. Column song_name and age exist. Validation passed.",
+      "expected_explanation": "The query returns the song names of singers whose age exceeds the average singer age. The average is computed in a subquery and compared against each singer's age.",
+      "paraphrases": [
+        "songs whose singer is older than the average age",
+        "which song titles belong to singers above the mean singer age?",
+        "track titles performed by vocalists exceeding the average age"
+      ],
+      "refined_query": "List all song names by singers above the average age."
+    },
+    {
+      "selected_tables": [{ "table_name": "stadium" }],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Location" },
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Capacity" }
+      ],
+      "ag_strategy": "simple",
+      "generated_sql": "SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",
+      "av_reasoning": "BETWEEN range filter on Capacity. Columns location, name and capacity exist in stadium. BETWEEN is inclusive on both bounds. Validation passed.",
+      "expected_explanation": "The query returns the location and name of stadiums whose capacity is between 5000 and 10000 inclusive, using a BETWEEN range filter on the Capacity column.",
+      "paraphrases": [
+        "location and name of stadiums with capacity 5000 to 10000",
+        "for stadiums whose capacity is between 5000 and 10000, what are their names and locations?",
+        "site and venue title of arenas seating between 5000 and 10000 people"
+      ],
+      "refined_query": "Show location and name for all stadiums with a capacity between 5000 and 10000."
+    },
+    {
+      "selected_tables": [
+        { "table_name": "singer" },
+        { "table_name": "singer_in_concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "singer", "column_name": "Name" },
+        { "table_name": "singer", "column_name": "Singer_ID" },
+        { "table_name": "singer_in_concert", "column_name": "Singer_ID" }
+      ],
+      "ag_strategy": "subquery",
+      "generated_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "av_reasoning": "NOT IN subquery on singer_id. Both singer.singer_id and singer_in_concert.singer_id exist. Subquery returns single column as required by NOT IN. Validation passed.",
+      "expected_explanation": "The query returns the names of singers who have not performed in any concert, selecting from singer those whose singer_id does not appear in the singer_in_concert table.",
+      "paraphrases": [
+        "singer names with songs not in any concert",
+        "which singers have songs that have never been performed at any concert?",
+        "names of vocalists whose tracks were never featured in a live show"
+      ],
+      "refined_query": "Show the names of singers whose songs are not from any concert."
+    },
+    {
+      "selected_tables": [
+        { "table_name": "stadium" },
+        { "table_name": "concert" }
+      ],
+      "selected_columns": [
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Stadium_ID" },
+        { "table_name": "concert", "column_name": "Stadium_ID" }
+      ],
+      "ag_strategy": "subquery",
+      "generated_sql": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",
+      "av_reasoning": "NOT IN subquery on stadium_id comparing stadium and concert tables. Both stadium_id columns exist. Single column subquery is valid for NOT IN. Validation passed.",
+      "expected_explanation": "The query returns the names of stadiums that have not hosted any concert, selecting from stadium those whose stadium_id does not appear in the concert table.",
+      "paraphrases": [
+        "stadium names without any concert",
+        "which stadiums never hosted a single concert?",
+        "list arenas that have no concert event records"
+      ],
+      "refined_query": "Show the names of stadiums that did not have any concert."
+    },
+    {
+      "selected_tables": [
+        { "table_name": "concert" },
+        { "table_name": "stadium" }
+      ],
+      "selected_columns": [
+        { "table_name": "concert", "column_name": "Year" },
+        { "table_name": "concert", "column_name": "Stadium_ID" },
+        { "table_name": "stadium", "column_name": "Name" },
+        { "table_name": "stadium", "column_name": "Stadium_ID" }
+      ],
+      "ag_strategy": "join",
+      "generated_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+      "av_reasoning": "INNER JOIN between concert and stadium on stadium_id with GROUP BY and MAX aggregation. Join condition valid. GROUP BY correctly scopes MAX(year) per stadium. Validation passed.",
+      "expected_explanation": "The query returns the name of each stadium along with the most recent year in which a concert was held there. It joins concert and stadium by stadium_id and groups by stadium to compute the MAX year per stadium.",
+      "paraphrases": [
+        "stadium name and most recent concert year per stadium",
+        "for each stadium, what's the latest year a concert took place there?",
+        "venue title and the maximum concert year grouped by venue"
+      ],
+      "refined_query": "Show stadium names and the highest year of concerts in each stadium."
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "tablas": {
+    "Breeds": {
+      "descripcion": "Table Breeds from the dog_kennels database.",
+      "columnas": {
+        "breed_code": {
+          "tipo": "text",
+          "descripcion": "Breed Code. Primary key."
+        },
+        "breed_name": {
+          "tipo": "text",
+          "descripcion": "Breed Name."
+        }
+      }
+    },
+    "Charges": {
+      "descripcion": "Table Charges from the dog_kennels database.",
+      "columnas": {
+        "charge_id": {
+          "tipo": "number",
+          "descripcion": "Charge Id. Primary key."
+        },
+        "charge_type": {
+          "tipo": "text",
+          "descripcion": "Charge Type."
+        },
+        "charge_amount": {
+          "tipo": "number",
+          "descripcion": "Charge Amount."
+        }
+      }
+    },
+    "Sizes": {
+      "descripcion": "Table Sizes from the dog_kennels database.",
+      "columnas": {
+        "size_code": {
+          "tipo": "text",
+          "descripcion": "Size Code. Primary key."
+        },
+        "size_description": {
+          "tipo": "text",
+          "descripcion": "Size Description."
+        }
+      }
+    },
+    "Treatment_Types": {
+      "descripcion": "Table Treatment_Types from the dog_kennels database.",
+      "columnas": {
+        "treatment_type_code": {
+          "tipo": "text",
+          "descripcion": "Treatment Type Code. Primary key."
+        },
+        "treatment_type_description": {
+          "tipo": "text",
+          "descripcion": "Treatment Type Description."
+        }
+      }
+    },
+    "Owners": {
+      "descripcion": "Table Owners from the dog_kennels database.",
+      "columnas": {
+        "owner_id": {
+          "tipo": "number",
+          "descripcion": "Owner Id. Primary key."
+        },
+        "first_name": {
+          "tipo": "text",
+          "descripcion": "First Name."
+        },
+        "last_name": {
+          "tipo": "text",
+          "descripcion": "Last Name."
+        },
+        "street": {
+          "tipo": "text",
+          "descripcion": "Street."
+        },
+        "city": {
+          "tipo": "text",
+          "descripcion": "City."
+        },
+        "state": {
+          "tipo": "text",
+          "descripcion": "State."
+        },
+        "zip_code": {
+          "tipo": "text",
+          "descripcion": "Zip Code."
+        },
+        "email_address": {
+          "tipo": "text",
+          "descripcion": "Email Address."
+        },
+        "home_phone": {
+          "tipo": "text",
+          "descripcion": "Home Phone."
+        },
+        "cell_number": {
+          "tipo": "text",
+          "descripcion": "Cell Number."
+        }
+      }
+    },
+    "Dogs": {
+      "descripcion": "Table Dogs from the dog_kennels database.",
+      "columnas": {
+        "dog_id": {
+          "tipo": "number",
+          "descripcion": "Dog Id. Primary key."
+        },
+        "owner_id": {
+          "tipo": "number",
+          "descripcion": "Owner Id. References Owners.owner_id."
+        },
+        "abandoned_yn": {
+          "tipo": "text",
+          "descripcion": "Abandoned Yn."
+        },
+        "breed_code": {
+          "tipo": "text",
+          "descripcion": "Breed Code. References Breeds.breed_code."
+        },
+        "size_code": {
+          "tipo": "text",
+          "descripcion": "Size Code. References Sizes.size_code."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name."
+        },
+        "age": {
+          "tipo": "text",
+          "descripcion": "Age."
+        },
+        "date_of_birth": {
+          "tipo": "time",
+          "descripcion": "Date Of Birth."
+        },
+        "gender": {
+          "tipo": "text",
+          "descripcion": "Gender."
+        },
+        "weight": {
+          "tipo": "text",
+          "descripcion": "Weight."
+        },
+        "date_arrived": {
+          "tipo": "time",
+          "descripcion": "Date Arrived."
+        },
+        "date_adopted": {
+          "tipo": "time",
+          "descripcion": "Date Adopted."
+        },
+        "date_departed": {
+          "tipo": "time",
+          "descripcion": "Date Departed."
+        }
+      }
+    },
+    "Professionals": {
+      "descripcion": "Table Professionals from the dog_kennels database.",
+      "columnas": {
+        "professional_id": {
+          "tipo": "number",
+          "descripcion": "Professional Id. Primary key."
+        },
+        "role_code": {
+          "tipo": "text",
+          "descripcion": "Role Code."
+        },
+        "first_name": {
+          "tipo": "text",
+          "descripcion": "First Name."
+        },
+        "street": {
+          "tipo": "text",
+          "descripcion": "Street."
+        },
+        "city": {
+          "tipo": "text",
+          "descripcion": "City."
+        },
+        "state": {
+          "tipo": "text",
+          "descripcion": "State."
+        },
+        "zip_code": {
+          "tipo": "text",
+          "descripcion": "Zip Code."
+        },
+        "last_name": {
+          "tipo": "text",
+          "descripcion": "Last Name."
+        },
+        "email_address": {
+          "tipo": "text",
+          "descripcion": "Email Address."
+        },
+        "home_phone": {
+          "tipo": "text",
+          "descripcion": "Home Phone."
+        },
+        "cell_number": {
+          "tipo": "text",
+          "descripcion": "Cell Number."
+        }
+      }
+    },
+    "Treatments": {
+      "descripcion": "Table Treatments from the dog_kennels database.",
+      "columnas": {
+        "treatment_id": {
+          "tipo": "number",
+          "descripcion": "Treatment Id. Primary key."
+        },
+        "dog_id": {
+          "tipo": "number",
+          "descripcion": "Dog Id. References Dogs.dog_id."
+        },
+        "professional_id": {
+          "tipo": "number",
+          "descripcion": "Professional Id. References Professionals.professional_id."
+        },
+        "treatment_type_code": {
+          "tipo": "text",
+          "descripcion": "Treatment Type Code. References Treatment_Types.treatment_type_code."
+        },
+        "date_of_treatment": {
+          "tipo": "time",
+          "descripcion": "Date Of Treatment."
+        },
+        "cost_of_treatment": {
+          "tipo": "number",
+          "descripcion": "Cost Of Treatment."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

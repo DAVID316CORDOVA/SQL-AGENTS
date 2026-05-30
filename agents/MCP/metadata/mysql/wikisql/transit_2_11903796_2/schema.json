@@ -1,0 +1,48 @@
+{
+  "available_entities": {
+    "transit_2_11903796_2": {
+      "all_columns": [
+        "year",
+        "manufacturer",
+        "model",
+        "length_ft",
+        "fuel_or_propulsion",
+        "fleet_series",
+        "quantity"
+      ],
+      "numeric_columns": [
+        "year",
+        "quantity"
+      ],
+      "categorical_columns": [
+        "manufacturer",
+        "model",
+        "length_ft",
+        "fuel_or_propulsion",
+        "fleet_series"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5,
+      "table_description": "Wikipedia table: transit_2_11903796_2.",
+      "column_descriptions": {
+        "year": "Year. Type: real.",
+        "manufacturer": "Manufacturer. Type: text.",
+        "model": "Model. Type: text.",
+        "length_ft": "Length (ft.). Type: text.",
+        "fuel_or_propulsion": "Fuel or Propulsion. Type: text.",
+        "fleet_series": "Fleet series. Type: text.",
+        "quantity": "Quantity. Type: real."
+      }
+    }
+  },
+  "relationships": []
+}

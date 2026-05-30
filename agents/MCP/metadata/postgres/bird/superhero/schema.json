@@ -1,0 +1,346 @@
+{
+  "available_entities": {
+    "alignment": {
+      "all_columns": [
+        "_id",
+        "id",
+        "alignment"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "alignment"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 4,
+      "table_description": "Table alignment with 4 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "alignment": "Alignment. Type: text."
+      }
+    },
+    "attribute": {
+      "all_columns": [
+        "_id",
+        "id",
+        "attribute_name"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "attribute_name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table attribute with 6 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "attribute_name": "Attribute Name. Type: text."
+      }
+    },
+    "colour": {
+      "all_columns": [
+        "_id",
+        "id",
+        "colour"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "colour"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 35,
+      "table_description": "Table colour with 35 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "colour": "Colour. Type: text."
+      }
+    },
+    "gender": {
+      "all_columns": [
+        "_id",
+        "id",
+        "gender"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "gender"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table gender with 3 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "gender": "Gender. Type: text."
+      }
+    },
+    "hero_attribute": {
+      "all_columns": [
+        "_id",
+        "hero_id",
+        "attribute_id",
+        "attribute_value"
+      ],
+      "numeric_columns": [
+        "_id",
+        "hero_id",
+        "attribute_id",
+        "attribute_value"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3738,
+      "table_description": "Table hero_attribute with 3738 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "hero_id": "Hero Id. Type: bigint.",
+        "attribute_id": "Attribute Id. Type: bigint.",
+        "attribute_value": "Attribute Value. Type: bigint."
+      }
+    },
+    "hero_power": {
+      "all_columns": [
+        "_id",
+        "hero_id",
+        "power_id"
+      ],
+      "numeric_columns": [
+        "_id",
+        "hero_id",
+        "power_id"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5825,
+      "table_description": "Table hero_power with 5825 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "hero_id": "Hero Id. Type: bigint.",
+        "power_id": "Power Id. Type: bigint."
+      }
+    },
+    "publisher": {
+      "all_columns": [
+        "_id",
+        "id",
+        "publisher_name"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "publisher_name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 25,
+      "table_description": "Table publisher with 25 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "publisher_name": "Publisher Name. Type: text."
+      }
+    },
+    "race": {
+      "all_columns": [
+        "_id",
+        "id",
+        "race"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "race"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 61,
+      "table_description": "Table race with 61 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "race": "Race. Type: text."
+      }
+    },
+    "superhero": {
+      "all_columns": [
+        "_id",
+        "id",
+        "superhero_name",
+        "full_name",
+        "gender_id",
+        "eye_colour_id",
+        "hair_colour_id",
+        "skin_colour_id",
+        "race_id",
+        "publisher_id",
+        "alignment_id",
+        "height_cm",
+        "weight_kg"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id",
+        "gender_id",
+        "eye_colour_id",
+        "hair_colour_id",
+        "skin_colour_id",
+        "race_id",
+        "publisher_id",
+        "alignment_id",
+        "height_cm",
+        "weight_kg"
+      ],
+      "categorical_columns": [
+        "superhero_name",
+        "full_name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 750,
+      "table_description": "Table superhero with 750 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "superhero_name": "Superhero Name. Type: text.",
+        "full_name": "Full Name. Type: text.",
+        "gender_id": "Gender Id. Type: bigint.",
+        "eye_colour_id": "Eye Colour Id. Type: bigint.",
+        "hair_colour_id": "Hair Colour Id. Type: bigint.",
+        "skin_colour_id": "Skin Colour Id. Type: bigint.",
+        "race_id": "Race Id. Type: bigint.",
+        "publisher_id": "Publisher Id. Type: bigint.",
+        "alignment_id": "Alignment Id. Type: bigint.",
+        "height_cm": "Height Cm. Type: bigint.",
+        "weight_kg": "Weight Kg. Type: bigint."
+      }
+    },
+    "superpower": {
+      "all_columns": [
+        "_id",
+        "id",
+        "power_name"
+      ],
+      "numeric_columns": [
+        "_id",
+        "id"
+      ],
+      "categorical_columns": [
+        "power_name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 167,
+      "table_description": "Table superpower with 167 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "id": "Id. Type: bigint.",
+        "power_name": "Power Name. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

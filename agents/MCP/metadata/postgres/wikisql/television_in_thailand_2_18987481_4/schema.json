@@ -1,0 +1,51 @@
+{
+  "available_entities": {
+    "television_in_thailand_2_18987481_4": {
+      "all_columns": [
+        "tv_station_operator",
+        "c_2005",
+        "c_2006",
+        "c_2007",
+        "c_2008",
+        "c_2009",
+        "c_2010",
+        "c_2011_1h"
+      ],
+      "numeric_columns": [
+        "c_2005",
+        "c_2006",
+        "c_2007",
+        "c_2008",
+        "c_2009",
+        "c_2010",
+        "c_2011_1h"
+      ],
+      "categorical_columns": [
+        "tv_station_operator"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Wikipedia table: television_in_thailand_2_18987481_4.",
+      "column_descriptions": {
+        "tv_station_operator": "TV Station (Operator). Type: text.",
+        "c_2005": "2005. Type: real.",
+        "c_2006": "2006. Type: real.",
+        "c_2007": "2007. Type: real.",
+        "c_2008": "2008. Type: real.",
+        "c_2009": "2009. Type: real.",
+        "c_2010": "2010. Type: real.",
+        "c_2011_1h": "2011 1H. Type: real."
+      }
+    }
+  },
+  "relationships": []
+}

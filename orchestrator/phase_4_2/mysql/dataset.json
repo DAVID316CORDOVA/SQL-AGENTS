@@ -1,0 +1,425 @@
+{
+  "test_cases": [
+    {
+      "id": 1,
+      "type": "orchestrator_rejection_opinion",
+      "description": "Route: Orchestrator â†’ END â€” subjective opinion",
+      "original_question": "Who is the best singer in the world?",
+      "paraphrases": [
+        {
+          "id": "1-P1",
+          "variant": "informal",
+          "question": "who's the top singer worldwide?"
+        },
+        {
+          "id": "1-P2",
+          "variant": "open_rephrased",
+          "question": "Can you tell me which singer is considered the greatest globally?"
+        },
+        {
+          "id": "1-P3",
+          "variant": "alternative_vocabulary",
+          "question": "Which vocalist ranks highest internationally?"
+        }
+      ],
+      "expected_sql": null,
+      "expected_explanation": "This question asks for a subjective opinion and cannot be answered with the database. The system only processes factual queries about the concert_singer dataset.",
+      "expected_tables": [],
+      "expected_tools": [
+        "AR",
+        "AE"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "ar_rejection_dml",
+      "description": "Route: Orchestrator â†’ AR â†’ AE â€” AR rejects DML",
+      "original_question": "Delete all concerts from 2010.",
+      "paraphrases": [
+        {
+          "id": "2-P1",
+          "variant": "informal",
+          "question": "remove all 2010 concerts from the db"
+        },
+        {
+          "id": "2-P2",
+          "variant": "open_rephrased",
+          "question": "I need to erase every concert that took place in 2010."
+        },
+        {
+          "id": "2-P3",
+          "variant": "alternative_vocabulary",
+          "question": "Eliminate all concert records with year 2010."
+        }
+      ],
+      "expected_sql": null,
+      "expected_explanation": "This is a DELETE statement (DML operation). The system only processes SELECT queries for data retrieval. The request has been rejected.",
+      "expected_tables": [],
+      "expected_tools": [
+        "AR",
+        "AE"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "aps_rejection",
+      "description": "Route: Orchestrator â†’ AR â†’ APS â†’ AE â€” APS finds no matching tables",
+      "original_question": "What is the average ticket price per concert?",
+      "paraphrases": [
+        {
+          "id": "3-P1",
+          "variant": "informal",
+          "question": "avg ticket cost per concert?"
+        },
+        {
+          "id": "3-P2",
+          "variant": "open_rephrased",
+          "question": "Could you show me the mean price of tickets for each concert?"
+        },
+        {
+          "id": "3-P3",
+          "variant": "alternative_vocabulary",
+          "question": "What is the typical admission fee by event?"
+        }
+      ],
+      "expected_sql": null,
+      "expected_explanation": "The requested information about ticket prices is not available in the database schema. The concert_singer dataset does not contain pricing data.",
+      "expected_tables": [],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AE"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "as_activation",
+      "description": "Route: Orchestrator â†’ AS â€” sustentation question",
+      "original_question": "Why did the pipeline use a JOIN between concert and stadium?",
+      "paraphrases": [
+        {
+          "id": "4-P1",
+          "variant": "informal",
+          "question": "why a join between concert and stadium?"
+        },
+        {
+          "id": "4-P2",
+          "variant": "open_rephrased",
+          "question": "Can you explain why the system linked the concert and stadium tables?"
+        },
+        {
+          "id": "4-P3",
+          "variant": "alternative_vocabulary",
+          "question": "What was the reason for combining the concert and stadium datasets?"
+        }
+      ],
+      "expected_sql": null,
+      "expected_explanation": "The JOIN was needed because the query required data from both the concert table (year) and the stadium table (name). Both share the stadium_id key used as the join condition.",
+      "expected_tables": [],
+      "expected_tools": [
+        "AS"
+      ],
+      "conversation_history": [
+        {
+          "role": "user",
+          "content": "Show stadium names and the highest year of concerts in each stadium."
+        },
+        {
+          "role": "assistant",
+          "content": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id"
+        }
+      ],
+      "last_result_for_as": {
+        "final_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+        "ar_result": {
+          "is_valid_query": true,
+          "refined_query": "Show stadium names and the highest year of concerts in each stadium.",
+          "confidence_score": 0.95
+        },
+        "aps_result": {
+          "success": true,
+          "tables": {
+            "concert": {
+              "all_columns": [
+                "Concert_ID",
+                "Stadium_ID",
+                "Year",
+                "Theme",
+                "Location"
+              ]
+            },
+            "stadium": {
+              "all_columns": [
+                "Stadium_ID",
+                "Location",
+                "Name",
+                "Capacity",
+                "Highest",
+                "Lowest",
+                "Average"
+              ]
+            }
+          },
+          "confidence_score": 0.88
+        },
+        "ag_result": {
+          "sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id",
+          "confidence_score": 0.92
+        },
+        "av_result": {
+          "is_valid": true,
+          "confidence_score": 0.95,
+          "decision_word": "correct"
+        },
+        "ae_result": {
+          "explanation": {
+            "final_reasoning": "The query returns each stadium name with the most recent concert year, joining concert and stadium on stadium_id."
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "full_pipeline_simple",
+      "description": "Route: full pipeline â€” simple MAX/AVG aggregation",
+      "original_question": "What is the maximum and average capacity of all stadiums?",
+      "paraphrases": [
+        {
+          "id": "5-P1",
+          "variant": "informal",
+          "question": "max and avg capacity of stadiums?"
+        },
+        {
+          "id": "5-P2",
+          "variant": "open_rephrased",
+          "question": "Could you show me the highest and mean capacity across all stadiums?"
+        },
+        {
+          "id": "5-P3",
+          "variant": "alternative_vocabulary",
+          "question": "What are the peak and typical seating capacities of all venues?"
+        }
+      ],
+      "expected_sql": "SELECT max(capacity), avg(capacity) FROM stadium",
+      "expected_explanation": "The query returns the maximum and average capacity of all stadiums by applying MAX and AVG on the Capacity column of the stadium table.",
+      "expected_tables": [
+        "stadium"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AV",
+        "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "full_pipeline_join",
+      "description": "Route: full pipeline â€” JOIN between two tables",
+      "original_question": "Show stadium names and the highest year of concerts held in each stadium.",
+      "paraphrases": [
+        {
+          "id": "6-P1",
+          "variant": "informal",
+          "question": "stadium names and latest concert year per stadium?"
+        },
+        {
+          "id": "6-P2",
+          "variant": "open_rephrased",
+          "question": "For each stadium, what is the most recent year a concert was held there?"
+        },
+        {
+          "id": "6-P3",
+          "variant": "alternative_vocabulary",
+          "question": "List each venue and the peak year it hosted a live show."
+        }
+      ],
+      "expected_sql": "SELECT T1.Name, MAX(T2.Year) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID, T1.Name",
+      "expected_explanation": "The query joins concert and stadium on stadium_id and groups by stadium to compute the MAX year of concerts per stadium.",
+      "expected_tables": [
+        "concert",
+        "stadium"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AG.find_join_path",
+        "AV",
+        "AV.check_syntax_rules",
+        "AV.check_query_efficiency",
+        "AE"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "full_pipeline_subquery",
+      "description": "Route: full pipeline â€” NOT IN subquery",
+      "original_question": "Show the names of singers who have not performed in any concert.",
+      "paraphrases": [
+        {
+          "id": "7-P1",
+          "variant": "informal",
+          "question": "singers with no concert appearances?"
+        },
+        {
+          "id": "7-P2",
+          "variant": "open_rephrased",
+          "question": "Which singers have not performed at any concert in the database?"
+        },
+        {
+          "id": "7-P3",
+          "variant": "alternative_vocabulary",
+          "question": "List the artists whose tracks are unassociated with any live event."
+        }
+      ],
+      "expected_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)",
+      "expected_explanation": "The query finds singers not associated with any concert using a NOT IN subquery against the singer_in_concert table.",
+      "expected_tables": [
+        "singer",
+        "singer_in_concert"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AG.find_joins_among_tables",
+        "AV",
+        "AV.check_syntax_rules",
+        "AV.check_query_efficiency",
+        "AE"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "full_pipeline_distinct_filter",
+      "description": "Route: full pipeline â€” DISTINCT with WHERE filter",
+      "original_question": "What are all distinct countries where singers above age 20 are from?",
+      "paraphrases": [
+        {
+          "id": "8-P1",
+          "variant": "informal",
+          "question": "unique countries of singers older than 20?"
+        },
+        {
+          "id": "8-P2",
+          "variant": "open_rephrased",
+          "question": "Can you list the different nationalities of singers who are over 20 years old?"
+        },
+        {
+          "id": "8-P3",
+          "variant": "alternative_vocabulary",
+          "question": "Show each unique nation of origin for vocalists aged above 20."
+        }
+      ],
+      "expected_sql": "SELECT DISTINCT country FROM singer WHERE age > 20",
+      "expected_explanation": "The query returns unique countries of singers older than 20, using DISTINCT to eliminate duplicates.",
+      "expected_tables": [
+        "singer"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AV",
+        "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "full_pipeline_groupby",
+      "description": "Route: full pipeline â€” GROUP BY with MAX per category",
+      "original_question": "Show the maximum age of singers in each country.",
+      "paraphrases": [
+        {
+          "id": "9-P1",
+          "variant": "informal",
+          "question": "max singer age per country?"
+        },
+        {
+          "id": "9-P2",
+          "variant": "open_rephrased",
+          "question": "For each country, what is the oldest age among its singers?"
+        },
+        {
+          "id": "9-P3",
+          "variant": "alternative_vocabulary",
+          "question": "List the peak age of artists grouped by their nation."
+        }
+      ],
+      "expected_sql": "SELECT country, max(age) FROM singer GROUP BY country",
+      "expected_explanation": "The query returns each country with the maximum singer age, grouping all singers by country and computing MAX of age per group.",
+      "expected_tables": [
+        "singer"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AV",
+        "AV.check_syntax_rules",
+        "AE"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "full_pipeline_av_correction",
+      "description": "Route: full pipeline â€” AV rejects AG (WHERE with aggregate), AG corrects to HAVING. Tests AV->AG correction loop.",
+      "original_question": "List the countries that have more than one singer in the database.",
+      "paraphrases": [
+        {
+          "id": "10-P1",
+          "variant": "informal",
+          "question": "countries with more than 1 singer?"
+        },
+        {
+          "id": "10-P2",
+          "variant": "open_rephrased",
+          "question": "Which countries in the database have at least two singers?"
+        },
+        {
+          "id": "10-P3",
+          "variant": "alternative_vocabulary",
+          "question": "Show the nations that contain multiple artists in the dataset."
+        }
+      ],
+      "expected_sql": "SELECT country FROM singer GROUP BY country HAVING COUNT(*) > 1",
+      "expected_explanation": "The query groups singers by country and uses HAVING to filter only countries with more than one singer. HAVING is required because the filter applies to an aggregate (COUNT), not to individual rows.",
+      "expected_tables": [
+        "singer"
+      ],
+      "expected_tools": [
+        "AR",
+        "APS",
+        "APS.search_tables",
+        "APS.search_columns",
+        "AG",
+        "AG.validate_sql_safety",
+        "AV",
+        "AV.check_syntax_rules",
+        "AV.check_semantic_patterns",
+        "AE"
+      ]
+    }
+  ]
+}

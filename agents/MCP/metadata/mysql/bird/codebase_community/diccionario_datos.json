@@ -1,0 +1,361 @@
+{
+  "tablas": {
+    "badges": {
+      "descripcion": "Table badges from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "UserId": {
+          "tipo": "numeric",
+          "descripcion": "Userid. Type: bigint."
+        },
+        "Name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "Date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        }
+      }
+    },
+    "comments": {
+      "descripcion": "Table comments from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "PostId": {
+          "tipo": "numeric",
+          "descripcion": "Postid. Type: bigint."
+        },
+        "Score": {
+          "tipo": "numeric",
+          "descripcion": "Score. Type: bigint."
+        },
+        "Text": {
+          "tipo": "text",
+          "descripcion": "Text. Type: text."
+        },
+        "CreationDate": {
+          "tipo": "text",
+          "descripcion": "Creationdate. Type: text."
+        },
+        "UserId": {
+          "tipo": "numeric",
+          "descripcion": "Userid. Type: bigint."
+        },
+        "UserDisplayName": {
+          "tipo": "text",
+          "descripcion": "Userdisplayname. Type: text."
+        }
+      }
+    },
+    "posthistory": {
+      "descripcion": "Table posthistory from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "PostHistoryTypeId": {
+          "tipo": "numeric",
+          "descripcion": "Posthistorytypeid. Type: bigint."
+        },
+        "PostId": {
+          "tipo": "numeric",
+          "descripcion": "Postid. Type: bigint."
+        },
+        "RevisionGUID": {
+          "tipo": "text",
+          "descripcion": "Revisionguid. Type: text."
+        },
+        "CreationDate": {
+          "tipo": "text",
+          "descripcion": "Creationdate. Type: text."
+        },
+        "UserId": {
+          "tipo": "numeric",
+          "descripcion": "Userid. Type: bigint."
+        },
+        "Text": {
+          "tipo": "text",
+          "descripcion": "Text. Type: text."
+        },
+        "Comment": {
+          "tipo": "text",
+          "descripcion": "Comment. Type: text."
+        },
+        "UserDisplayName": {
+          "tipo": "text",
+          "descripcion": "Userdisplayname. Type: text."
+        }
+      }
+    },
+    "postlinks": {
+      "descripcion": "Table postlinks from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "CreationDate": {
+          "tipo": "text",
+          "descripcion": "Creationdate. Type: text."
+        },
+        "PostId": {
+          "tipo": "numeric",
+          "descripcion": "Postid. Type: bigint."
+        },
+        "RelatedPostId": {
+          "tipo": "numeric",
+          "descripcion": "Relatedpostid. Type: bigint."
+        },
+        "LinkTypeId": {
+          "tipo": "numeric",
+          "descripcion": "Linktypeid. Type: bigint."
+        }
+      }
+    },
+    "posts": {
+      "descripcion": "Table posts from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "PostTypeId": {
+          "tipo": "numeric",
+          "descripcion": "Posttypeid. Type: bigint."
+        },
+        "AcceptedAnswerId": {
+          "tipo": "numeric",
+          "descripcion": "Acceptedanswerid. Type: bigint."
+        },
+        "CreaionDate": {
+          "tipo": "text",
+          "descripcion": "Creaiondate. Type: text."
+        },
+        "Score": {
+          "tipo": "numeric",
+          "descripcion": "Score. Type: bigint."
+        },
+        "ViewCount": {
+          "tipo": "numeric",
+          "descripcion": "Viewcount. Type: bigint."
+        },
+        "Body": {
+          "tipo": "text",
+          "descripcion": "Body. Type: text."
+        },
+        "OwnerUserId": {
+          "tipo": "numeric",
+          "descripcion": "Owneruserid. Type: bigint."
+        },
+        "LasActivityDate": {
+          "tipo": "text",
+          "descripcion": "Lasactivitydate. Type: text."
+        },
+        "Title": {
+          "tipo": "text",
+          "descripcion": "Title. Type: text."
+        },
+        "Tags": {
+          "tipo": "text",
+          "descripcion": "Tags. Type: text."
+        },
+        "AnswerCount": {
+          "tipo": "numeric",
+          "descripcion": "Answercount. Type: bigint."
+        },
+        "CommentCount": {
+          "tipo": "numeric",
+          "descripcion": "Commentcount. Type: bigint."
+        },
+        "FavoriteCount": {
+          "tipo": "numeric",
+          "descripcion": "Favoritecount. Type: bigint."
+        },
+        "LastEditorUserId": {
+          "tipo": "numeric",
+          "descripcion": "Lasteditoruserid. Type: bigint."
+        },
+        "LastEditDate": {
+          "tipo": "text",
+          "descripcion": "Lasteditdate. Type: text."
+        },
+        "CommunityOwnedDate": {
+          "tipo": "text",
+          "descripcion": "Communityowneddate. Type: text."
+        },
+        "ParentId": {
+          "tipo": "numeric",
+          "descripcion": "Parentid. Type: bigint."
+        },
+        "ClosedDate": {
+          "tipo": "text",
+          "descripcion": "Closeddate. Type: text."
+        },
+        "OwnerDisplayName": {
+          "tipo": "text",
+          "descripcion": "Ownerdisplayname. Type: text."
+        },
+        "LastEditorDisplayName": {
+          "tipo": "text",
+          "descripcion": "Lasteditordisplayname. Type: text."
+        }
+      }
+    },
+    "tags": {
+      "descripcion": "Table tags from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "TagName": {
+          "tipo": "text",
+          "descripcion": "Tagname. Type: text."
+        },
+        "Count": {
+          "tipo": "numeric",
+          "descripcion": "Count. Type: bigint."
+        },
+        "ExcerptPostId": {
+          "tipo": "numeric",
+          "descripcion": "Excerptpostid. Type: bigint."
+        },
+        "WikiPostId": {
+          "tipo": "numeric",
+          "descripcion": "Wikipostid. Type: bigint."
+        }
+      }
+    },
+    "users": {
+      "descripcion": "Table users from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "Reputation": {
+          "tipo": "numeric",
+          "descripcion": "Reputation. Type: bigint."
+        },
+        "CreationDate": {
+          "tipo": "text",
+          "descripcion": "Creationdate. Type: text."
+        },
+        "DisplayName": {
+          "tipo": "text",
+          "descripcion": "Displayname. Type: text."
+        },
+        "LastAccessDate": {
+          "tipo": "text",
+          "descripcion": "Lastaccessdate. Type: text."
+        },
+        "WebsiteUrl": {
+          "tipo": "text",
+          "descripcion": "Websiteurl. Type: text."
+        },
+        "Location": {
+          "tipo": "text",
+          "descripcion": "Location. Type: text."
+        },
+        "AboutMe": {
+          "tipo": "text",
+          "descripcion": "Aboutme. Type: text."
+        },
+        "Views": {
+          "tipo": "numeric",
+          "descripcion": "Views. Type: bigint."
+        },
+        "UpVotes": {
+          "tipo": "numeric",
+          "descripcion": "Upvotes. Type: bigint."
+        },
+        "DownVotes": {
+          "tipo": "numeric",
+          "descripcion": "Downvotes. Type: bigint."
+        },
+        "AccountId": {
+          "tipo": "numeric",
+          "descripcion": "Accountid. Type: bigint."
+        },
+        "Age": {
+          "tipo": "numeric",
+          "descripcion": "Age. Type: bigint."
+        },
+        "ProfileImageUrl": {
+          "tipo": "text",
+          "descripcion": "Profileimageurl. Type: text."
+        }
+      }
+    },
+    "votes": {
+      "descripcion": "Table votes from the codebase_community BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "Id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "PostId": {
+          "tipo": "numeric",
+          "descripcion": "Postid. Type: bigint."
+        },
+        "VoteTypeId": {
+          "tipo": "numeric",
+          "descripcion": "Votetypeid. Type: bigint."
+        },
+        "CreationDate": {
+          "tipo": "text",
+          "descripcion": "Creationdate. Type: text."
+        },
+        "UserId": {
+          "tipo": "numeric",
+          "descripcion": "Userid. Type: bigint."
+        },
+        "BountyAmount": {
+          "tipo": "numeric",
+          "descripcion": "Bountyamount. Type: bigint."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

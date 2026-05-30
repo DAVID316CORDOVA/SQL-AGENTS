@@ -1,0 +1,141 @@
+{
+  "available_entities": {
+    "Highschooler": {
+      "all_columns": [
+        "ID",
+        "name",
+        "grade"
+      ],
+      "numeric_columns": [
+        "ID",
+        "grade"
+      ],
+      "categorical_columns": [
+        "name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Highschooler_1": {
+          "columns": [
+            "ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 16,
+      "table_description": "Table Highschooler with 16 rows.",
+      "column_descriptions": {
+        "ID": "Id. Type: integer.",
+        "name": "Name. Type: text.",
+        "grade": "Grade. Type: integer."
+      }
+    },
+    "Friend": {
+      "all_columns": [
+        "student_id",
+        "friend_id"
+      ],
+      "numeric_columns": [
+        "student_id",
+        "friend_id"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_id",
+            "friend_id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Friend_1": {
+          "columns": [
+            "student_id",
+            "friend_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 20,
+      "table_description": "Table Friend with 20 rows.",
+      "column_descriptions": {
+        "student_id": "Student Id. Type: integer.",
+        "friend_id": "Friend Id. Type: integer."
+      }
+    },
+    "Likes": {
+      "all_columns": [
+        "student_id",
+        "liked_id"
+      ],
+      "numeric_columns": [
+        "student_id",
+        "liked_id"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_id",
+            "liked_id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_Likes_1": {
+          "columns": [
+            "student_id",
+            "liked_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 10,
+      "table_description": "Table Likes with 10 rows.",
+      "column_descriptions": {
+        "student_id": "Student Id. Type: integer.",
+        "liked_id": "Liked Id. Type: integer."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "Friend",
+      "from_column": "friend_id",
+      "to_table": "Highschooler",
+      "to_column": "ID",
+      "join_hint": "Friend.friend_id = Highschooler.ID"
+    },
+    {
+      "from_table": "Friend",
+      "from_column": "student_id",
+      "to_table": "Highschooler",
+      "to_column": "ID",
+      "join_hint": "Friend.student_id = Highschooler.ID"
+    },
+    {
+      "from_table": "Likes",
+      "from_column": "student_id",
+      "to_table": "Highschooler",
+      "to_column": "ID",
+      "join_hint": "Likes.student_id = Highschooler.ID"
+    },
+    {
+      "from_table": "Likes",
+      "from_column": "liked_id",
+      "to_table": "Highschooler",
+      "to_column": "ID",
+      "join_hint": "Likes.liked_id = Highschooler.ID"
+    }
+  ]
+}

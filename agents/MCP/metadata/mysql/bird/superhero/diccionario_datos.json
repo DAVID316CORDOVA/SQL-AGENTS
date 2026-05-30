@@ -1,0 +1,219 @@
+{
+  "tablas": {
+    "alignment": {
+      "descripcion": "Table alignment from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "alignment": {
+          "tipo": "text",
+          "descripcion": "Alignment. Type: text."
+        }
+      }
+    },
+    "attribute": {
+      "descripcion": "Table attribute from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "attribute_name": {
+          "tipo": "text",
+          "descripcion": "Attribute Name. Type: text."
+        }
+      }
+    },
+    "colour": {
+      "descripcion": "Table colour from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "colour": {
+          "tipo": "text",
+          "descripcion": "Colour. Type: text."
+        }
+      }
+    },
+    "gender": {
+      "descripcion": "Table gender from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "gender": {
+          "tipo": "text",
+          "descripcion": "Gender. Type: text."
+        }
+      }
+    },
+    "hero_attribute": {
+      "descripcion": "Table hero_attribute from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "hero_id": {
+          "tipo": "numeric",
+          "descripcion": "Hero Id. Type: bigint."
+        },
+        "attribute_id": {
+          "tipo": "numeric",
+          "descripcion": "Attribute Id. Type: bigint."
+        },
+        "attribute_value": {
+          "tipo": "numeric",
+          "descripcion": "Attribute Value. Type: bigint."
+        }
+      }
+    },
+    "hero_power": {
+      "descripcion": "Table hero_power from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "hero_id": {
+          "tipo": "numeric",
+          "descripcion": "Hero Id. Type: bigint."
+        },
+        "power_id": {
+          "tipo": "numeric",
+          "descripcion": "Power Id. Type: bigint."
+        }
+      }
+    },
+    "publisher": {
+      "descripcion": "Table publisher from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "publisher_name": {
+          "tipo": "text",
+          "descripcion": "Publisher Name. Type: text."
+        }
+      }
+    },
+    "race": {
+      "descripcion": "Table race from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "race": {
+          "tipo": "text",
+          "descripcion": "Race. Type: text."
+        }
+      }
+    },
+    "superhero": {
+      "descripcion": "Table superhero from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "superhero_name": {
+          "tipo": "text",
+          "descripcion": "Superhero Name. Type: text."
+        },
+        "full_name": {
+          "tipo": "text",
+          "descripcion": "Full Name. Type: text."
+        },
+        "gender_id": {
+          "tipo": "numeric",
+          "descripcion": "Gender Id. Type: bigint."
+        },
+        "eye_colour_id": {
+          "tipo": "numeric",
+          "descripcion": "Eye Colour Id. Type: bigint."
+        },
+        "hair_colour_id": {
+          "tipo": "numeric",
+          "descripcion": "Hair Colour Id. Type: bigint."
+        },
+        "skin_colour_id": {
+          "tipo": "numeric",
+          "descripcion": "Skin Colour Id. Type: bigint."
+        },
+        "race_id": {
+          "tipo": "numeric",
+          "descripcion": "Race Id. Type: bigint."
+        },
+        "publisher_id": {
+          "tipo": "numeric",
+          "descripcion": "Publisher Id. Type: bigint."
+        },
+        "alignment_id": {
+          "tipo": "numeric",
+          "descripcion": "Alignment Id. Type: bigint."
+        },
+        "height_cm": {
+          "tipo": "numeric",
+          "descripcion": "Height Cm. Type: bigint."
+        },
+        "weight_kg": {
+          "tipo": "numeric",
+          "descripcion": "Weight Kg. Type: bigint."
+        }
+      }
+    },
+    "superpower": {
+      "descripcion": "Table superpower from the superhero BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "power_name": {
+          "tipo": "text",
+          "descripcion": "Power Name. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

@@ -1,0 +1,64 @@
+{
+  "tablas": {
+    "atom": {
+      "descripcion": "Table atom from the toxicology BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "atom_id": {
+          "tipo": "text",
+          "descripcion": "Atom Id. Type: text."
+        },
+        "molecule_id": {
+          "tipo": "text",
+          "descripcion": "Molecule Id. Type: text."
+        },
+        "element": {
+          "tipo": "text",
+          "descripcion": "Element. Type: text."
+        }
+      }
+    },
+    "bond": {
+      "descripcion": "Table bond from the toxicology BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "bond_id": {
+          "tipo": "text",
+          "descripcion": "Bond Id. Type: text."
+        },
+        "molecule_id": {
+          "tipo": "text",
+          "descripcion": "Molecule Id. Type: text."
+        },
+        "bond_type": {
+          "tipo": "text",
+          "descripcion": "Bond Type. Type: text."
+        }
+      }
+    },
+    "molecule": {
+      "descripcion": "Table molecule from the toxicology BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "molecule_id": {
+          "tipo": "text",
+          "descripcion": "Molecule Id. Type: text."
+        },
+        "label": {
+          "tipo": "text",
+          "descripcion": "Label. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

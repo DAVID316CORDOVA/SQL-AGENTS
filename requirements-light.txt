@@ -1,0 +1,25 @@
+# ── Paquetes LIVIANOS para AR, AG, AV, AE, AS, orchestrator ──────────────────
+# NO incluye: sentence-transformers, chromadb, torch (solo para MCP y APS)
+# Tamaño imagen resultante: ~800 MB vs ~10 GB con requirements.txt completo
+
+# ── LLM providers ────────────────────────────────────────────────────────────
+anthropic
+openai
+
+# ── Orchestration / agents ───────────────────────────────────────────────────
+langgraph
+mcp[cli]
+
+# ── API / serving ─────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+httpx
+requests
+
+# ── Graph / schema tools ──────────────────────────────────────────────────────
+networkx
+
+# ── Utils ─────────────────────────────────────────────────────────────────────
+python-dotenv
+numpy              # cosine similarity en memory_functions (STM/LTM del orquestador)
+litellm            # abstracción multi-LLM (gemini, openai, anthropic)

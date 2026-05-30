@@ -1,0 +1,51 @@
+{
+  "available_entities": {
+    "table_1_23501776_16": {
+      "all_columns": [
+        "seed",
+        "rank",
+        "player",
+        "points",
+        "points_defending",
+        "points_won",
+        "new_points",
+        "status"
+      ],
+      "numeric_columns": [
+        "seed",
+        "rank",
+        "points",
+        "points_won",
+        "new_points"
+      ],
+      "categorical_columns": [
+        "player",
+        "points_defending",
+        "status"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 31,
+      "table_description": "Wikipedia table: table_1_23501776_16.",
+      "column_descriptions": {
+        "seed": "Seed. Type: real.",
+        "rank": "Rank. Type: real.",
+        "player": "Player. Type: text.",
+        "points": "Points. Type: real.",
+        "points_defending": "Points defending. Type: text.",
+        "points_won": "Points won. Type: real.",
+        "new_points": "New points. Type: real.",
+        "status": "Status. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

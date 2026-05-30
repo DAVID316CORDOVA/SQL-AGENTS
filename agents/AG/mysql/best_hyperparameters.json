@@ -1,0 +1,15 @@
+{
+  "agent": "AG",
+  "backend": "mysql",
+  "dataset": "spider:concert_singer",
+  "model": "claude-haiku-4-5",
+  "temperature": 0.3,
+  "Faithfulness": 0.818,
+  "Groundedness": 0.936,
+  "ROUGE-L_SQL": 0.964,
+  "Brier": 0.0035,
+  "ECE": 0.056,
+  "combined_score": 2.659,
+  "optuna_result": "agents/AG/mysql/phase_1/results/optuna_tpe_complete_20260524_092732.json",
+  "normalize_sql_v2": true
+}

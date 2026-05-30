@@ -1,0 +1,97 @@
+# Secretos / credenciales
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+venv311/
+env/
+.venv/
+ENV/
+
+# Vector DBs (grandes y regenerables)
+vector_db/
+
+# Logs / outputs de runs
+*.log
+logs/
+conversations.log
+session.log
+orch_debug.log
+debug
+debug_query.txt
+
+# Resultados de evaluacion (regenerables)
+eval_out*.txt
+agents/*/eval_results.json
+agents/*/experiment_results.json
+resultados_*.json
+informe_experimento_*.txt
+informe_experimento_*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Caches
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Notebooks chequipoint
+.ipynb_checkpoints/
+
+# Datos pesados que no deberian commitearse
+spider_data.zip
+*.zip
+
+# Configuracion local de Claude Code (puede contener tokens de sesion)
+.claude/
+.deepeval/
+
+# Archivos temporales de pruebas
+_tmp_*.py
+_tmp_*.json
+_tmp_*.txt
+
+# Resultados de fases experimentales (regenerables)
+agents/**/results/
+agents/AR/phase_0_y_1/results/
+agents/AR/phase_3/results/
+agents/AG/mysql/phase_1/results/
+agents/AG/mysql/phase_3/results/
+
+# CSVs de runs viejos
+test_results/
+summaries/
+
+# Estado runtime de memoria a largo plazo (ChromaDB, datos por usuario)
+memoria_chroma/
+
+# Datasets descargables (Spider, BIRD, WikiSQL) - 2.8GB
+nl2sql_datasets/
+
+# Indices de chroma (DDL embeddings) - regenerables con reindex_embeddings.py
+agents/**/chroma/
+chroma/
+
+# Estado runtime de memoria (regenerable, contenido sensible)
+memory/long_term_log.json
+memory/short_term_*.json
+memory/*.cache
+memory/__pycache__/

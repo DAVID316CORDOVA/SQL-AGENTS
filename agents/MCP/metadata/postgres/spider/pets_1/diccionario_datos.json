@@ -1,0 +1,76 @@
+{
+  "tablas": {
+    "Student": {
+      "descripcion": "Table Student from the pets_1 database.",
+      "columnas": {
+        "StuID": {
+          "tipo": "number",
+          "descripcion": "Stuid. Primary key."
+        },
+        "LName": {
+          "tipo": "text",
+          "descripcion": "Lname."
+        },
+        "Fname": {
+          "tipo": "text",
+          "descripcion": "Fname."
+        },
+        "Age": {
+          "tipo": "number",
+          "descripcion": "Age."
+        },
+        "Sex": {
+          "tipo": "text",
+          "descripcion": "Sex."
+        },
+        "Major": {
+          "tipo": "number",
+          "descripcion": "Major."
+        },
+        "Advisor": {
+          "tipo": "number",
+          "descripcion": "Advisor."
+        },
+        "city_code": {
+          "tipo": "text",
+          "descripcion": "City Code."
+        }
+      }
+    },
+    "Has_Pet": {
+      "descripcion": "Table Has_Pet from the pets_1 database.",
+      "columnas": {
+        "StuID": {
+          "tipo": "number",
+          "descripcion": "Stuid. References Student.StuID."
+        },
+        "PetID": {
+          "tipo": "number",
+          "descripcion": "Petid. References Pets.PetID."
+        }
+      }
+    },
+    "Pets": {
+      "descripcion": "Table Pets from the pets_1 database.",
+      "columnas": {
+        "PetID": {
+          "tipo": "number",
+          "descripcion": "Petid. Primary key."
+        },
+        "PetType": {
+          "tipo": "text",
+          "descripcion": "Pettype."
+        },
+        "pet_age": {
+          "tipo": "number",
+          "descripcion": "Pet Age."
+        },
+        "weight": {
+          "tipo": "number",
+          "descripcion": "Weight."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

@@ -1,0 +1,357 @@
+{
+  "database": "demo_db",
+  "available_entities": {
+    "audit_log": {
+      "all_columns": [
+        "audit_id",
+        "table_name",
+        "action_type",
+        "record_id",
+        "old_value",
+        "new_value",
+        "user_name",
+        "action_date"
+      ],
+      "numeric_columns": [
+        "audit_id",
+        "record_id"
+      ],
+      "date_columns": [
+        "action_type",
+        "action_date"
+      ],
+      "categorical_columns": [
+        "table_name",
+        "user_name"
+      ],
+      "categorical_values": {
+        "table_name": [
+          "students"
+        ]
+      },
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "audit_id"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        }
+      },
+      "partitions": null,
+      "row_count": 200
+    },
+    "courses": {
+      "all_columns": [
+        "course_id",
+        "course_name",
+        "course_code",
+        "credits",
+        "department",
+        "level",
+        "max_students",
+        "professor_name",
+        "description",
+        "is_active"
+      ],
+      "numeric_columns": [
+        "course_id",
+        "credits",
+        "level",
+        "max_students"
+      ],
+      "date_columns": [],
+      "categorical_columns": [
+        "course_name",
+        "course_code",
+        "department",
+        "professor_name",
+        "is_active"
+      ],
+      "categorical_values": {
+        "department": [
+          "Computer Science",
+          "Business",
+          "Biology",
+          "Mathematics",
+          "Physics"
+        ],
+        "is_active": [
+          "1",
+          "0"
+        ]
+      },
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "course_id"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        },
+        "course_code": {
+          "columns": [
+            "course_code"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        }
+      },
+      "partitions": null,
+      "row_count": 50,
+      "table_description": "Tabla que almacena información de los cursos",
+      "column_descriptions": {
+        "course_id": "Identificador unico del curso (clave primaria)",
+        "course_name": "Nombre de la asignatura o materia academica universitaria. Puede ser cualquier materia que ofrezca la universidad.",
+        "course_code": "Codigo alfanumerico unico del curso",
+        "credits": "Numero de creditos academicos del curso",
+        "department": "Departamento academico al que pertenece el curso. Puede ser cualquier departamento de la universidad.",
+        "level": "Nivel academico del curso.",
+        "max_students": "Capacidad maxima de estudiantes por curso",
+        "professor_name": "Nombre del profesor asignado al curso. Referencia a la tabla professors.",
+        "description": "Descripción del curso",
+        "is_active": "Indica si el curso está activo actualmente."
+      }
+    },
+    "enrollments": {
+      "all_columns": [
+        "enrollment_id",
+        "student_id",
+        "course_id",
+        "enrollment_date",
+        "grade",
+        "attendance_percentage",
+        "status",
+        "semester",
+        "year",
+        "final_exam_score",
+        "midterm_score"
+      ],
+      "numeric_columns": [
+        "enrollment_id",
+        "student_id",
+        "course_id",
+        "grade",
+        "attendance_percentage",
+        "year",
+        "final_exam_score",
+        "midterm_score"
+      ],
+      "date_columns": [
+        "enrollment_date"
+      ],
+      "categorical_columns": [
+        "status",
+        "semester"
+      ],
+      "categorical_values": {
+        "status": [
+          "failed",
+          "enrolled",
+          "dropped",
+          "completed"
+        ],
+        "semester": [
+          "Spring",
+          "Summer",
+          "Fall",
+          "Winter"
+        ]
+      },
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "enrollment_id"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        },
+        "student_id": {
+          "columns": [
+            "student_id",
+            "course_id",
+            "semester",
+            "year"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        },
+        "course_id": {
+          "columns": [
+            "course_id"
+          ],
+          "unique": false,
+          "type": "BTREE"
+        }
+      },
+      "partitions": null,
+      "row_count": 1998,
+      "table_description": "Tabla que almacena las inscripciones de estudiantes en cursos",
+      "column_descriptions": {
+        "enrollment_id": "Identificador unico de la matricula (clave primaria)",
+        "student_id": "Referencia al estudiante (FK a students.student_id)",
+        "course_id": "Referencia al curso (FK a courses.course_id)",
+        "enrollment_date": "Fecha de matricula en el curso",
+        "grade": "Calificacion obtenida en el curso. Valor numerico decimal.",
+        "attendance_percentage": "Porcentaje de asistencia al curso",
+        "status": "Estado de la matricula.",
+        "semester": "Semestre academico de la matricula",
+        "year": "Año académico de la matrícula."
+      }
+    },
+    "professors": {
+      "all_columns": [
+        "professor_id",
+        "name",
+        "email",
+        "department",
+        "hire_date",
+        "salary"
+      ],
+      "numeric_columns": [
+        "professor_id",
+        "salary"
+      ],
+      "date_columns": [
+        "hire_date"
+      ],
+      "categorical_columns": [
+        "name",
+        "email",
+        "department"
+      ],
+      "categorical_values": {
+        "department": [
+          "Biology",
+          "Mathematics",
+          "Engineering",
+          "Computer Science",
+          "Physics",
+          "Chemistry",
+          "Statistics"
+        ]
+      },
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "professor_id"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        }
+      },
+      "partitions": null,
+      "row_count": 102,
+      "table_description": "Tabla que almacena información de los profesores de la universidad",
+      "column_descriptions": {
+        "professor_id": "Identificador unico del profesor (clave primaria)",
+        "name": "Nombre completo del profesor",
+        "email": "Correo electronico del profesor",
+        "department": "Departamento academico al que pertenece el profesor.",
+        "hire_date": "Fecha de contratacion del profesor",
+        "salary": "Salario del profesor. Valor numerico."
+      }
+    },
+    "students": {
+      "all_columns": [
+        "student_id",
+        "name",
+        "email",
+        "age",
+        "enrollment_date",
+        "status",
+        "gpa",
+        "city",
+        "risk_score",
+        "loyalty_level"
+      ],
+      "numeric_columns": [
+        "student_id",
+        "age",
+        "gpa",
+        "risk_score"
+      ],
+      "date_columns": [
+        "enrollment_date"
+      ],
+      "categorical_columns": [
+        "name",
+        "email",
+        "status",
+        "city",
+        "loyalty_level"
+      ],
+      "categorical_values": {
+        "status": [
+          "inactive",
+          "graduated",
+          "active"
+        ],
+        "loyalty_level": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "student_id"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        },
+        "email": {
+          "columns": [
+            "email"
+          ],
+          "unique": true,
+          "type": "BTREE"
+        },
+        "idx_students_city": {
+          "columns": [
+            "city"
+          ],
+          "unique": false,
+          "type": "BTREE"
+        }
+      },
+      "partitions": null,
+      "row_count": 500,
+      "table_description": "Tabla que almacena información personal, académica y de riesgo de los estudiantes",
+      "column_descriptions": {
+        "student_id": "Identificador unico del estudiante (clave primaria)",
+        "name": "Nombre completo del estudiante",
+        "email": "Correo electronico unico del estudiante",
+        "age": "Edad del estudiante en anos",
+        "enrollment_date": "Fecha de inscripcion del estudiante",
+        "status": "Estado academico actual del estudiante. Solo acepta valores del ENUM definido.",
+        "gpa": "Promedio general acumulado del estudiante. Rango 0.00 a 4.00.",
+        "city": "Ciudad de residencia del estudiante. Almacena el nombre de la ciudad donde vive el estudiante.",
+        "risk_score": "Puntaje de riesgo de abandono. Valor entero de 0 a 100.",
+        "loyalty_level": "Nivel de compromiso del estudiante. Columna tipo ENUM."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "enrollments",
+      "from_column": "student_id",
+      "to_table": "students",
+      "to_column": "student_id",
+      "join_hint": "enrollments.student_id = students.student_id"
+    },
+    {
+      "from_table": "enrollments",
+      "from_column": "course_id",
+      "to_table": "courses",
+      "to_column": "course_id",
+      "join_hint": "enrollments.course_id = courses.course_id"
+    }
+  ],
+  "metadata": {
+    "generated_by": "schema_extractor/mysql",
+    "diccionario_usado": true,
+    "joins_comunes": []
+  }
+}

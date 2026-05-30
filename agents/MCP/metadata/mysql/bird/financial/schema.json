@@ -1,0 +1,370 @@
+{
+  "available_entities": {
+    "account": {
+      "all_columns": [
+        "_id",
+        "account_id",
+        "district_id",
+        "frequency",
+        "date"
+      ],
+      "numeric_columns": [
+        "_id",
+        "account_id",
+        "district_id"
+      ],
+      "categorical_columns": [
+        "frequency",
+        "date"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 4500,
+      "table_description": "Table account with 4500 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "account_id": "Account Id. Type: bigint.",
+        "district_id": "District Id. Type: bigint.",
+        "frequency": "Frequency. Type: text.",
+        "date": "Date. Type: text."
+      }
+    },
+    "card": {
+      "all_columns": [
+        "_id",
+        "card_id",
+        "disp_id",
+        "type",
+        "issued"
+      ],
+      "numeric_columns": [
+        "_id",
+        "card_id",
+        "disp_id"
+      ],
+      "categorical_columns": [
+        "type",
+        "issued"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 892,
+      "table_description": "Table card with 892 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "card_id": "Card Id. Type: bigint.",
+        "disp_id": "Disp Id. Type: bigint.",
+        "type": "Type. Type: text.",
+        "issued": "Issued. Type: text."
+      }
+    },
+    "client": {
+      "all_columns": [
+        "_id",
+        "client_id",
+        "gender",
+        "birth_date",
+        "district_id"
+      ],
+      "numeric_columns": [
+        "_id",
+        "client_id",
+        "district_id"
+      ],
+      "categorical_columns": [
+        "gender",
+        "birth_date"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5369,
+      "table_description": "Table client with 5369 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "client_id": "Client Id. Type: bigint.",
+        "gender": "Gender. Type: text.",
+        "birth_date": "Birth Date. Type: text.",
+        "district_id": "District Id. Type: bigint."
+      }
+    },
+    "disp": {
+      "all_columns": [
+        "_id",
+        "disp_id",
+        "client_id",
+        "account_id",
+        "type"
+      ],
+      "numeric_columns": [
+        "_id",
+        "disp_id",
+        "client_id",
+        "account_id"
+      ],
+      "categorical_columns": [
+        "type"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5369,
+      "table_description": "Table disp with 5369 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "disp_id": "Disp Id. Type: bigint.",
+        "client_id": "Client Id. Type: bigint.",
+        "account_id": "Account Id. Type: bigint.",
+        "type": "Type. Type: text."
+      }
+    },
+    "district": {
+      "all_columns": [
+        "_id",
+        "district_id",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "A9",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16"
+      ],
+      "numeric_columns": [
+        "_id",
+        "district_id",
+        "A8",
+        "A9",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16"
+      ],
+      "categorical_columns": [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 77,
+      "table_description": "Table district with 77 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "district_id": "District Id. Type: bigint.",
+        "A2": "A2. Type: text.",
+        "A3": "A3. Type: text.",
+        "A4": "A4. Type: text.",
+        "A5": "A5. Type: text.",
+        "A6": "A6. Type: text.",
+        "A7": "A7. Type: text.",
+        "A8": "A8. Type: bigint.",
+        "A9": "A9. Type: bigint.",
+        "A10": "A10. Type: double.",
+        "A11": "A11. Type: bigint.",
+        "A12": "A12. Type: double.",
+        "A13": "A13. Type: double.",
+        "A14": "A14. Type: bigint.",
+        "A15": "A15. Type: bigint.",
+        "A16": "A16. Type: bigint."
+      }
+    },
+    "loan": {
+      "all_columns": [
+        "_id",
+        "loan_id",
+        "account_id",
+        "date",
+        "amount",
+        "duration",
+        "payments",
+        "status"
+      ],
+      "numeric_columns": [
+        "_id",
+        "loan_id",
+        "account_id",
+        "amount",
+        "duration",
+        "payments"
+      ],
+      "categorical_columns": [
+        "date",
+        "status"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 682,
+      "table_description": "Table loan with 682 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "loan_id": "Loan Id. Type: bigint.",
+        "account_id": "Account Id. Type: bigint.",
+        "date": "Date. Type: text.",
+        "amount": "Amount. Type: bigint.",
+        "duration": "Duration. Type: bigint.",
+        "payments": "Payments. Type: double.",
+        "status": "Status. Type: text."
+      }
+    },
+    "order": {
+      "all_columns": [
+        "_id",
+        "order_id",
+        "account_id",
+        "bank_to",
+        "account_to",
+        "amount",
+        "k_symbol"
+      ],
+      "numeric_columns": [
+        "_id",
+        "order_id",
+        "account_id",
+        "account_to",
+        "amount"
+      ],
+      "categorical_columns": [
+        "bank_to",
+        "k_symbol"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6471,
+      "table_description": "Table order with 6471 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "order_id": "Order Id. Type: bigint.",
+        "account_id": "Account Id. Type: bigint.",
+        "bank_to": "Bank To. Type: text.",
+        "account_to": "Account To. Type: bigint.",
+        "amount": "Amount. Type: double.",
+        "k_symbol": "K Symbol. Type: text."
+      }
+    },
+    "trans": {
+      "all_columns": [
+        "_id",
+        "trans_id",
+        "account_id",
+        "date",
+        "type",
+        "operation",
+        "amount",
+        "balance",
+        "k_symbol",
+        "bank",
+        "account"
+      ],
+      "numeric_columns": [
+        "_id",
+        "trans_id",
+        "account_id",
+        "amount",
+        "balance",
+        "account"
+      ],
+      "categorical_columns": [
+        "date",
+        "type",
+        "operation",
+        "k_symbol",
+        "bank"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1056320,
+      "table_description": "Table trans with 1056320 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "trans_id": "Trans Id. Type: bigint.",
+        "account_id": "Account Id. Type: bigint.",
+        "date": "Date. Type: text.",
+        "type": "Type. Type: text.",
+        "operation": "Operation. Type: text.",
+        "amount": "Amount. Type: bigint.",
+        "balance": "Balance. Type: bigint.",
+        "k_symbol": "K Symbol. Type: text.",
+        "bank": "Bank. Type: text.",
+        "account": "Account. Type: bigint."
+      }
+    }
+  },
+  "relationships": []
+}

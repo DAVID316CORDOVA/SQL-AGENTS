@@ -1,0 +1,263 @@
+{
+  "tablas": {
+    "satscores": {
+      "descripcion": "Table satscores from the california_schools BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "cds": {
+          "tipo": "text",
+          "descripcion": "Cds. Type: text."
+        },
+        "rtype": {
+          "tipo": "text",
+          "descripcion": "Rtype. Type: text."
+        },
+        "sname": {
+          "tipo": "text",
+          "descripcion": "Sname. Type: text."
+        },
+        "dname": {
+          "tipo": "text",
+          "descripcion": "Dname. Type: text."
+        },
+        "cname": {
+          "tipo": "text",
+          "descripcion": "Cname. Type: text."
+        },
+        "enroll12": {
+          "tipo": "numeric",
+          "descripcion": "Enroll12. Type: bigint."
+        },
+        "NumTstTakr": {
+          "tipo": "numeric",
+          "descripcion": "Numtsttakr. Type: bigint."
+        },
+        "AvgScrRead": {
+          "tipo": "numeric",
+          "descripcion": "Avgscrread. Type: bigint."
+        },
+        "AvgScrMath": {
+          "tipo": "numeric",
+          "descripcion": "Avgscrmath. Type: bigint."
+        },
+        "AvgScrWrite": {
+          "tipo": "numeric",
+          "descripcion": "Avgscrwrite. Type: bigint."
+        },
+        "NumGE1500": {
+          "tipo": "numeric",
+          "descripcion": "Numge1500. Type: bigint."
+        }
+      }
+    },
+    "schools": {
+      "descripcion": "Table schools from the california_schools BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "CDSCode": {
+          "tipo": "text",
+          "descripcion": "Cdscode. Type: text."
+        },
+        "NCESDist": {
+          "tipo": "text",
+          "descripcion": "Ncesdist. Type: text."
+        },
+        "NCESSchool": {
+          "tipo": "text",
+          "descripcion": "Ncesschool. Type: text."
+        },
+        "StatusType": {
+          "tipo": "text",
+          "descripcion": "Statustype. Type: text."
+        },
+        "County": {
+          "tipo": "text",
+          "descripcion": "County. Type: text."
+        },
+        "District": {
+          "tipo": "text",
+          "descripcion": "District. Type: text."
+        },
+        "School": {
+          "tipo": "text",
+          "descripcion": "School. Type: text."
+        },
+        "Street": {
+          "tipo": "text",
+          "descripcion": "Street. Type: text."
+        },
+        "StreetAbr": {
+          "tipo": "text",
+          "descripcion": "Streetabr. Type: text."
+        },
+        "City": {
+          "tipo": "text",
+          "descripcion": "City. Type: text."
+        },
+        "Zip": {
+          "tipo": "text",
+          "descripcion": "Zip. Type: text."
+        },
+        "State": {
+          "tipo": "text",
+          "descripcion": "State. Type: text."
+        },
+        "MailStreet": {
+          "tipo": "text",
+          "descripcion": "Mailstreet. Type: text."
+        },
+        "MailStrAbr": {
+          "tipo": "text",
+          "descripcion": "Mailstrabr. Type: text."
+        },
+        "MailCity": {
+          "tipo": "text",
+          "descripcion": "Mailcity. Type: text."
+        },
+        "MailZip": {
+          "tipo": "text",
+          "descripcion": "Mailzip. Type: text."
+        },
+        "MailState": {
+          "tipo": "text",
+          "descripcion": "Mailstate. Type: text."
+        },
+        "Phone": {
+          "tipo": "text",
+          "descripcion": "Phone. Type: text."
+        },
+        "Ext": {
+          "tipo": "text",
+          "descripcion": "Ext. Type: text."
+        },
+        "Website": {
+          "tipo": "text",
+          "descripcion": "Website. Type: text."
+        },
+        "OpenDate": {
+          "tipo": "text",
+          "descripcion": "Opendate. Type: text."
+        },
+        "ClosedDate": {
+          "tipo": "text",
+          "descripcion": "Closeddate. Type: text."
+        },
+        "Charter": {
+          "tipo": "numeric",
+          "descripcion": "Charter. Type: bigint."
+        },
+        "CharterNum": {
+          "tipo": "text",
+          "descripcion": "Charternum. Type: text."
+        },
+        "FundingType": {
+          "tipo": "text",
+          "descripcion": "Fundingtype. Type: text."
+        },
+        "DOC": {
+          "tipo": "text",
+          "descripcion": "Doc. Type: text."
+        },
+        "DOCType": {
+          "tipo": "text",
+          "descripcion": "Doctype. Type: text."
+        },
+        "SOC": {
+          "tipo": "text",
+          "descripcion": "Soc. Type: text."
+        },
+        "SOCType": {
+          "tipo": "text",
+          "descripcion": "Soctype. Type: text."
+        },
+        "EdOpsCode": {
+          "tipo": "text",
+          "descripcion": "Edopscode. Type: text."
+        },
+        "EdOpsName": {
+          "tipo": "text",
+          "descripcion": "Edopsname. Type: text."
+        },
+        "EILCode": {
+          "tipo": "text",
+          "descripcion": "Eilcode. Type: text."
+        },
+        "EILName": {
+          "tipo": "text",
+          "descripcion": "Eilname. Type: text."
+        },
+        "GSoffered": {
+          "tipo": "text",
+          "descripcion": "Gsoffered. Type: text."
+        },
+        "GSserved": {
+          "tipo": "text",
+          "descripcion": "Gsserved. Type: text."
+        },
+        "Virtual": {
+          "tipo": "text",
+          "descripcion": "Virtual. Type: text."
+        },
+        "Magnet": {
+          "tipo": "numeric",
+          "descripcion": "Magnet. Type: bigint."
+        },
+        "Latitude": {
+          "tipo": "numeric",
+          "descripcion": "Latitude. Type: double."
+        },
+        "Longitude": {
+          "tipo": "numeric",
+          "descripcion": "Longitude. Type: double."
+        },
+        "AdmFName1": {
+          "tipo": "text",
+          "descripcion": "Admfname1. Type: text."
+        },
+        "AdmLName1": {
+          "tipo": "text",
+          "descripcion": "Admlname1. Type: text."
+        },
+        "AdmEmail1": {
+          "tipo": "text",
+          "descripcion": "Admemail1. Type: text."
+        },
+        "AdmFName2": {
+          "tipo": "text",
+          "descripcion": "Admfname2. Type: text."
+        },
+        "AdmLName2": {
+          "tipo": "text",
+          "descripcion": "Admlname2. Type: text."
+        },
+        "AdmEmail2": {
+          "tipo": "text",
+          "descripcion": "Admemail2. Type: text."
+        },
+        "AdmFName3": {
+          "tipo": "text",
+          "descripcion": "Admfname3. Type: text."
+        },
+        "AdmLName3": {
+          "tipo": "text",
+          "descripcion": "Admlname3. Type: text."
+        },
+        "AdmEmail3": {
+          "tipo": "text",
+          "descripcion": "Admemail3. Type: text."
+        },
+        "LastUpdate": {
+          "tipo": "text",
+          "descripcion": "Lastupdate. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

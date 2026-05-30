@@ -1,0 +1,62 @@
+[
+  {
+    "id": 7180,
+    "db_id": "flight_2",
+    "question": "Which country does Airline \"JetBlue Airways\" belong to?",
+    "sql_query": "SELECT Country FROM AIRLINES WHERE Airline  =  \"JetBlue Airways\""
+  },
+  {
+    "id": 7001,
+    "db_id": "concert_singer",
+    "question": "How many singers do we have?",
+    "sql_query": "SELECT count(*) FROM singer"
+  },
+  {
+    "id": 7430,
+    "db_id": "wta_1",
+    "question": "Find the total number of players.",
+    "sql_query": "SELECT count(*) FROM players"
+  },
+  {
+    "id": 7412,
+    "db_id": "museum_visit",
+    "question": "How many visitors below age 30 are there?",
+    "sql_query": "SELECT count(*) FROM visitor WHERE age  <  30"
+  },
+  {
+    "id": 7863,
+    "db_id": "network_1",
+    "question": "How many high schoolers are there?",
+    "sql_query": "SELECT count(*) FROM Highschooler"
+  },
+  {
+    "id": 7088,
+    "db_id": "car_1",
+    "question": "How many continents are there?",
+    "sql_query": "SELECT count(*) FROM CONTINENTS;"
+  },
+  {
+    "id": 7586,
+    "db_id": "tvshow",
+    "question": "List the title of all cartoons in alphabetical order.",
+    "sql_query": "SELECT Title FROM Cartoon ORDER BY title"
+  },
+  {
+    "id": 7046,
+    "db_id": "pets_1",
+    "question": "Find the number of pets whose weight is heavier than 10.",
+    "sql_query": "SELECT count(*) FROM pets WHERE weight  >  10"
+  },
+  {
+    "id": 7508,
+    "db_id": "student_transcripts_tracking",
+    "question": "what are all the addresses including line 1 and line 2?",
+    "sql_query": "SELECT line_1 ,  line_2 FROM addresses"
+  },
+  {
+    "id": 7919,
+    "db_id": "dog_kennels",
+    "question": "Which states have both owners and professionals living there?",
+    "sql_query": "SELECT state FROM Owners INTERSECT SELECT state FROM Professionals"
+  }
+]

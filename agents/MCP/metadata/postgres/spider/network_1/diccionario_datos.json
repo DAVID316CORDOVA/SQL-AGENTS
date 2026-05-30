@@ -1,0 +1,48 @@
+{
+  "tablas": {
+    "Highschooler": {
+      "descripcion": "Table Highschooler from the network_1 database.",
+      "columnas": {
+        "ID": {
+          "tipo": "number",
+          "descripcion": "Id. Primary key."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name."
+        },
+        "grade": {
+          "tipo": "number",
+          "descripcion": "Grade."
+        }
+      }
+    },
+    "Friend": {
+      "descripcion": "Table Friend from the network_1 database.",
+      "columnas": {
+        "student_id": {
+          "tipo": "number",
+          "descripcion": "Student Id. Primary key. References Highschooler.ID."
+        },
+        "friend_id": {
+          "tipo": "number",
+          "descripcion": "Friend Id. References Highschooler.ID."
+        }
+      }
+    },
+    "Likes": {
+      "descripcion": "Table Likes from the network_1 database.",
+      "columnas": {
+        "student_id": {
+          "tipo": "number",
+          "descripcion": "Student Id. Primary key. References Highschooler.ID."
+        },
+        "liked_id": {
+          "tipo": "number",
+          "descripcion": "Liked Id. References Highschooler.ID."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

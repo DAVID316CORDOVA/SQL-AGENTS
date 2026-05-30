@@ -1,0 +1,41 @@
+{
+  "available_entities": {
+    "2008_all_ireland_senior_hurling_championship_2_11190568_2": {
+      "all_columns": [
+        "player",
+        "team",
+        "date",
+        "opposition",
+        "game"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "player",
+        "team",
+        "date",
+        "opposition",
+        "game"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 37,
+      "table_description": "Wikipedia table: 2008_all_ireland_senior_hurling_championship_2_11190568_2.",
+      "column_descriptions": {
+        "player": "Player. Type: text.",
+        "team": "Team. Type: text.",
+        "date": "Date. Type: text.",
+        "opposition": "Opposition. Type: text.",
+        "game": "Game. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

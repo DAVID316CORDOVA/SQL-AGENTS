@@ -1,0 +1,94 @@
+{
+  "intents": [
+    {
+      "expected_refined_query": "How many singers do we have?",
+      "is_valid": true,
+      "paraphrases": [
+        "how many singers do we have",
+        "what is the count of singers in the database",
+        "give me the total number of singers"
+      ]
+    },
+    {
+      "expected_refined_query": "What is the average and maximum capacities of all stadiums?",
+      "is_valid": true,
+      "paraphrases": [
+        "what is the average and maximum capacity of all stadiums",
+        "for all stadiums, tell me the average and the highest capacity",
+        "average and max seating across all stadiums"
+      ]
+    },
+    {
+      "expected_refined_query": "List all singers from France ordered by age.",
+      "is_valid": true,
+      "paraphrases": [
+        "list singers from france ordered by age",
+        "show all french singers sorted by age",
+        "give me the singers from France, sorted by age"
+      ]
+    },
+    {
+      "expected_refined_query": "What is the average, minimum, and maximum age of all French singers?",
+      "is_valid": true,
+      "paraphrases": [
+        "what is the avg, min, and max age of all singers from france",
+        "average minimum and maximum age for singers from France",
+        "for French singers give me the mean, lowest and highest age"
+      ]
+    },
+    {
+      "expected_refined_query": "Show the stadium name that had the most concerts.",
+      "is_valid": true,
+      "paraphrases": [
+        "show the stadium name that hosted the most concerts",
+        "which stadium had the highest number of concerts",
+        "name the venue with the greatest number of concert events"
+      ]
+    },
+    {
+      "expected_refined_query": "",
+      "is_valid": false,
+      "paraphrases": [
+        "drop table singer",
+        "remove the singer table from the database",
+        "destroy the singers table permanently"
+      ]
+    },
+    {
+      "expected_refined_query": "",
+      "is_valid": false,
+      "paraphrases": [
+        "who is the best singer in the world",
+        "tell me the greatest singer of all time",
+        "which singer is considered the most legendary"
+      ]
+    },
+    {
+      "expected_refined_query": "",
+      "is_valid": false,
+      "paraphrases": [
+        "hello, what can you help me with?",
+        "hi there, what are you able to do?",
+        "good morning, how can you assist me?"
+      ]
+    },
+    {
+      "expected_refined_query": "",
+      "is_valid": false,
+      "paraphrases": [
+        "what is the weather in Paris today",
+        "how is the weather forecast for Paris",
+        "will it rain in Paris tomorrow?"
+      ]
+    },
+    {
+      "expected_refined_query": "",
+      "is_valid": false,
+      "paraphrases": [
+        "delete all singers older than 50",
+        "remove every singer whose age is above 50",
+        "erase all records of singers that are over 50 years old"
+      ]
+    }
+  ]
+}

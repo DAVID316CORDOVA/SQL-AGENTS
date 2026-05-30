@@ -1,0 +1,214 @@
+{
+  "available_entities": {
+    "players": {
+      "all_columns": [
+        "player_id",
+        "first_name",
+        "last_name",
+        "hand",
+        "birth_date",
+        "country_code"
+      ],
+      "numeric_columns": [
+        "player_id"
+      ],
+      "categorical_columns": [
+        "first_name",
+        "last_name",
+        "hand",
+        "birth_date",
+        "country_code"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "player_id"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_players_1": {
+          "columns": [
+            "player_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 20662,
+      "table_description": "Table players with 20662 rows.",
+      "column_descriptions": {
+        "player_id": "Player Id. Type: integer.",
+        "first_name": "First Name. Type: text.",
+        "last_name": "Last Name. Type: text.",
+        "hand": "Hand. Type: text.",
+        "birth_date": "Birth Date. Type: text.",
+        "country_code": "Country Code. Type: text."
+      }
+    },
+    "matches": {
+      "all_columns": [
+        "best_of",
+        "draw_size",
+        "loser_age",
+        "loser_entry",
+        "loser_hand",
+        "loser_ht",
+        "loser_id",
+        "loser_ioc",
+        "loser_name",
+        "loser_rank",
+        "loser_rank_points",
+        "loser_seed",
+        "match_num",
+        "minutes",
+        "round",
+        "score",
+        "surface",
+        "tourney_date",
+        "tourney_id",
+        "tourney_level",
+        "tourney_name",
+        "winner_age",
+        "winner_entry",
+        "winner_hand",
+        "winner_ht",
+        "winner_id",
+        "winner_ioc",
+        "winner_name",
+        "winner_rank",
+        "winner_rank_points",
+        "winner_seed",
+        "year"
+      ],
+      "numeric_columns": [
+        "best_of",
+        "draw_size",
+        "loser_age",
+        "loser_ht",
+        "loser_id",
+        "loser_rank",
+        "loser_rank_points",
+        "loser_seed",
+        "match_num",
+        "minutes",
+        "winner_age",
+        "winner_ht",
+        "winner_id",
+        "winner_rank",
+        "winner_rank_points",
+        "winner_seed",
+        "year"
+      ],
+      "categorical_columns": [
+        "loser_entry",
+        "loser_hand",
+        "loser_ioc",
+        "loser_name",
+        "round",
+        "score",
+        "surface",
+        "tourney_date",
+        "tourney_id",
+        "tourney_level",
+        "tourney_name",
+        "winner_entry",
+        "winner_hand",
+        "winner_ioc",
+        "winner_name"
+      ],
+      "categorical_values": {},
+      "indexes": {},
+      "partitions": null,
+      "row_count": 278,
+      "table_description": "Table matches with 278 rows.",
+      "column_descriptions": {
+        "best_of": "Best Of. Type: integer.",
+        "draw_size": "Draw Size. Type: integer.",
+        "loser_age": "Loser Age. Type: float.",
+        "loser_entry": "Loser Entry. Type: text.",
+        "loser_hand": "Loser Hand. Type: text.",
+        "loser_ht": "Loser Ht. Type: integer.",
+        "loser_id": "Loser Id. Type: integer.",
+        "loser_ioc": "Loser Ioc. Type: text.",
+        "loser_name": "Loser Name. Type: text.",
+        "loser_rank": "Loser Rank. Type: integer.",
+        "loser_rank_points": "Loser Rank Points. Type: integer.",
+        "loser_seed": "Loser Seed. Type: integer.",
+        "match_num": "Match Num. Type: integer.",
+        "minutes": "Minutes. Type: integer.",
+        "round": "Round. Type: text.",
+        "score": "Score. Type: text.",
+        "surface": "Surface. Type: text.",
+        "tourney_date": "Tourney Date. Type: text.",
+        "tourney_id": "Tourney Id. Type: text.",
+        "tourney_level": "Tourney Level. Type: text.",
+        "tourney_name": "Tourney Name. Type: text.",
+        "winner_age": "Winner Age. Type: float.",
+        "winner_entry": "Winner Entry. Type: text.",
+        "winner_hand": "Winner Hand. Type: text.",
+        "winner_ht": "Winner Ht. Type: integer.",
+        "winner_id": "Winner Id. Type: integer.",
+        "winner_ioc": "Winner Ioc. Type: text.",
+        "winner_name": "Winner Name. Type: text.",
+        "winner_rank": "Winner Rank. Type: integer.",
+        "winner_rank_points": "Winner Rank Points. Type: integer.",
+        "winner_seed": "Winner Seed. Type: integer.",
+        "year": "Year. Type: integer."
+      }
+    },
+    "rankings": {
+      "all_columns": [
+        "ranking_date",
+        "ranking",
+        "player_id",
+        "ranking_points",
+        "tours"
+      ],
+      "numeric_columns": [
+        "ranking",
+        "player_id",
+        "ranking_points",
+        "tours"
+      ],
+      "categorical_columns": [
+        "ranking_date"
+      ],
+      "categorical_values": {},
+      "indexes": {},
+      "partitions": null,
+      "row_count": 510437,
+      "table_description": "Table rankings with 510437 rows.",
+      "column_descriptions": {
+        "ranking_date": "Ranking Date. Type: text.",
+        "ranking": "Ranking. Type: integer.",
+        "player_id": "Player Id. Type: integer.",
+        "ranking_points": "Ranking Points. Type: integer.",
+        "tours": "Tours. Type: integer."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "matches",
+      "from_column": "winner_id",
+      "to_table": "players",
+      "to_column": "player_id",
+      "join_hint": "matches.winner_id = players.player_id"
+    },
+    {
+      "from_table": "matches",
+      "from_column": "loser_id",
+      "to_table": "players",
+      "to_column": "player_id",
+      "join_hint": "matches.loser_id = players.player_id"
+    },
+    {
+      "from_table": "rankings",
+      "from_column": "player_id",
+      "to_table": "players",
+      "to_column": "player_id",
+      "join_hint": "rankings.player_id = players.player_id"
+    }
+  ]
+}

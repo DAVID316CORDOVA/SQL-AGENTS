@@ -1,0 +1,297 @@
+{
+  "tablas": {
+    "account": {
+      "descripcion": "Table account from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "account_id": {
+          "tipo": "numeric",
+          "descripcion": "Account Id. Type: bigint."
+        },
+        "district_id": {
+          "tipo": "numeric",
+          "descripcion": "District Id. Type: bigint."
+        },
+        "frequency": {
+          "tipo": "text",
+          "descripcion": "Frequency. Type: text."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        }
+      }
+    },
+    "card": {
+      "descripcion": "Table card from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "card_id": {
+          "tipo": "numeric",
+          "descripcion": "Card Id. Type: bigint."
+        },
+        "disp_id": {
+          "tipo": "numeric",
+          "descripcion": "Disp Id. Type: bigint."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "issued": {
+          "tipo": "text",
+          "descripcion": "Issued. Type: text."
+        }
+      }
+    },
+    "client": {
+      "descripcion": "Table client from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "client_id": {
+          "tipo": "numeric",
+          "descripcion": "Client Id. Type: bigint."
+        },
+        "gender": {
+          "tipo": "text",
+          "descripcion": "Gender. Type: text."
+        },
+        "birth_date": {
+          "tipo": "text",
+          "descripcion": "Birth Date. Type: text."
+        },
+        "district_id": {
+          "tipo": "numeric",
+          "descripcion": "District Id. Type: bigint."
+        }
+      }
+    },
+    "disp": {
+      "descripcion": "Table disp from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "disp_id": {
+          "tipo": "numeric",
+          "descripcion": "Disp Id. Type: bigint."
+        },
+        "client_id": {
+          "tipo": "numeric",
+          "descripcion": "Client Id. Type: bigint."
+        },
+        "account_id": {
+          "tipo": "numeric",
+          "descripcion": "Account Id. Type: bigint."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        }
+      }
+    },
+    "district": {
+      "descripcion": "Table district from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "district_id": {
+          "tipo": "numeric",
+          "descripcion": "District Id. Type: bigint."
+        },
+        "A2": {
+          "tipo": "text",
+          "descripcion": "A2. Type: text."
+        },
+        "A3": {
+          "tipo": "text",
+          "descripcion": "A3. Type: text."
+        },
+        "A4": {
+          "tipo": "text",
+          "descripcion": "A4. Type: text."
+        },
+        "A5": {
+          "tipo": "text",
+          "descripcion": "A5. Type: text."
+        },
+        "A6": {
+          "tipo": "text",
+          "descripcion": "A6. Type: text."
+        },
+        "A7": {
+          "tipo": "text",
+          "descripcion": "A7. Type: text."
+        },
+        "A8": {
+          "tipo": "numeric",
+          "descripcion": "A8. Type: bigint."
+        },
+        "A9": {
+          "tipo": "numeric",
+          "descripcion": "A9. Type: bigint."
+        },
+        "A10": {
+          "tipo": "numeric",
+          "descripcion": "A10. Type: double."
+        },
+        "A11": {
+          "tipo": "numeric",
+          "descripcion": "A11. Type: bigint."
+        },
+        "A12": {
+          "tipo": "numeric",
+          "descripcion": "A12. Type: double."
+        },
+        "A13": {
+          "tipo": "numeric",
+          "descripcion": "A13. Type: double."
+        },
+        "A14": {
+          "tipo": "numeric",
+          "descripcion": "A14. Type: bigint."
+        },
+        "A15": {
+          "tipo": "numeric",
+          "descripcion": "A15. Type: bigint."
+        },
+        "A16": {
+          "tipo": "numeric",
+          "descripcion": "A16. Type: bigint."
+        }
+      }
+    },
+    "loan": {
+      "descripcion": "Table loan from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "loan_id": {
+          "tipo": "numeric",
+          "descripcion": "Loan Id. Type: bigint."
+        },
+        "account_id": {
+          "tipo": "numeric",
+          "descripcion": "Account Id. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: bigint."
+        },
+        "duration": {
+          "tipo": "numeric",
+          "descripcion": "Duration. Type: bigint."
+        },
+        "payments": {
+          "tipo": "numeric",
+          "descripcion": "Payments. Type: double."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Type: text."
+        }
+      }
+    },
+    "order": {
+      "descripcion": "Table order from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "order_id": {
+          "tipo": "numeric",
+          "descripcion": "Order Id. Type: bigint."
+        },
+        "account_id": {
+          "tipo": "numeric",
+          "descripcion": "Account Id. Type: bigint."
+        },
+        "bank_to": {
+          "tipo": "text",
+          "descripcion": "Bank To. Type: text."
+        },
+        "account_to": {
+          "tipo": "numeric",
+          "descripcion": "Account To. Type: bigint."
+        },
+        "amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: double."
+        },
+        "k_symbol": {
+          "tipo": "text",
+          "descripcion": "K Symbol. Type: text."
+        }
+      }
+    },
+    "trans": {
+      "descripcion": "Table trans from the financial BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "trans_id": {
+          "tipo": "numeric",
+          "descripcion": "Trans Id. Type: bigint."
+        },
+        "account_id": {
+          "tipo": "numeric",
+          "descripcion": "Account Id. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "operation": {
+          "tipo": "text",
+          "descripcion": "Operation. Type: text."
+        },
+        "amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: bigint."
+        },
+        "balance": {
+          "tipo": "numeric",
+          "descripcion": "Balance. Type: bigint."
+        },
+        "k_symbol": {
+          "tipo": "text",
+          "descripcion": "K Symbol. Type: text."
+        },
+        "bank": {
+          "tipo": "text",
+          "descripcion": "Bank. Type: text."
+        },
+        "account": {
+          "tipo": "numeric",
+          "descripcion": "Account. Type: bigint."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

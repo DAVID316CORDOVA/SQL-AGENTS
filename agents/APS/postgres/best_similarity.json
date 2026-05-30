@@ -1,0 +1,8 @@
+{
+  "similarity": "cosine",
+  "combined_score": 0.842,
+  "F1_tables": 0.927,
+  "F1_columns": 0.757,
+  "timestamp": "2026-05-23T22:57:59",
+  "dataset": "spider:concert_singer (11 questions)"
+}

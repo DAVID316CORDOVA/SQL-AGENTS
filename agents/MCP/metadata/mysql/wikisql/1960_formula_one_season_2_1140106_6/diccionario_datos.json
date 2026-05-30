@@ -1,0 +1,34 @@
+{
+  "tablas": {
+    "1960_formula_one_season_2_1140106_6": {
+      "descripcion": "Table 1960_formula_one_season_2_1140106_6",
+      "columnas": {
+        "race_name": {
+          "tipo": "text",
+          "descripcion": "Race Name. Text value."
+        },
+        "circuit": {
+          "tipo": "text",
+          "descripcion": "Circuit. Text value."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Text value."
+        },
+        "winning_driver": {
+          "tipo": "text",
+          "descripcion": "Winning driver. Text value."
+        },
+        "constructor": {
+          "tipo": "text",
+          "descripcion": "Constructor. Text value."
+        },
+        "report": {
+          "tipo": "text",
+          "descripcion": "Report. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

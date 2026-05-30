@@ -1,0 +1,130 @@
+{
+  "tablas": {
+    "customers": {
+      "descripcion": "Table customers from the debit_card_specializing BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "CustomerID": {
+          "tipo": "numeric",
+          "descripcion": "Customerid. Type: bigint."
+        },
+        "Segment": {
+          "tipo": "text",
+          "descripcion": "Segment. Type: text."
+        },
+        "Currency": {
+          "tipo": "text",
+          "descripcion": "Currency. Type: text."
+        }
+      }
+    },
+    "gasstations": {
+      "descripcion": "Table gasstations from the debit_card_specializing BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "GasStationID": {
+          "tipo": "numeric",
+          "descripcion": "Gasstationid. Type: bigint."
+        },
+        "ChainID": {
+          "tipo": "numeric",
+          "descripcion": "Chainid. Type: bigint."
+        },
+        "Country": {
+          "tipo": "text",
+          "descripcion": "Country. Type: text."
+        },
+        "Segment": {
+          "tipo": "text",
+          "descripcion": "Segment. Type: text."
+        }
+      }
+    },
+    "products": {
+      "descripcion": "Table products from the debit_card_specializing BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "ProductID": {
+          "tipo": "numeric",
+          "descripcion": "Productid. Type: bigint."
+        },
+        "Description": {
+          "tipo": "text",
+          "descripcion": "Description. Type: text."
+        }
+      }
+    },
+    "sqlite_sequence": {
+      "descripcion": "Table sqlite_sequence from the debit_card_specializing BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "seq": {
+          "tipo": "text",
+          "descripcion": "Seq. Type: text."
+        }
+      }
+    },
+    "transactions_1k": {
+      "descripcion": "Table transactions_1k from the debit_card_specializing BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "TransactionID": {
+          "tipo": "numeric",
+          "descripcion": "Transactionid. Type: bigint."
+        },
+        "Date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "Time": {
+          "tipo": "text",
+          "descripcion": "Time. Type: text."
+        },
+        "CustomerID": {
+          "tipo": "numeric",
+          "descripcion": "Customerid. Type: bigint."
+        },
+        "CardID": {
+          "tipo": "numeric",
+          "descripcion": "Cardid. Type: bigint."
+        },
+        "GasStationID": {
+          "tipo": "numeric",
+          "descripcion": "Gasstationid. Type: bigint."
+        },
+        "ProductID": {
+          "tipo": "numeric",
+          "descripcion": "Productid. Type: bigint."
+        },
+        "Amount": {
+          "tipo": "numeric",
+          "descripcion": "Amount. Type: bigint."
+        },
+        "Price": {
+          "tipo": "numeric",
+          "descripcion": "Price. Type: double."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

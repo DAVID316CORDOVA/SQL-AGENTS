@@ -1,0 +1,22 @@
+{
+  "model": "claude-sonnet-4-6",
+  "temperature": 0.7,
+  "combined_score": 0.824,
+  "Faithfulness": 0.981,
+  "Groundedness": 0.912,
+  "ROUGE-L": 0.408,
+  "Brier": 0.0061,
+  "ECE": 0.068,
+  "note": "fase1 optuna TPE seed=66 — ganador claude-sonnet-4-6 T=0.7",
+  "phase2": {
+    "Faithfulness": 0.893,
+    "Groundedness": 0.917,
+    "ROUGE-L": 0.364,
+    "Brier": 0.0575,
+    "ECE": 0.003,
+    "combined_score": 0.785,
+    "n_paraphrases": 30,
+    "n_intents": 10,
+    "note": "28/30 outcomes=1; 2 fallos en Intent 5 (APS, formulaciones indirectas)"
+  }
+}

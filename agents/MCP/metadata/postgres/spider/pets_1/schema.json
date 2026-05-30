@@ -1,0 +1,120 @@
+{
+  "available_entities": {
+    "Student": {
+      "all_columns": [
+        "StuID",
+        "LName",
+        "Fname",
+        "Age",
+        "Sex",
+        "Major",
+        "Advisor",
+        "city_code"
+      ],
+      "numeric_columns": [
+        "StuID",
+        "Age",
+        "Major",
+        "Advisor"
+      ],
+      "categorical_columns": [
+        "LName",
+        "Fname",
+        "Sex",
+        "city_code"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "StuID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 34,
+      "table_description": "Table Student with 34 rows.",
+      "column_descriptions": {
+        "StuID": "Stuid. Type: integer.",
+        "LName": "Lname. Type: text.",
+        "Fname": "Fname. Type: text.",
+        "Age": "Age. Type: integer.",
+        "Sex": "Sex. Type: text.",
+        "Major": "Major. Type: integer.",
+        "Advisor": "Advisor. Type: integer.",
+        "city_code": "City Code. Type: text."
+      }
+    },
+    "Has_Pet": {
+      "all_columns": [
+        "StuID",
+        "PetID"
+      ],
+      "numeric_columns": [
+        "StuID",
+        "PetID"
+      ],
+      "categorical_columns": [],
+      "categorical_values": {},
+      "indexes": {},
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Has_Pet with 3 rows.",
+      "column_descriptions": {
+        "StuID": "Stuid. Type: integer.",
+        "PetID": "Petid. Type: integer."
+      }
+    },
+    "Pets": {
+      "all_columns": [
+        "PetID",
+        "PetType",
+        "pet_age",
+        "weight"
+      ],
+      "numeric_columns": [
+        "PetID",
+        "pet_age",
+        "weight"
+      ],
+      "categorical_columns": [
+        "PetType"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "PetID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 3,
+      "table_description": "Table Pets with 3 rows.",
+      "column_descriptions": {
+        "PetID": "Petid. Type: integer.",
+        "PetType": "Pettype. Type: text.",
+        "pet_age": "Pet Age. Type: integer.",
+        "weight": "Weight. Type: float."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "Has_Pet",
+      "from_column": "StuID",
+      "to_table": "Student",
+      "to_column": "StuID",
+      "join_hint": "Has_Pet.StuID = Student.StuID"
+    },
+    {
+      "from_table": "Has_Pet",
+      "from_column": "PetID",
+      "to_table": "Pets",
+      "to_column": "PetID",
+      "join_hint": "Has_Pet.PetID = Pets.PetID"
+    }
+  ]
+}

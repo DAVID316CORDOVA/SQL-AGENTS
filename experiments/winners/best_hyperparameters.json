@@ -1,0 +1,511 @@
+{
+  "version": "5.1",
+  "generated_at": "2026-05-26T00:30:00",
+  "note": "Fase 1-4 completas para todos los agentes y Orquestador (26-may-2026). P3 Orquestador: gemini-2.5-flash gana en ambos backends. P4 MySQL combined=2.413, Postgres combined=2.099. Gap robustez: alternative_vocabulary es el punto debil en ambos backends.",
+  "winners": {
+    "AR": {
+      "role": "AR",
+      "agent": "AR",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "gemini-2.5-flash",
+      "temperature": 0.5,
+      "Faithfulness": 0.959,
+      "Groundedness": 0.99,
+      "ROUGE-L": 0.97,
+      "Brier": 0.0043,
+      "ECE": 0.053,
+      "combined_score": 0.962,
+      "note": "fase0 grid exhaustivo 30/30 ganador (2026-05-25). Fase1 TPE: sonnet T=0.3=0.959 (delta=0.003, ruido).",
+      "phase2": {
+        "Faithfulness": 0.917,
+        "Groundedness": 0.968,
+        "ROUGE-L": 0.796,
+        "Brier": 0.0043,
+        "ECE": 0.051,
+        "combined_score": 0.902
+      }
+    },
+    "AG_mysql": {
+      "role": "AG_mysql",
+      "agent": "AG",
+      "backend": "mysql",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-haiku-4-5",
+      "temperature": 0.7,
+      "Faithfulness": 0.806,
+      "Groundedness": 0.926,
+      "ROUGE-L": 0.972,
+      "Brier": 0.0323,
+      "ECE": 0.024,
+      "combined_score": 2.685,
+      "phase2": {
+        "Faithfulness": 0.806,
+        "Groundedness": 0.926,
+        "Brier": 0.0323,
+        "ECE": 0.024,
+        "combined_score": 2.634,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      },
+      "phase2_2": {
+        "Faithfulness": 0.816,
+        "Groundedness": 0.922,
+        "ROUGE-L_SQL": 0.975,
+        "Brier": 0.0033,
+        "ECE": 0.055,
+        "combined_score": 2.655,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      }
+    },
+    "AG_postgres": {
+      "role": "AG_postgres",
+      "agent": "AG",
+      "backend": "postgres",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-haiku-4-5",
+      "temperature": 0.3,
+      "Faithfulness": 0.814,
+      "Groundedness": 0.959,
+      "ROUGE-L": 0.967,
+      "Brier": 0.003,
+      "ECE": 0.05,
+      "combined_score": 2.687,
+      "note": "phase_1_2 seed=66 prompt limpio + normalize_sql_v2 (2026-05-28). phase_1 original: 2.592.",
+      "phase2": {
+        "Faithfulness": 0.78,
+        "Groundedness": 0.925,
+        "Brier": 0.0634,
+        "ECE": 0.011,
+        "combined_score": 2.584,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      },
+      "phase2_2": {
+        "Faithfulness": 0.813,
+        "Groundedness": 0.92,
+        "ROUGE-L_SQL": 0.964,
+        "Brier": 0.0031,
+        "ECE": 0.053,
+        "combined_score": 2.641,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      }
+    },
+    "AV_mysql": {
+      "role": "AV_mysql",
+      "agent": "AV",
+      "backend": "mysql",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-sonnet-4-6",
+      "temperature": 0.7,
+      "Faithfulness": 0.98,
+      "Groundedness": 0.927,
+      "ROUGE-L": 1.0,
+      "Brier": 0.001,
+      "ECE": 0.034,
+      "accuracy": 1.0,
+      "combined_score": 0.956,
+      "note": "phase_1_2 seed=66 prompt limpio (2026-05-29). phase_1 original: gpt-4o T=0.3 combined=0.959 Brier=0.099.",
+      "phase2": {
+        "Faithfulness": 0.893,
+        "Groundedness": 0.87,
+        "ROUGE-L": 0.9,
+        "F1": 0.909,
+        "Accuracy": 0.9,
+        "Brier": 0.0959,
+        "ECE": 0.059,
+        "combined_score": 0.854,
+        "n_paraphrases": 30
+      },
+      "phase2_2": {
+        "Faithfulness": 0.959,
+        "Groundedness": 0.924,
+        "ROUGE-L": 1.0,
+        "F1": 1.0,
+        "accuracy": 1.0,
+        "Brier": 0.0011,
+        "ECE": 0.033,
+        "combined_score": 0.946,
+        "n_samples": 10
+      }
+    },
+    "AV_postgres": {
+      "role": "AV_postgres",
+      "agent": "AV",
+      "backend": "postgres",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-haiku-4-5",
+      "temperature": 0.0,
+      "Faithfulness": 0.982,
+      "Groundedness": 0.922,
+      "ROUGE-L": 1.0,
+      "Brier": 0.001,
+      "ECE": 0.031,
+      "accuracy": 1.0,
+      "combined_score": 0.955,
+      "note": "phase_1_2 seed=66 prompt limpio + RULE7 relajada (2026-05-28). phase_1 original: 0.962 (sonnet T=0.0). Brier 0.099->0.001.",
+      "phase2": {
+        "F1": 1.0,
+        "Accuracy": 1.0,
+        "Brier": 0.0014,
+        "ECE": 0.036,
+        "combined_score": 0.945,
+        "n_paraphrases": 30
+      },
+      "phase2_2": {
+        "Faithfulness": 0.919,
+        "Groundedness": 0.856,
+        "ROUGE-L": 0.9,
+        "F1": 0.889,
+        "accuracy": 0.9,
+        "Brier": 0.0648,
+        "ECE": 0.053,
+        "combined_score": 0.866,
+        "n_samples": 10
+      }
+    },
+    "APS_mysql": {
+      "role": "APS_mysql",
+      "agent": "APS",
+      "backend": "mysql",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "similarity_metric": "cosine",
+      "embedding_model": "intfloat/multilingual-e5-base",
+      "F1_tables": 0.927,
+      "F1_columns": 0.757,
+      "combined_score": 0.842
+    },
+    "APS_postgres": {
+      "role": "APS_postgres",
+      "agent": "APS",
+      "backend": "postgres",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "similarity_metric": "cosine",
+      "embedding_model": "intfloat/multilingual-e5-base",
+      "F1_tables": 0.927,
+      "F1_columns": 0.757,
+      "combined_score": 0.842
+    },
+    "AE": {
+      "role": "AE",
+      "agent": "AE",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "gpt-4o",
+      "temperature": 0.3,
+      "Faithfulness": 0.817,
+      "Groundedness": 0.975,
+      "ROUGE-L": 0.324,
+      "Brier": 0.01,
+      "ECE": 0.1,
+      "combined_score": 0.759,
+      "note": "fase1 optuna TPE seed=7 â€” ganador claude-haiku-4-5 T=0.1 (2026-05-24)",
+      "phase2": {
+        "Faithfulness": 0.847,
+        "Groundedness": 0.889,
+        "ROUGE-L": 0.51,
+        "Brier": 0.0367,
+        "ECE": 0.067,
+        "combined_score": 0.776,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      }
+    },
+    "AS": {
+      "role": "AS",
+      "agent": "AS",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-sonnet-4-6",
+      "temperature": 0.7,
+      "Faithfulness": 0.941,
+      "Groundedness": 0.96,
+      "ROUGE-L": 0.422,
+      "Brier": 0.006,
+      "ECE": 0.07,
+      "combined_score": 0.824,
+      "note": "fase1 optuna TPE seed=7 â€” ganador claude-sonnet-4-6 T=0.3 (2026-05-24). Prompt EN, agentic loop, threshold 0.80.",
+      "phase2": {
+        "Faithfulness": 0.881,
+        "Groundedness": 0.909,
+        "ROUGE-L": 0.335,
+        "Brier": 0.0308,
+        "ECE": 0.036,
+        "combined_score": 0.77,
+        "n_paraphrases": 30,
+        "n_intents": 10
+      }
+    },
+    "Orchestrator_mysql": {
+      "role": "Orchestrator_mysql",
+      "agent": "Orchestrator",
+      "classifier_key": "classifier",
+      "backend": "mysql",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-haiku-4-5",
+      "temperature": 0.3,
+      "Faithfulness": 0.857,
+      "Groundedness": 0.948,
+      "Correctness": 0.991,
+      "ROUGE-L_SQL": 0.591,
+      "Brier": 0.0051,
+      "ECE": 0.071,
+      "combined_score": 2.7435,
+      "n_cases": 10,
+      "note": "phase_3_2 seed=66 — ganador claude-haiku T=0.3 (2026-05-29). AG claude-haiku T=0.3, AV claude-sonnet T=0.7. phase_3 original: gemini T=0.7 combined=2.705.",
+      "phase4": {
+        "Faithfulness": 0.821,
+        "Groundedness": 0.932,
+        "Correctness": 0.791,
+        "ROUGE-L_SQL": 0.526,
+        "WACS": 0.656,
+        "Brier": 0.0972,
+        "ECE": 0.034,
+        "combined_score": 2.413,
+        "note": "phase_4 original (2026-05-25). Gap: alternative_vocabulary punto debil (2.332)."
+      },
+      "phase4_2": {
+        "Faithfulness": 0.857,
+        "Groundedness": 0.942,
+        "Correctness": 0.891,
+        "ROUGE-L_SQL": 0.539,
+        "Brier": 0.0969,
+        "ECE": 0.035,
+        "combined_score": 2.488,
+        "robustness_mean": 2.488,
+        "n_paraphrases": 30,
+        "variant_breakdown": {
+          "informal": 2.525,
+          "open_rephrased": 2.543,
+          "alternative_vocabulary": 2.397
+        },
+        "note": "phase_4_2 claude-haiku T=0.3 (2026-05-29). AG claude-haiku T=0.3 + AV claude-sonnet T=0.7. Bug1+Bug3 prompt fix. Score norm: 82.9%."
+      }
+    },
+    "Orchestrator_postgres": {
+      "role": "Orchestrator_postgres",
+      "agent": "Orchestrator",
+      "classifier_key": "classifier",
+      "backend": "postgres",
+      "dataset": "spider:concert_singer",
+      "available": true,
+      "model": "claude-haiku-4-5",
+      "temperature": 0.3,
+      "Faithfulness": 0.81,
+      "Groundedness": 0.875,
+      "Correctness": 0.8,
+      "ROUGE-L_SQL": 0.575,
+      "Brier": 0.0045,
+      "ECE": 0.067,
+      "combined_score": 2.5537,
+      "n_cases": 10,
+      "note": "phase_3_2 optuna TPE seed=66 — ganador claude-haiku-4-5 T=0.3 (2026-05-29, Bug1+Bug3 fix). AG/AV con prompts limpios + normalize_sql_v2. Brier 0.005. Sin fix: gpt-4o T=0.3 combined=2.527.",
+      "phase3_1": {
+        "model": "gemini-2.5-flash",
+        "temperature": 0.5,
+        "combined_score": 2.2532,
+        "Brier": 0.1281,
+        "ECE": 0.0782,
+        "note": "original phase_3 (2026-05-25) — AG/AV con prompts contaminados + normalize_sql_v1"
+      },
+      "phase4": {
+        "Faithfulness": 0.786,
+        "Groundedness": 0.936,
+        "Correctness": 0.9,
+        "ROUGE-L_SQL": 0.524,
+        "Brier": 0.0909,
+        "ECE": 0.0356,
+        "combined_score": 2.4952,
+        "robustness_mean": 2.4952,
+        "n_paraphrases": 30,
+        "variant_breakdown": {
+          "informal": 2.575,
+          "open_rephrased": 2.539,
+          "alternative_vocabulary": 2.371
+        },
+        "note": "phase_4_2 claude-haiku-4-5 T=0.3 (ganador phase_3_2). Bug1+Bug2+Bug3 corregidos. ROUGE 0.70. Sin fixes con gpt-4o: 2.262. Con fixes gpt-4o: 2.504.",
+        "bugs": {
+          "bug1_as_routing": "AS nunca se activa, siempre usa AE. Impacto: -0.18 combined.",
+          "bug2_brier_threshold": "ROUGE umbral 0.80 demasiado rigido. 3 SQLs correctos caen en outcome=0. Bajar a 0.70.",
+          "bug3_orchestrator_bypass": "Rechaza queries corteses sin pasar por AR. Impacto: -0.04."
+        }
+      }
+    }
+  },
+  "agent_models": {
+    "AR": "gemini-2.5-flash",
+    "AG": "claude-haiku-4-5",
+    "AV": "gpt-4o",
+    "AE": "gpt-4o",
+    "AS": "claude-sonnet-4-6",
+    "Orchestrator_mysql": "gemini-2.5-flash",
+    "Orchestrator_postgres": "gemini-2.5-flash"
+  },
+  "agent_temperatures": {
+    "AR": 0.5,
+    "AG_mysql": 0.7,
+    "AG_postgres": 0.3,
+    "AV_mysql": 0.3,
+    "AV_postgres": 0.0,
+    "AE": 0.3,
+    "AS": 0.7,
+    "Orchestrator_mysql": 0.7,
+    "Orchestrator_postgres": 0.5
+  },
+  "lookup": {
+    "AR": [
+      {
+        "role": "AR",
+        "agent": "AR",
+        "dataset": "spider:concert_singer",
+        "available": true,
+        "model": "gemini-2.5-flash",
+        "temperature": 0.5,
+        "Faithfulness": 0.959,
+        "Groundedness": 0.99,
+        "ROUGE-L": 0.97,
+        "Brier": 0.0043,
+        "ECE": 0.053,
+        "combined_score": 0.962,
+        "note": "fase0 grid â€” gemini-2.5-flash T=0.5 (fase1 pendiente, 2026-05-25)"
+      }
+    ],
+    "APS": [
+      {
+        "backend": "mysql",
+        "dataset": "spider:concert_singer",
+        "similarity_metric": "cosine",
+        "embedding_model": "intfloat/multilingual-e5-base",
+        "F1_tables": 0.927,
+        "F1_columns": 0.757,
+        "combined_score": 0.842
+      },
+      {
+        "backend": "postgres",
+        "dataset": "spider:concert_singer",
+        "similarity_metric": "cosine",
+        "embedding_model": "intfloat/multilingual-e5-base",
+        "F1_tables": 0.927,
+        "F1_columns": 0.757,
+        "combined_score": 0.842
+      }
+    ],
+    "AG": [
+      {
+        "backend": "mysql",
+        "dataset": "spider:concert_singer",
+        "model": "claude-haiku-4-5",
+        "temperature": 0.7,
+        "Faithfulness": 0.806,
+        "Groundedness": 0.926,
+        "ROUGE-L": 0.972,
+        "Brier": 0.0323,
+        "ECE": 0.024,
+        "combined_score": 2.685
+      },
+      {
+        "backend": "postgres",
+        "dataset": "spider:concert_singer",
+        "model": "claude-haiku-4-5",
+        "temperature": 0.3,
+        "Faithfulness": 0.78,
+        "Groundedness": 0.925,
+        "ROUGE-L": 0.985,
+        "Brier": 0.0634,
+        "ECE": 0.011,
+        "combined_score": 2.592
+      }
+    ],
+    "AV": [
+      {
+        "backend": "mysql",
+        "dataset": "spider:concert_singer",
+        "model": "gpt-4o",
+        "temperature": 0.3,
+        "Faithfulness": 0.847,
+        "Groundedness": 0.79,
+        "ROUGE-L": 0.9,
+        "Brier": 0.099,
+        "ECE": 0.08,
+        "accuracy": 0.9,
+        "combined_score": 0.959
+      },
+      {
+        "backend": "postgres",
+        "dataset": "spider:concert_singer",
+        "model": "claude-sonnet-4-6",
+        "temperature": 0.0,
+        "Faithfulness": 0.833,
+        "Groundedness": 0.802,
+        "ROUGE-L": 0.9,
+        "Brier": 0.099,
+        "ECE": 0.08,
+        "accuracy": 0.9,
+        "combined_score": 0.962
+      }
+    ],
+    "AE": [
+      {
+        "dataset": "spider:concert_singer",
+        "model": "gpt-4o",
+        "temperature": 0.3,
+        "Faithfulness": 0.817,
+        "Groundedness": 0.975,
+        "ROUGE-L": 0.324,
+        "Brier": 0.01,
+        "ECE": 0.1,
+        "combined_score": 0.759,
+        "note": "fase1 optuna TPE seed=7 — ganador gpt-4o T=0.3 (2026-05-24)"
+      }
+    ],
+    "AS": [
+      {
+        "dataset": "spider:concert_singer",
+        "model": "claude-sonnet-4-6",
+        "temperature": 0.7,
+        "Faithfulness": 0.941,
+        "Groundedness": 0.96,
+        "ROUGE-L": 0.422,
+        "Brier": 0.006,
+        "ECE": 0.07,
+        "combined_score": 0.824,
+        "note": "fase1 optuna TPE seed=7 — ganador claude-sonnet-4-6 T=0.7 (2026-05-24)"
+      }
+    ],
+    "Orchestrator": [
+      {
+        "backend": "mysql",
+        "dataset": "spider:concert_singer",
+        "model": "gemini-2.5-flash",
+        "temperature": 0.7,
+        "Faithfulness": 0.8471,
+        "Groundedness": 0.9548,
+        "Correctness": 0.9909,
+        "combined_score": 2.7053,
+        "n_cases": 10,
+        "note": "fase3 optuna TPE seed=66 (2026-05-25)"
+      },
+      {
+        "backend": "postgres",
+        "dataset": "spider:concert_singer",
+        "model": "gemini-2.5-flash",
+        "temperature": 0.5,
+        "Faithfulness": 0.7886,
+        "Groundedness": 0.8709,
+        "Correctness": 0.8,
+        "combined_score": 2.2532,
+        "n_cases": 10,
+        "note": "fase3 optuna TPE seed=66 (2026-05-25)"
+      }
+    ]
+  }
+}

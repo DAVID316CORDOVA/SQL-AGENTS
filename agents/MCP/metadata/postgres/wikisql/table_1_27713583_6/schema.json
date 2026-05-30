@@ -1,0 +1,54 @@
+{
+  "available_entities": {
+    "table_1_27713583_6": {
+      "all_columns": [
+        "game",
+        "date",
+        "team",
+        "score",
+        "high_points",
+        "high_rebounds",
+        "high_assists",
+        "location_attendance",
+        "record"
+      ],
+      "numeric_columns": [
+        "game"
+      ],
+      "categorical_columns": [
+        "date",
+        "team",
+        "score",
+        "high_points",
+        "high_rebounds",
+        "high_assists",
+        "location_attendance",
+        "record"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 15,
+      "table_description": "Wikipedia table: table_1_27713583_6.",
+      "column_descriptions": {
+        "game": "Game. Type: real.",
+        "date": "Date. Type: text.",
+        "team": "Team. Type: text.",
+        "score": "Score. Type: text.",
+        "high_points": "High points. Type: text.",
+        "high_rebounds": "High rebounds. Type: text.",
+        "high_assists": "High assists. Type: text.",
+        "location_attendance": "Location Attendance. Type: text.",
+        "record": "Record. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

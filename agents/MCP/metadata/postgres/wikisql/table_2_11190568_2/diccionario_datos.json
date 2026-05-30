@@ -1,0 +1,30 @@
+{
+  "tablas": {
+    "table_2_11190568_2": {
+      "descripcion": "Table table_2_11190568_2",
+      "columnas": {
+        "player": {
+          "tipo": "text",
+          "descripcion": "Player. Text value."
+        },
+        "team": {
+          "tipo": "text",
+          "descripcion": "Team. Text value."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Text value."
+        },
+        "opposition": {
+          "tipo": "text",
+          "descripcion": "Opposition. Text value."
+        },
+        "game": {
+          "tipo": "text",
+          "descripcion": "Game. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

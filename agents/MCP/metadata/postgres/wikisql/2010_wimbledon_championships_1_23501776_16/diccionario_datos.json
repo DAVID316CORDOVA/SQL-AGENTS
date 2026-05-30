@@ -1,0 +1,42 @@
+{
+  "tablas": {
+    "2010_wimbledon_championships_1_23501776_16": {
+      "descripcion": "Table 2010_wimbledon_championships_1_23501776_16",
+      "columnas": {
+        "seed": {
+          "tipo": "real",
+          "descripcion": "Seed. Numeric value."
+        },
+        "rank": {
+          "tipo": "real",
+          "descripcion": "Rank. Numeric value."
+        },
+        "player": {
+          "tipo": "text",
+          "descripcion": "Player. Text value."
+        },
+        "points": {
+          "tipo": "real",
+          "descripcion": "Points. Numeric value."
+        },
+        "points_defending": {
+          "tipo": "text",
+          "descripcion": "Points defending. Text value."
+        },
+        "points_won": {
+          "tipo": "real",
+          "descripcion": "Points won. Numeric value."
+        },
+        "new_points": {
+          "tipo": "real",
+          "descripcion": "New points. Numeric value."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Text value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

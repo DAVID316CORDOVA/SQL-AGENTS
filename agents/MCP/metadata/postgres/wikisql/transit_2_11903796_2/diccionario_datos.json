@@ -1,0 +1,38 @@
+{
+  "tablas": {
+    "transit_2_11903796_2": {
+      "descripcion": "Table transit_2_11903796_2",
+      "columnas": {
+        "year": {
+          "tipo": "real",
+          "descripcion": "Year. Numeric value."
+        },
+        "manufacturer": {
+          "tipo": "text",
+          "descripcion": "Manufacturer. Text value."
+        },
+        "model": {
+          "tipo": "text",
+          "descripcion": "Model. Text value."
+        },
+        "length_ft": {
+          "tipo": "text",
+          "descripcion": "Length (ft.). Text value."
+        },
+        "fuel_or_propulsion": {
+          "tipo": "text",
+          "descripcion": "Fuel or Propulsion. Text value."
+        },
+        "fleet_series": {
+          "tipo": "text",
+          "descripcion": "Fleet series. Text value."
+        },
+        "quantity": {
+          "tipo": "real",
+          "descripcion": "Quantity. Numeric value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

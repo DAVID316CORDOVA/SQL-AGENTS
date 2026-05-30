@@ -1,0 +1,142 @@
+{
+  "available_entities": {
+    "museum": {
+      "all_columns": [
+        "Museum_ID",
+        "Name",
+        "Num_of_Staff",
+        "Open_Year"
+      ],
+      "numeric_columns": [
+        "Museum_ID",
+        "Num_of_Staff",
+        "Open_Year"
+      ],
+      "categorical_columns": [
+        "Name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Museum_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_museum_1": {
+          "columns": [
+            "Museum_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 8,
+      "table_description": "Table museum with 8 rows.",
+      "column_descriptions": {
+        "Museum_ID": "Museum Id. Type: integer.",
+        "Name": "Name. Type: text.",
+        "Num_of_Staff": "Num Of Staff. Type: integer.",
+        "Open_Year": "Year when museum was opened (numeric year value stored as text, e.g. '2014', '2007'). Use for range filters like > 2013 or < 2008."
+      }
+    },
+    "visitor": {
+      "all_columns": [
+        "ID",
+        "Name",
+        "Level_of_membership",
+        "Age"
+      ],
+      "numeric_columns": [
+        "ID",
+        "Level_of_membership",
+        "Age"
+      ],
+      "categorical_columns": [
+        "Name"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_visitor_1": {
+          "columns": [
+            "ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table visitor with 6 rows.",
+      "column_descriptions": {
+        "ID": "Id. Type: integer.",
+        "Name": "Name. Type: text.",
+        "Level_of_membership": "Level Of Membership. Type: integer.",
+        "Age": "Age. Type: integer."
+      }
+    },
+    "visit": {
+      "all_columns": [
+        "Museum_ID",
+        "visitor_ID",
+        "Num_of_Ticket",
+        "Total_spent"
+      ],
+      "numeric_columns": [
+        "Museum_ID",
+        "Num_of_Ticket",
+        "Total_spent"
+      ],
+      "categorical_columns": [
+        "visitor_ID"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "Museum_ID",
+            "visitor_ID"
+          ],
+          "unique": true
+        },
+        "sqlite_autoindex_visit_1": {
+          "columns": [
+            "Museum_ID",
+            "visitor_ID"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 6,
+      "table_description": "Table visit with 6 rows.",
+      "column_descriptions": {
+        "Museum_ID": "Museum Id. Type: integer.",
+        "visitor_ID": "Visitor Id. Type: text.",
+        "Num_of_Ticket": "Num Of Ticket. Type: integer.",
+        "Total_spent": "Total Spent. Type: float."
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from_table": "visit",
+      "from_column": "visitor_ID",
+      "to_table": "visitor",
+      "to_column": "ID",
+      "join_hint": "visit.visitor_ID = visitor.ID"
+    },
+    {
+      "from_table": "visit",
+      "from_column": "Museum_ID",
+      "to_table": "museum",
+      "to_column": "Museum_ID",
+      "join_hint": "visit.Museum_ID = museum.Museum_ID"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "questions": [
+    {
+      "refined_query": "Show the name and country of singers who performed in concerts in 2014.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Country"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Year"}
+      ],
+      "expected_sql": "SELECT DISTINCT T1.name, T1.country FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id JOIN concert AS T3 ON T2.concert_id = T3.concert_id WHERE T3.year = 2014"
+    },
+    {
+      "refined_query": "List all song names by singers above the average age.",
+      "selected_tables": [{"table_name": "singer"}],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Song_Name"},
+        {"table_name": "singer", "column_name": "Age"}
+      ],
+      "expected_sql": "SELECT song_name FROM singer WHERE age > (SELECT avg(age) FROM singer)"
+    },
+    {
+      "refined_query": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+      "selected_tables": [{"table_name": "stadium"}],
+      "selected_columns": [
+        {"table_name": "stadium", "column_name": "Location"},
+        {"table_name": "stadium", "column_name": "Name"},
+        {"table_name": "stadium", "column_name": "Capacity"}
+      ],
+      "expected_sql": "SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000"
+    },
+    {
+      "refined_query": "Show the names of singers who have not performed in any concert.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "singer_in_concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"}
+      ],
+      "expected_sql": "SELECT name FROM singer WHERE singer_id NOT IN (SELECT singer_id FROM singer_in_concert)"
+    },
+    {
+      "refined_query": "Show stadium names and the highest year of concerts held in each stadium.",
+      "selected_tables": [
+        {"table_name": "concert"},
+        {"table_name": "stadium"}
+      ],
+      "selected_columns": [
+        {"table_name": "concert", "column_name": "Year"},
+        {"table_name": "concert", "column_name": "Stadium_ID"},
+        {"table_name": "stadium", "column_name": "Name"},
+        {"table_name": "stadium", "column_name": "Stadium_ID"}
+      ],
+      "expected_sql": "SELECT T2.name, max(T1.year) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id GROUP BY T1.stadium_id"
+    },
+    {
+      "refined_query": "List the names of singers who performed in any concert with theme 'Musicals'.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "singer_in_concert"},
+        {"table_name": "concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Theme"}
+      ],
+      "expected_sql": "SELECT DISTINCT T1.name FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id JOIN concert AS T3 ON T2.concert_id = T3.concert_id WHERE T3.theme = 'Musicals'"
+    },
+    {
+      "refined_query": "Show the names and countries of singers who have performed at stadiums with a capacity above 5000.",
+      "selected_tables": [
+        {"table_name": "singer"},
+        {"table_name": "singer_in_concert"},
+        {"table_name": "concert"},
+        {"table_name": "stadium"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Name"},
+        {"table_name": "singer", "column_name": "Country"},
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"},
+        {"table_name": "singer_in_concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Stadium_ID"},
+        {"table_name": "stadium", "column_name": "Stadium_ID"},
+        {"table_name": "stadium", "column_name": "Capacity"}
+      ],
+      "expected_sql": "SELECT DISTINCT T1.name, T1.country FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id JOIN concert AS T3 ON T2.concert_id = T3.concert_id JOIN stadium AS T4 ON T3.stadium_id = T4.stadium_id WHERE T4.capacity > 5000"
+    },
+    {
+      "refined_query": "What is the average number of singers per concert?",
+      "selected_tables": [
+        {"table_name": "singer_in_concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer_in_concert", "column_name": "concert_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"}
+      ],
+      "expected_sql": "SELECT avg(sub.cnt) FROM (SELECT concert_id, count(singer_id) AS cnt FROM singer_in_concert GROUP BY concert_id) sub"
+    },
+    {
+      "refined_query": "What percentage of singers are male?",
+      "selected_tables": [
+        {"table_name": "singer"}
+      ],
+      "selected_columns": [
+        {"table_name": "singer", "column_name": "Singer_ID"},
+        {"table_name": "singer", "column_name": "Is_male"}
+      ],
+      "expected_sql": "SELECT CAST(sum(CASE WHEN is_male = 1 THEN 1 ELSE 0 END) AS DOUBLE) * 100 / count(singer_id) FROM singer"
+    },
+    {
+      "refined_query": "Show the top 3 stadiums with the most distinct singers who have performed there, along with the singer count.",
+      "selected_tables": [
+        {"table_name": "stadium"},
+        {"table_name": "concert"},
+        {"table_name": "singer_in_concert"}
+      ],
+      "selected_columns": [
+        {"table_name": "stadium", "column_name": "Stadium_ID"},
+        {"table_name": "stadium", "column_name": "Name"},
+        {"table_name": "concert", "column_name": "concert_ID"},
+        {"table_name": "concert", "column_name": "Stadium_ID"},
+        {"table_name": "singer_in_concert", "column_name": "concert_ID"},
+        {"table_name": "singer_in_concert", "column_name": "Singer_ID"}
+      ],
+      "expected_sql": "SELECT T1.name, count(DISTINCT T3.singer_id) AS total FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id JOIN singer_in_concert AS T3 ON T2.concert_id = T3.concert_id GROUP BY T1.stadium_id, T1.name ORDER BY total DESC LIMIT 3"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "available_entities": {
+    "2008_belmont_stakes_2_17480962_2": {
+      "all_columns": [
+        "finished",
+        "horse",
+        "jockey",
+        "trainer",
+        "odds"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "finished",
+        "horse",
+        "jockey",
+        "trainer",
+        "odds"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 10,
+      "table_description": "Wikipedia table: 2008_belmont_stakes_2_17480962_2.",
+      "column_descriptions": {
+        "finished": "Finished. Type: text.",
+        "horse": "Horse. Type: text.",
+        "jockey": "Jockey. Type: text.",
+        "trainer": "Trainer. Type: text.",
+        "odds": "Odds. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

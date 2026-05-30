@@ -1,0 +1,536 @@
+{
+  "tablas": {
+    "cards": {
+      "descripcion": "Table cards from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "artist": {
+          "tipo": "text",
+          "descripcion": "Artist. Type: text."
+        },
+        "asciiName": {
+          "tipo": "text",
+          "descripcion": "Asciiname. Type: text."
+        },
+        "availability": {
+          "tipo": "text",
+          "descripcion": "Availability. Type: text."
+        },
+        "borderColor": {
+          "tipo": "text",
+          "descripcion": "Bordercolor. Type: text."
+        },
+        "cardKingdomFoilId": {
+          "tipo": "text",
+          "descripcion": "Cardkingdomfoilid. Type: text."
+        },
+        "cardKingdomId": {
+          "tipo": "text",
+          "descripcion": "Cardkingdomid. Type: text."
+        },
+        "colorIdentity": {
+          "tipo": "text",
+          "descripcion": "Coloridentity. Type: text."
+        },
+        "colorIndicator": {
+          "tipo": "text",
+          "descripcion": "Colorindicator. Type: text."
+        },
+        "colors": {
+          "tipo": "text",
+          "descripcion": "Colors. Type: text."
+        },
+        "convertedManaCost": {
+          "tipo": "numeric",
+          "descripcion": "Convertedmanacost. Type: double."
+        },
+        "duelDeck": {
+          "tipo": "text",
+          "descripcion": "Dueldeck. Type: text."
+        },
+        "edhrecRank": {
+          "tipo": "numeric",
+          "descripcion": "Edhrecrank. Type: bigint."
+        },
+        "faceConvertedManaCost": {
+          "tipo": "numeric",
+          "descripcion": "Faceconvertedmanacost. Type: double."
+        },
+        "faceName": {
+          "tipo": "text",
+          "descripcion": "Facename. Type: text."
+        },
+        "flavorName": {
+          "tipo": "text",
+          "descripcion": "Flavorname. Type: text."
+        },
+        "flavorText": {
+          "tipo": "text",
+          "descripcion": "Flavortext. Type: text."
+        },
+        "frameEffects": {
+          "tipo": "text",
+          "descripcion": "Frameeffects. Type: text."
+        },
+        "frameVersion": {
+          "tipo": "text",
+          "descripcion": "Frameversion. Type: text."
+        },
+        "hand": {
+          "tipo": "text",
+          "descripcion": "Hand. Type: text."
+        },
+        "hasAlternativeDeckLimit": {
+          "tipo": "numeric",
+          "descripcion": "Hasalternativedecklimit. Type: bigint."
+        },
+        "hasContentWarning": {
+          "tipo": "numeric",
+          "descripcion": "Hascontentwarning. Type: bigint."
+        },
+        "hasFoil": {
+          "tipo": "numeric",
+          "descripcion": "Hasfoil. Type: bigint."
+        },
+        "hasNonFoil": {
+          "tipo": "numeric",
+          "descripcion": "Hasnonfoil. Type: bigint."
+        },
+        "isAlternative": {
+          "tipo": "numeric",
+          "descripcion": "Isalternative. Type: bigint."
+        },
+        "isFullArt": {
+          "tipo": "numeric",
+          "descripcion": "Isfullart. Type: bigint."
+        },
+        "isOnlineOnly": {
+          "tipo": "numeric",
+          "descripcion": "Isonlineonly. Type: bigint."
+        },
+        "isOversized": {
+          "tipo": "numeric",
+          "descripcion": "Isoversized. Type: bigint."
+        },
+        "isPromo": {
+          "tipo": "numeric",
+          "descripcion": "Ispromo. Type: bigint."
+        },
+        "isReprint": {
+          "tipo": "numeric",
+          "descripcion": "Isreprint. Type: bigint."
+        },
+        "isReserved": {
+          "tipo": "numeric",
+          "descripcion": "Isreserved. Type: bigint."
+        },
+        "isStarter": {
+          "tipo": "numeric",
+          "descripcion": "Isstarter. Type: bigint."
+        },
+        "isStorySpotlight": {
+          "tipo": "numeric",
+          "descripcion": "Isstoryspotlight. Type: bigint."
+        },
+        "isTextless": {
+          "tipo": "numeric",
+          "descripcion": "Istextless. Type: bigint."
+        },
+        "isTimeshifted": {
+          "tipo": "numeric",
+          "descripcion": "Istimeshifted. Type: bigint."
+        },
+        "keywords": {
+          "tipo": "text",
+          "descripcion": "Keywords. Type: text."
+        },
+        "layout": {
+          "tipo": "text",
+          "descripcion": "Layout. Type: text."
+        },
+        "leadershipSkills": {
+          "tipo": "text",
+          "descripcion": "Leadershipskills. Type: text."
+        },
+        "life": {
+          "tipo": "text",
+          "descripcion": "Life. Type: text."
+        },
+        "loyalty": {
+          "tipo": "text",
+          "descripcion": "Loyalty. Type: text."
+        },
+        "manaCost": {
+          "tipo": "text",
+          "descripcion": "Manacost. Type: text."
+        },
+        "mcmId": {
+          "tipo": "text",
+          "descripcion": "Mcmid. Type: text."
+        },
+        "mcmMetaId": {
+          "tipo": "text",
+          "descripcion": "Mcmmetaid. Type: text."
+        },
+        "mtgArenaId": {
+          "tipo": "text",
+          "descripcion": "Mtgarenaid. Type: text."
+        },
+        "mtgjsonV4Id": {
+          "tipo": "text",
+          "descripcion": "Mtgjsonv4Id. Type: text."
+        },
+        "mtgoFoilId": {
+          "tipo": "text",
+          "descripcion": "Mtgofoilid. Type: text."
+        },
+        "mtgoId": {
+          "tipo": "text",
+          "descripcion": "Mtgoid. Type: text."
+        },
+        "multiverseId": {
+          "tipo": "text",
+          "descripcion": "Multiverseid. Type: text."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "number": {
+          "tipo": "text",
+          "descripcion": "Number. Type: text."
+        },
+        "originalReleaseDate": {
+          "tipo": "text",
+          "descripcion": "Originalreleasedate. Type: text."
+        },
+        "originalText": {
+          "tipo": "text",
+          "descripcion": "Originaltext. Type: text."
+        },
+        "originalType": {
+          "tipo": "text",
+          "descripcion": "Originaltype. Type: text."
+        },
+        "otherFaceIds": {
+          "tipo": "text",
+          "descripcion": "Otherfaceids. Type: text."
+        },
+        "power": {
+          "tipo": "text",
+          "descripcion": "Power. Type: text."
+        },
+        "printings": {
+          "tipo": "text",
+          "descripcion": "Printings. Type: text."
+        },
+        "promoTypes": {
+          "tipo": "text",
+          "descripcion": "Promotypes. Type: text."
+        },
+        "purchaseUrls": {
+          "tipo": "text",
+          "descripcion": "Purchaseurls. Type: text."
+        },
+        "rarity": {
+          "tipo": "text",
+          "descripcion": "Rarity. Type: text."
+        },
+        "scryfallId": {
+          "tipo": "text",
+          "descripcion": "Scryfallid. Type: text."
+        },
+        "scryfallIllustrationId": {
+          "tipo": "text",
+          "descripcion": "Scryfallillustrationid. Type: text."
+        },
+        "scryfallOracleId": {
+          "tipo": "text",
+          "descripcion": "Scryfalloracleid. Type: text."
+        },
+        "setCode": {
+          "tipo": "text",
+          "descripcion": "Setcode. Type: text."
+        },
+        "side": {
+          "tipo": "text",
+          "descripcion": "Side. Type: text."
+        },
+        "subtypes": {
+          "tipo": "text",
+          "descripcion": "Subtypes. Type: text."
+        },
+        "supertypes": {
+          "tipo": "text",
+          "descripcion": "Supertypes. Type: text."
+        },
+        "tcgplayerProductId": {
+          "tipo": "text",
+          "descripcion": "Tcgplayerproductid. Type: text."
+        },
+        "text": {
+          "tipo": "text",
+          "descripcion": "Text. Type: text."
+        },
+        "toughness": {
+          "tipo": "text",
+          "descripcion": "Toughness. Type: text."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "types": {
+          "tipo": "text",
+          "descripcion": "Types. Type: text."
+        },
+        "uuid": {
+          "tipo": "text",
+          "descripcion": "Uuid. Type: text."
+        },
+        "variations": {
+          "tipo": "text",
+          "descripcion": "Variations. Type: text."
+        },
+        "watermark": {
+          "tipo": "text",
+          "descripcion": "Watermark. Type: text."
+        }
+      }
+    },
+    "foreign_data": {
+      "descripcion": "Table foreign_data from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "flavorText": {
+          "tipo": "text",
+          "descripcion": "Flavortext. Type: text."
+        },
+        "language": {
+          "tipo": "text",
+          "descripcion": "Language. Type: text."
+        },
+        "multiverseid": {
+          "tipo": "numeric",
+          "descripcion": "Multiverseid. Type: bigint."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "text": {
+          "tipo": "text",
+          "descripcion": "Text. Type: text."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        },
+        "uuid": {
+          "tipo": "text",
+          "descripcion": "Uuid. Type: text."
+        }
+      }
+    },
+    "legalities": {
+      "descripcion": "Table legalities from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "format": {
+          "tipo": "text",
+          "descripcion": "Format. Type: text."
+        },
+        "status": {
+          "tipo": "text",
+          "descripcion": "Status. Type: text."
+        },
+        "uuid": {
+          "tipo": "text",
+          "descripcion": "Uuid. Type: text."
+        }
+      }
+    },
+    "rulings": {
+      "descripcion": "Table rulings from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "date": {
+          "tipo": "text",
+          "descripcion": "Date. Type: text."
+        },
+        "text": {
+          "tipo": "text",
+          "descripcion": "Text. Type: text."
+        },
+        "uuid": {
+          "tipo": "text",
+          "descripcion": "Uuid. Type: text."
+        }
+      }
+    },
+    "set_translations": {
+      "descripcion": "Table set_translations from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "language": {
+          "tipo": "text",
+          "descripcion": "Language. Type: text."
+        },
+        "setCode": {
+          "tipo": "text",
+          "descripcion": "Setcode. Type: text."
+        },
+        "translation": {
+          "tipo": "text",
+          "descripcion": "Translation. Type: text."
+        }
+      }
+    },
+    "sets": {
+      "descripcion": "Table sets from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "id": {
+          "tipo": "numeric",
+          "descripcion": "Id. Type: bigint."
+        },
+        "baseSetSize": {
+          "tipo": "numeric",
+          "descripcion": "Basesetsize. Type: bigint."
+        },
+        "block": {
+          "tipo": "text",
+          "descripcion": "Block. Type: text."
+        },
+        "booster": {
+          "tipo": "text",
+          "descripcion": "Booster. Type: text."
+        },
+        "code": {
+          "tipo": "text",
+          "descripcion": "Code. Type: text."
+        },
+        "isFoilOnly": {
+          "tipo": "numeric",
+          "descripcion": "Isfoilonly. Type: bigint."
+        },
+        "isForeignOnly": {
+          "tipo": "numeric",
+          "descripcion": "Isforeignonly. Type: bigint."
+        },
+        "isNonFoilOnly": {
+          "tipo": "numeric",
+          "descripcion": "Isnonfoilonly. Type: bigint."
+        },
+        "isOnlineOnly": {
+          "tipo": "numeric",
+          "descripcion": "Isonlineonly. Type: bigint."
+        },
+        "isPartialPreview": {
+          "tipo": "numeric",
+          "descripcion": "Ispartialpreview. Type: bigint."
+        },
+        "keyruneCode": {
+          "tipo": "text",
+          "descripcion": "Keyrunecode. Type: text."
+        },
+        "mcmId": {
+          "tipo": "numeric",
+          "descripcion": "Mcmid. Type: bigint."
+        },
+        "mcmIdExtras": {
+          "tipo": "numeric",
+          "descripcion": "Mcmidextras. Type: bigint."
+        },
+        "mcmName": {
+          "tipo": "text",
+          "descripcion": "Mcmname. Type: text."
+        },
+        "mtgoCode": {
+          "tipo": "text",
+          "descripcion": "Mtgocode. Type: text."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "parentCode": {
+          "tipo": "text",
+          "descripcion": "Parentcode. Type: text."
+        },
+        "releaseDate": {
+          "tipo": "text",
+          "descripcion": "Releasedate. Type: text."
+        },
+        "tcgplayerGroupId": {
+          "tipo": "numeric",
+          "descripcion": "Tcgplayergroupid. Type: bigint."
+        },
+        "totalSetSize": {
+          "tipo": "numeric",
+          "descripcion": "Totalsetsize. Type: bigint."
+        },
+        "type": {
+          "tipo": "text",
+          "descripcion": "Type. Type: text."
+        }
+      }
+    },
+    "sqlite_sequence": {
+      "descripcion": "Table sqlite_sequence from the card_games BIRD database.",
+      "columnas": {
+        "_id": {
+          "tipo": "numeric",
+          "descripcion": " Id. Type: int. Primary key."
+        },
+        "name": {
+          "tipo": "text",
+          "descripcion": "Name. Type: text."
+        },
+        "seq": {
+          "tipo": "text",
+          "descripcion": "Seq. Type: text."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

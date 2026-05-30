@@ -1,0 +1,42 @@
+{
+  "tablas": {
+    "table_2_18987481_4": {
+      "descripcion": "Table table_2_18987481_4",
+      "columnas": {
+        "tv_station_operator": {
+          "tipo": "text",
+          "descripcion": "TV Station (Operator). Text value."
+        },
+        "c_2005": {
+          "tipo": "real",
+          "descripcion": "2005. Numeric value."
+        },
+        "c_2006": {
+          "tipo": "real",
+          "descripcion": "2006. Numeric value."
+        },
+        "c_2007": {
+          "tipo": "real",
+          "descripcion": "2007. Numeric value."
+        },
+        "c_2008": {
+          "tipo": "real",
+          "descripcion": "2008. Numeric value."
+        },
+        "c_2009": {
+          "tipo": "real",
+          "descripcion": "2009. Numeric value."
+        },
+        "c_2010": {
+          "tipo": "real",
+          "descripcion": "2010. Numeric value."
+        },
+        "c_2011_1h": {
+          "tipo": "real",
+          "descripcion": "2011 1H. Numeric value."
+        }
+      }
+    }
+  },
+  "relaciones": []
+}

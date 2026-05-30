@@ -1,0 +1,44 @@
+{
+  "available_entities": {
+    "table_1_25037577_1": {
+      "all_columns": [
+        "year",
+        "superintendent",
+        "middlesex_principal",
+        "gorham_principal",
+        "middle_school_principal",
+        "high_school_principal"
+      ],
+      "numeric_columns": [],
+      "categorical_columns": [
+        "year",
+        "superintendent",
+        "middlesex_principal",
+        "gorham_principal",
+        "middle_school_principal",
+        "high_school_principal"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 13,
+      "table_description": "Wikipedia table: table_1_25037577_1.",
+      "column_descriptions": {
+        "year": "Year. Type: text.",
+        "superintendent": "Superintendent. Type: text.",
+        "middlesex_principal": "Middlesex Principal. Type: text.",
+        "gorham_principal": "Gorham Principal. Type: text.",
+        "middle_school_principal": "Middle School Principal. Type: text.",
+        "high_school_principal": "High School Principal. Type: text."
+      }
+    }
+  },
+  "relationships": []
+}

@@ -1,0 +1,190 @@
+{
+  "available_entities": {
+    "customers": {
+      "all_columns": [
+        "_id",
+        "CustomerID",
+        "Segment",
+        "Currency"
+      ],
+      "numeric_columns": [
+        "_id",
+        "CustomerID"
+      ],
+      "categorical_columns": [
+        "Segment",
+        "Currency"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 32461,
+      "table_description": "Table customers with 32461 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "CustomerID": "Customerid. Type: bigint.",
+        "Segment": "Segment. Type: text.",
+        "Currency": "Currency. Type: text."
+      }
+    },
+    "gasstations": {
+      "all_columns": [
+        "_id",
+        "GasStationID",
+        "ChainID",
+        "Country",
+        "Segment"
+      ],
+      "numeric_columns": [
+        "_id",
+        "GasStationID",
+        "ChainID"
+      ],
+      "categorical_columns": [
+        "Country",
+        "Segment"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 5716,
+      "table_description": "Table gasstations with 5716 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "GasStationID": "Gasstationid. Type: bigint.",
+        "ChainID": "Chainid. Type: bigint.",
+        "Country": "Country. Type: text.",
+        "Segment": "Segment. Type: text."
+      }
+    },
+    "products": {
+      "all_columns": [
+        "_id",
+        "ProductID",
+        "Description"
+      ],
+      "numeric_columns": [
+        "_id",
+        "ProductID"
+      ],
+      "categorical_columns": [
+        "Description"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 591,
+      "table_description": "Table products with 591 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "ProductID": "Productid. Type: bigint.",
+        "Description": "Description. Type: text."
+      }
+    },
+    "sqlite_sequence": {
+      "all_columns": [
+        "_id",
+        "name",
+        "seq"
+      ],
+      "numeric_columns": [
+        "_id"
+      ],
+      "categorical_columns": [
+        "name",
+        "seq"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1,
+      "table_description": "Table sqlite_sequence with 1 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "name": "Name. Type: text.",
+        "seq": "Seq. Type: text."
+      }
+    },
+    "transactions_1k": {
+      "all_columns": [
+        "_id",
+        "TransactionID",
+        "Date",
+        "Time",
+        "CustomerID",
+        "CardID",
+        "GasStationID",
+        "ProductID",
+        "Amount",
+        "Price"
+      ],
+      "numeric_columns": [
+        "_id",
+        "TransactionID",
+        "CustomerID",
+        "CardID",
+        "GasStationID",
+        "ProductID",
+        "Amount",
+        "Price"
+      ],
+      "categorical_columns": [
+        "Date",
+        "Time"
+      ],
+      "categorical_values": {},
+      "indexes": {
+        "PRIMARY": {
+          "columns": [
+            "_id"
+          ],
+          "unique": true
+        }
+      },
+      "partitions": null,
+      "row_count": 1000,
+      "table_description": "Table transactions_1k with 1000 rows.",
+      "column_descriptions": {
+        "_id": " Id. Type: int. Primary key.",
+        "TransactionID": "Transactionid. Type: bigint.",
+        "Date": "Date. Type: text.",
+        "Time": "Time. Type: text.",
+        "CustomerID": "Customerid. Type: bigint.",
+        "CardID": "Cardid. Type: bigint.",
+        "GasStationID": "Gasstationid. Type: bigint.",
+        "ProductID": "Productid. Type: bigint.",
+        "Amount": "Amount. Type: bigint.",
+        "Price": "Price. Type: double."
+      }
+    }
+  },
+  "relationships": []
+}
