@@ -14,8 +14,8 @@ A diferencia de sistemas existentes como DIN-SQL, DAIL-SQL o MAC-SQL, SQL-Agents
 
 **Resultado principal (Fase 4 — robustez ante 30 paráfrasis):**
 
-| Backend | Score normalizado | Combined |
-|---------|-----------------|----------|
+| Base de datos | Score normalizado | Combined |
+|---------------|-----------------|----------|
 | MySQL | **82.9 %** | 2.488 / 3.0 |
 | PostgreSQL | **83.2 %** | 2.495 / 3.0 |
 
@@ -54,7 +54,7 @@ Orquestador ── STM (RAM) / LTM (ChromaDB)
 |--------|--------|-----|-----------------|
 | **AR** | Refinador | Valida que la pregunta sea una consulta de BD legítima y la reformula | — |
 | **APS** | Schema Matcher | Recupera las tablas y columnas relevantes por similitud vectorial en ChromaDB | `search_tables`, `search_columns` |
-| **AG** | Generador SQL | Genera SQL (MySQL o PostgreSQL) a partir del schema reducido entregado por APS | `validate_sql_safety`, `fix_reserved_words`, `find_joins_among_tables`, `find_join_path` |
+| **AG** | Generador SQL | Genera SQL (MySQL o PostgreSQL) a partir del schema reducido de APS | `validate_sql_safety`, `fix_reserved_words`, `find_joins_among_tables`, `find_join_path` |
 | **AV** | Validador | Verifica sintaxis, compliance con el schema y semántica del SQL; retroalimenta a AG si hay errores | `check_syntax_rules`, `check_semantic_patterns`, `check_query_efficiency`, `check_query_performance` |
 | **AE** | Explicador | Sintetiza el resultado en lenguaje natural y calcula el índice WACS | `format_sql_readable` |
 | **AS** | Sustentador | Responde bajo demanda preguntas sobre el proceso (¿por qué esas tablas?, ¿cuántas iteraciones?) | `get_agent_reasoning` |
@@ -71,9 +71,9 @@ WACS = 0.10·c_AR + 0.20·c_APS + 0.30·c_AG + 0.40·c_AV
 
 - **Orquestador**: clasifica el intent (conversacional / sustentación / sql_query), detecta cambios de contexto, resuelve referencias anafóricas ("de ellos", "los mismos") y consulta la memoria antes de activar el pipeline.
 - **MCP Server**: externaliza el contexto de dominio (descripción narrativa de la BD) y las operaciones sobre el schema (grafo de FKs, similitud coseno), desacopladas del proveedor LLM.
+- **Tool Registry** (`registry.py`): registro central que controla qué skills puede invocar cada agente. Si un LLM recibe un prompt injection e intenta llamar una skill de otro agente, el registry lo bloquea antes de ejecutar cualquier código y lo registra en el log de auditoría.
 - **Memoria STM**: caché RAM de la sesión activa. Evita reprocesar preguntas idénticas o muy similares.
-- **Memoria LTM**: ChromaDB persistente por usuario / backend / dataset. Si el orquestador encuentra un acierto, retorna el resultado sin invocar ningún agente.
-- **Tool Registry**: registro central que controla qué skills puede invocar cada agente.
+- **Memoria LTM**: ChromaDB persistente por usuario / base de datos / dataset. Si el orquestador encuentra un acierto, retorna el resultado sin invocar ningún agente.
 - **jobs/**: módulo CDC (Change Data Capture) que conecta a MySQL o PostgreSQL, extrae el DDL completo, índices, FKs y estadísticas, y lo serializa en JSON para APS y MCP.
 
 ---
@@ -88,7 +88,7 @@ Seis modelos de tres proveedores, cubriendo el espectro eficiencia–capacidad:
 | GPT-4o | OpenAI | Sí | Sí |
 | Claude Haiku 4.5 | Anthropic | Sí | Sí |
 | Claude Sonnet 4.6 | Anthropic | Sí | Sí |
-| Gemini 2.5 Flash | Google | Sí | — |
+| Gemini 2.5 Flash | Google | Sí | Sí |
 | Gemini 2.5 Pro | Google | Sí | — |
 
 **Juez de evaluación:** GPT-4o con T = 0.0 (fijo en todas las fases, garantiza determinismo).  
@@ -133,28 +133,22 @@ Donde: **F** = Faithfulness (GEval LLM-as-judge), **G** = Groundedness (GEval), 
 | AE | gpt-4o | 0.3 | 0.792 |
 | AS | claude-sonnet-4-6 | 0.7 | 0.870 |
 
-> **Sub-fases 1\_1 / 1\_2 (AG y AV):** la Fase 1\_2 corrige tres problemas metodológicos detectados en 1\_1: prompts con ejemplos del dataset de evaluación (data leakage), función ROUGE-L que penalizaba JOINs semánticamente equivalentes escritos en distinto orden (`normalize_sql_v2` corrige esto), y umbral de outcome reducido de 0.80 a 0.70 para eliminar falsos negativos. El modelo ganador fue el mismo en ambas sub-fases, confirmando que la mejora de scores se debe a las correcciones y no a nuevas combinaciones.
+> **Sub-fases 1\_1 / 1\_2 (AG y AV):** la Fase 1\_2 corrige tres problemas metodológicos: data leakage en prompts, penalización injusta de JOINs semánticamente equivalentes en ROUGE-L (`normalize_sql_v2`), y umbral de outcome reducido de 0.80 a 0.70. El modelo ganador fue el mismo en ambas sub-fases.
 
 ### Fase 2 — Robustez a paráfrasis por agente
 
-Los ganadores de Fase 1 se fijaron y se evaluaron sobre 3 reformulaciones lingüísticas por intent: informal, reformulada y vocabulario alternativo. Esto produce **30 entradas por agente** donde las tres paráfrasis comparten la misma respuesta esperada.
+Los ganadores de Fase 1 se fijaron y se evaluaron sobre 3 reformulaciones lingüísticas por intent (informal, reformulada, vocabulario alternativo), generando **30 entradas por agente**.
 
-Hallazgos principales:
-
-- **AV es el más robusto:** ΔCombined = 0 en MySQL. La clasificación binaria (válido/inválido) no se ve afectada por reformulaciones lingüísticas.
-- **AG es el más sensible:** Postgres pierde Δ = −0.400 en combined; las paráfrasis informales dificultan el mapeo exacto a columnas del schema.
-- **ROUGE-L del AR cae −0.174** no porque el AR falle, sino porque las paráfrasis informales no coinciden léxicamente con la referencia limpia esperada. Faithfulness cae solo −0.042, demostrando robustez semántica.
-- **AE y AS son estables:** caídas ≤ 0.033 en combined; la generación de lenguaje natural es menos sensible a reformulaciones.
+- **AV es el más robusto:** ΔCombined = 0 en MySQL.
+- **AG es el más sensible:** Postgres pierde Δ = −0.400 en combined.
+- **AE y AS son estables:** caídas ≤ 0.033.
 
 ### Fase 3 — Búsqueda de hiperparámetros del orquestador
 
-El pipeline completo se evaluó sobre **10 escenarios** que cubren todas las rutas posibles del sistema, usando `ToolCorrectnessMetric` (DeepEval) para verificar que el orquestador activa los agentes y skills correctos.
+El pipeline completo se evaluó sobre **10 escenarios** que cubren todas las rutas posibles. `ToolCorrectnessMetric` (DeepEval) verifica que el orquestador activa los agentes y skills correctos.
 
-Rutas evaluadas: (1) pregunta subjetiva → END, (2) DML → AR rechaza → AE, (3) concepto sin tablas → APS rechaza → AE, (4) sustentación → AS, (5–10) pipeline completo con seis patrones SQL: agregación, JOIN + GROUP BY, subconsulta NOT IN, DISTINCT + WHERE, GROUP BY con MAX por categoría, y ciclo de corrección AV → AG.
-
-**Función objetivo:** `combined_orch = F + G + C − B − E` (máx ≈ 3.0)
-
-**Ganador (en MySQL y PostgreSQL):** `claude-haiku-4-5`, T = 0.3
+**Función objetivo:** `combined_orch = F + G + C − B − E` (máx ≈ 3.0)  
+**Ganador (ambas bases de datos):** `claude-haiku-4-5`, T = 0.3
 
 | Métrica | MySQL | PostgreSQL |
 |---------|------:|----------:|
@@ -167,7 +161,7 @@ Rutas evaluadas: (1) pregunta subjetiva → END, (2) DML → AR rechaza → AE, 
 
 ### Fase 4 — Robustez del orquestador (30 paráfrasis)
 
-Los 10 escenarios de Fase 3 se reformularon en 3 variantes cada uno, generando **30 entradas por backend**. El SQL esperado, la explicación de referencia y las tools esperadas son fijos; solo cambia la redacción.
+Los 10 escenarios de Fase 3 se reformularon en 3 variantes cada uno.
 
 | | MySQL | PostgreSQL |
 |--|------:|----------:|
@@ -176,19 +170,14 @@ Los 10 escenarios de Fase 3 se reformularon en 3 variantes cada uno, generando *
 | Caída relativa | −9.3 % | −2.3 % |
 | **Score normalizado** | **82.9 %** | **83.2 %** |
 
-`ToolCorrectnessMetric` ≥ 0.891 en ambos backends: el orquestador clasifica intents y activa los agentes correctos independientemente de la redacción del usuario.
-
 ---
 
 ## Conclusiones principales
 
-1. **No existe un único LLM óptimo para todo el pipeline.** El AG (generación de SQL estructurado) converge a `claude-haiku-4-5` (bajo costo, alta precisión léxica). El AV (validación con razonamiento textual) requiere `claude-sonnet-4-6` en MySQL. AE y AS prefieren `gpt-4o` y `claude-sonnet-4-6` respectivamente por su mayor riqueza expresiva. El orquestador converge a `claude-haiku-4-5` como equilibrio entre velocidad y precisión en routing.
-
-2. **La calidad de la métrica es tan crítica como la del agente.** Corregir data leakage, normalización de JOINs en ROUGE-L y el umbral de outcome elevó el Brier de PostgreSQL en más del 96 %.
-
-3. **Alta robustez lingüística.** Caídas menores al 10 % al pasar de 10 preguntas a 30 paráfrasis en todos los agentes y en ambos backends.
-
-4. **Agent Skills + MCP es viable arquitectónicamente.** Permite sustituir el LLM de cualquier agente sin modificar los demás, y externalizar el conocimiento de dominio sin hardcodear reglas en el prompt.
+1. **No existe un único LLM óptimo para todo el pipeline.** Cada rol converge a un modelo diferente: AG a `claude-haiku-4-5`, AE a `gpt-4o`, AS a `claude-sonnet-4-6`, orquestador a `claude-haiku-4-5`.
+2. **La calidad de la métrica es tan crítica como la del agente.** Corregir data leakage, normalización de JOINs en ROUGE-L y el umbral de outcome redujo el Brier de PostgreSQL en más del 96 %.
+3. **Alta robustez lingüística.** Caídas menores al 10 % al pasar de 10 preguntas a 30 paráfrasis en todas las bases de datos.
+4. **Agent Skills + MCP es viable arquitectónicamente.** Permite sustituir el LLM de cualquier agente sin modificar los demás.
 
 ---
 
@@ -201,13 +190,11 @@ agent_skills/
 │   ├── AR/                        # Refinador
 │   │   ├── refiner_agent.py
 │   │   ├── prompt.py
-│   │   ├── server.py
+│   │   ├── server.py              # servidor FastAPI del agente (POST /invoke)
 │   │   ├── phase_0/               # Grilla exhaustiva 30 combinaciones
 │   │   ├── phase_1/               # Optuna TPE — búsqueda de hiperparámetros
 │   │   └── phase_2/               # Robustez a paráfrasis
-│   ├── APS/                       # Schema Matcher
-│   │   ├── mysql/
-│   │   └── postgres/
+│   ├── APS/                       # Schema Matcher (mysql/ y postgres/)
 │   ├── AG/                        # Generador SQL
 │   │   ├── mysql/
 │   │   │   ├── phase_1/           # Fase 1_1 (línea base)
@@ -234,7 +221,7 @@ agent_skills/
 │   └── phase_4_2/                 # Fase 4_2: correcciones completas
 │
 ├── memory/
-│   ├── long_term_memory.py        # ChromaDB persistente por usuario/backend/dataset
+│   ├── long_term_memory.py        # ChromaDB persistente por usuario/base de datos/dataset
 │   └── short_term.py              # Caché RAM de sesión
 │
 ├── metricas_lib/
@@ -246,14 +233,14 @@ agent_skills/
 │
 ├── jobs/
 │   ├── schema_extractor.py        # Dispatcher: elige mysql o postgres según DB_TYPE
-│   ├── mysql/schema_extractor.py  # Extractor MySQL completo
-│   └── postgres/schema_extractor.py
+│   ├── mysql/schema_extractor.py  # CDC MySQL: extrae DDL, índices, FKs → schema.json
+│   └── postgres/schema_extractor.py # CDC PostgreSQL: misma función, dialectos propios
 │
 ├── scripts/
 │   ├── create_database.py         # Crea la BD demo_db en MySQL
 │   ├── create_schema.py           # Crea tablas: students, courses, enrollments
 │   ├── insert_data.py             # Inserta datos de prueba (10 filas/tabla)
-│   ├── generate_random_university_data.py
+│   ├── generate_random_university_data.py  # Genera datos masivos con Faker
 │   ├── setup_bird_postgres.py     # Configura dataset BIRD en PostgreSQL
 │   ├── eval_spider.py             # Evaluación end-to-end con Spider 1.0
 │   └── eval_bird.py               # Evaluación end-to-end con BIRD
@@ -265,11 +252,14 @@ agent_skills/
 │   └── winners/
 │       └── best_hyperparameters.json   # Ganadores Optuna — cargado por config.py al inicio
 │
+├── registry.py                    # Tool Registry: control de acceso por agente (13 skills, 7 agentes)
+├── Dockerfile                     # Imagen base para todos los agentes (pesada/liviana según ARG REQS)
+├── docker-compose.yml             # Orquestación de 8 servicios: MCP + 6 agentes + orquestador
 ├── config.py                      # Configuración global: modelos, paths, umbrales
 ├── api.py                         # Backend FastAPI (puerto 8000)
 ├── main.py                        # CLI conversacional
-├── requirements.txt               # Dependencias completas (desarrollo y experimentos)
-└── requirements-light.txt         # Dependencias mínimas para Docker/producción
+├── requirements.txt               # Dependencias completas (con torch, para desarrollo y experimentos)
+└── requirements-light.txt         # Dependencias mínimas sin torch (para contenedores de agentes)
 ```
 
 ---
@@ -280,7 +270,7 @@ agent_skills/
 
 - Python 3.11
 - MySQL 8.0 y/o PostgreSQL 14+
-- Claves API de los proveedores que se vayan a usar (OpenAI, Anthropic, Google)
+- Claves API de los proveedores a usar (OpenAI, Anthropic, Google)
 
 ### Pasos
 
@@ -302,7 +292,7 @@ pip install -r requirements.txt
 #    ANTHROPIC_API_KEY=sk-ant-...
 #    GOOGLE_API_KEY=AIza...
 
-# 5. Crear la BD demo y cargar datos (opcional, solo para demo_db)
+# 5. (Opcional) Crear la BD demo y cargar datos de prueba
 python scripts/create_database.py
 python scripts/create_schema.py
 python scripts/insert_data.py
@@ -325,13 +315,13 @@ python main.py
 | Comando | Acción |
 |---------|--------|
 | `nuevo tema` | Reinicia el contexto conversacional |
-| `memoria` | Estado de STM y LTM |
+| `memoria` | Estado de la memoria de sesión y persistente |
 | `limpiar` | Vacía la caché de sesión |
 | `debug` | Activa/desactiva análisis detallado por agente |
 | `reindex` | Re-indexa ChromaDB con el schema actual |
 | `salir` | Cierra sesión y persiste STM → LTM |
 
-### API REST (UI web)
+### API REST + UI web
 
 ```bash
 uvicorn api:app --host 0.0.0.0 --port 8000
@@ -341,42 +331,47 @@ Abrir `http://localhost:8000` en el navegador.
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
-| POST | `/api/session` | Crear sesión (usuario + db_type + dataset) |
+| POST | `/api/session` | Crear sesión (usuario + base de datos + dataset) |
 | POST | `/api/query` | Enviar pregunta en lenguaje natural |
 | DELETE | `/api/session/{id}` | Cerrar sesión y flush STM → LTM |
 | GET | `/api/stats/{id}` | Estadísticas de la sesión |
 | POST | `/api/reindex` | Re-indexar ChromaDB |
 | DELETE | `/api/memory/{id}` | Borrar LTM del usuario |
 
-### Docker (microservicios)
+### Docker — despliegue en microservicios
 
 ```bash
-docker-compose up --build
+docker compose up --build    # primer arranque: construye las dos imágenes y descarga el modelo (~1 GB)
+docker compose up            # reinicios posteriores (usa caché)
+docker compose down          # detener todos los servicios
 ```
 
-Cada agente corre en su propio contenedor exponiendo `POST /invoke`:
+El sistema levanta **8 contenedores**. El orquestador espera a que todos los agentes estén `healthy` antes de arrancar:
 
-| Servicio | Puerto |
-|----------|--------|
-| Orquestador | 8000 |
-| AR | 8001 |
-| APS | 8002 |
-| AG | 8003 |
-| AV | 8004 |
-| AE | 8005 |
-| AS | 8006 |
+| Contenedor | Puerto | Imagen |
+|------------|--------|--------|
+| `sql_agents_mcp` | 8010 | Pesada (~2.3 GB) |
+| `sql_agents_aps` | 8002 | Pesada |
+| `sql_agents_ar` | 8001 | Liviana (~570 MB) |
+| `sql_agents_ag` | 8003 | Liviana |
+| `sql_agents_av` | 8004 | Liviana |
+| `sql_agents_ae` | 8005 | Liviana |
+| `sql_agents_as` | 8006 | Liviana |
+| `sql_agents_orchestrator` | 8000 | Liviana |
+
+La diferencia de tamaño entre imágenes existe porque MCP y APS necesitan `sentence-transformers` con PyTorch para calcular embeddings vectoriales. Los demás agentes invocan modelos remotos vía API y no requieren torch.
 
 ---
 
 ## Datasets soportados
 
-| Dataset | Identificador en config | Descripción |
-|---------|------------------------|-------------|
+| Dataset | Identificador | Descripción |
+|---------|--------------|-------------|
 | Demo DB propia | `demo_db` | BD escuela (students, courses, enrollments) |
 | Spider 1.0 | `spider:<db_id>` | 200 BDs, ej: `spider:concert_singer` |
 | BIRD | `bird:<db_id>` | BDs reales de mayor complejidad |
 
-Para cambiar el dataset activo añadir en `.env`:
+Para cambiar el dataset activo, añadir en `.env`:
 
 ```
 ACTIVE_DATASET=spider:concert_singer
@@ -398,7 +393,7 @@ python agents/AG/mysql/phase_2_2/run_phase2.py
 # Fase 3: evaluación del pipeline completo
 python orchestrator/phase_3_2/mysql/run_optuna.py
 
-# Fase 4: robustez del orquestador (30 paráfrasis)
+# Fase 4: robustez del orquestador
 python orchestrator/phase_4_2/mysql/run_phase4.py
 ```
 
@@ -408,7 +403,7 @@ Los resultados se guardan en `agents/<AGENTE>/phase_*/results/` y `orchestrator/
 
 ## Alcance y limitaciones
 
-- El sistema genera, valida y explica la consulta SQL pero **no la ejecuta** contra la BD.
+- El sistema genera, valida y explica la consulta SQL pero **no la ejecuta** contra la base de datos.
 - No cubre tipos de datos complejos: ARRAY, JSON anidado, datos geoespaciales.
 - Evaluado sobre esquemas OLTP/ACID en estrella o copo de nieve.
 - La ejecución del SQL y el manejo de resultados estructurados complejos quedan a cargo de la capa de aplicación que integre el sistema.
@@ -423,7 +418,7 @@ Los resultados se guardan en `agents/<AGENTE>/phase_*/results/` y `orchestrator/
 
 ## Carpetas que debes agregar al repositorio
 
-Las siguientes carpetas están en tu máquina pero aún no están rastreadas por git. Agrégalas manualmente antes de hacer commit:
+Las siguientes están en tu máquina pero aún no están rastreadas por git. Agrégalas con `git add` antes de hacer commit:
 
 ```bash
 # Experimentos AG y AV con correcciones metodológicas (Fase 1_2 y 2_2)
@@ -440,11 +435,11 @@ git add agents/AV/postgres/phase_2_2/
 git add orchestrator/phase_3_2/
 git add orchestrator/phase_4_2/
 
-# Extractores de schema (necesarios para onboarding de nueva BD)
+# Extractores de schema (necesarios para onboarding de una nueva BD)
 git add jobs/
 
-# Imágenes del informe
+# Imagen del despliegue Docker
 git add despliegue_docker.PNG
 ```
 
-> Los directorios `*/results/` dentro de estas carpetas están excluidos por `.gitignore` y no se subirán aunque uses `git add .`.
+> Los directorios `*/results/` dentro de estas carpetas están excluidos automáticamente por `.gitignore` y no se subirán.
