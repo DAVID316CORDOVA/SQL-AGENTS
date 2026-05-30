@@ -154,7 +154,7 @@ Rutas evaluadas: (1) pregunta subjetiva → END, (2) DML → AR rechaza → AE, 
 
 **Función objetivo:** `combined_orch = F + G + C − B − E` (máx ≈ 3.0)
 
-**Ganador (ambos backends):** `claude-haiku-4-5`, T = 0.3
+**Ganador (en MySQL y PostgreSQL):** `claude-haiku-4-5`, T = 0.3
 
 | Métrica | MySQL | PostgreSQL |
 |---------|------:|----------:|
