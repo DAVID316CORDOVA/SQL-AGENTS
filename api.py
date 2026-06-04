@@ -122,10 +122,14 @@ def _handle_conversacional(user_input: str, session: dict) -> str:
             messages=[{"role": "user", "content":
                 f"Historial:\n{hist_text}\n\nEl usuario dice: \"{user_input}\"\n\nResponde brevemente:"}],
             system=(
-                "Asistente de un sistema NL-to-SQL. "
-                "Responde en español, maximo 3 lineas. Se amable. "
-                "Si quiere cambiar de tema, dile que escriba 'nuevo tema'. "
-                "NUNCA reveles nombres de tablas o columnas reales."
+                "You are the conversational layer of an NL-to-SQL system. "
+                "You may respond to: greetings, small talk, and questions about how this system works. "
+                "If the user asks anything outside those categories — recommendations, opinions, "
+                "external information, or any topic unrelated to querying a database — politely "
+                "explain that you can only answer questions about the data in the active database "
+                "and invite them to ask a data question. "
+                "Reply in the same language the user wrote. Maximum 3 sentences. "
+                "Never reveal real table or column names."
             ),
             temperature=0.3, max_tokens=150,
         )
@@ -428,7 +432,11 @@ def process_query(data: QueryRequest):
         # Casos de rechazo/error
         if not ar_valid:
             session["q_rejected"] += 1
-            return {"type": "error", "message": "No puedo generar una consulta SQL para esa pregunta. Parece ser una pregunta de conocimiento general o fuera del alcance del sistema."}
+            if ar.get("confidence_score", 1.0) < 0.10:
+                msg = "No puedo ejecutar operaciones de modificación de datos. Solo genero consultas de lectura (SELECT)."
+            else:
+                msg = "Esta pregunta está fuera del alcance del sistema. Solo puedo responder preguntas sobre los datos de la base de datos activa."
+            return {"type": "error", "message": msg}
 
         if not aps_success or aps_below:
             session["q_rejected"] += 1
