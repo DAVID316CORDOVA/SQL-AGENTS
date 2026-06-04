@@ -38,15 +38,22 @@ sustentation         The user asks WHY or HOW the system arrived at the previous
 context_switch       The user explicitly changes topic to something unrelated to the current conversation.
                      enriched_query: exact copy of the new query (with its action verb). If no new query → "".
 
-conversacional       ONLY for: greetings, small talk, conceptual definitions ("what is X"),
-                     procedural instructions about the system itself.
-                     IMPORTANT: Subjective opinion questions about DOMAIN DATA ENTITIES
-                     (e.g. "who is the best singer?", "which singer is the greatest?",
-                     "which is the most popular stadium?") are NOT conversacional — classify
-                     them as new_sql_query so AR can evaluate and reject them properly.
-                     NEVER classify as conversacional a data query:
-                     "what is the X of Y", "how many X", "find X", "list X", "what is the min/max of X",
-                     "return the number of X", "who is the best X", "which X is the greatest" are ALWAYS new_sql_query.
+conversacional       For: greetings, small talk, conceptual definitions ("what is X"),
+                     procedural instructions about the system itself, and questions about
+                     this system's own components (e.g. "how many agents does the pipeline have?",
+                     "what agents are there?", "how does the system work?", "cuantos agentes
+                     tiene el pipeline?", "que agentes tiene el sistema?").
+                     NOT conversacional — classify as new_sql_query so AR can reject properly:
+                       • Subjective opinion questions about DOMAIN DATA ENTITIES
+                         ("who is the best singer?", "which stadium is the most popular?")
+                       • Off-topic requests for recommendations, advice, or external info
+                         ("recommend me a restaurant", "me recomiendas X", "what is the weather",
+                          "what is the capital of Y", "how do I cook X")
+                     NEVER classify as conversacional a data query about the DOMAIN:
+                     "what is the X of Y", "how many X [in the database/table]", "find X",
+                     "list X", "what is the min/max of X", "return the number of X" are
+                     new_sql_query UNLESS X refers to the system's own components (agents,
+                     pipeline, nodes, memory).
                      enriched_query: "" (empty)
 
 clarification_needed The user's message is a continuation but it is genuinely ambiguous: it is unclear
